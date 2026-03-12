@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { AnthropicMark } from "@/components/layout/anthropic-mark";
+import { ClaudeSparkle } from "@/components/ui/claude-logo";
 import {
   LayoutDashboard,
   Activity,
@@ -17,11 +17,11 @@ const sections = [
   { id: "command", label: "Command Center", icon: LayoutDashboard },
   { id: "feed", label: "Agent Activity", icon: Activity },
   { id: "approval", label: "Approval Queue", icon: CheckSquare },
-  { id: "competitive", label: "Competitive Landscape", icon: Crosshair },
+  { id: "competitive", label: "Competitive Intel", icon: Crosshair },
   { id: "architecture", label: "Architecture", icon: Shield },
-  { id: "org", label: "Org Expansion Map", icon: Network },
+  { id: "org", label: "Org Expansion", icon: Network },
   { id: "timeline", label: "Deal Timeline", icon: Calendar },
-  { id: "narrative", label: "Executive Narrative", icon: FileText },
+  { id: "narrative", label: "Exec Narrative", icon: FileText },
 ] as const;
 
 export type SectionId = (typeof sections)[number]["id"];
@@ -33,36 +33,75 @@ interface SidebarProps {
 
 export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
   return (
-    <aside className="relative flex w-56 shrink-0 flex-col border-r border-surface-border/70 bg-surface-elevated/70 backdrop-blur-xl">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-accent/10 to-transparent" />
-      <div className="relative border-b border-surface-border/60 px-5 py-5">
-        <AnthropicMark subtitle="Claude Revenue Systems" />
+    <aside className="flex w-56 shrink-0 flex-col border-r border-surface-border/40 bg-surface-elevated/20">
+      {/* Brand header */}
+      <div className="relative px-5 py-5">
+        <div className="flex items-center gap-2">
+          <div className="flex h-6 w-6 items-center justify-center rounded-md bg-claude-coral/10">
+            <ClaudeSparkle size={14} className="text-claude-coral" />
+          </div>
+          <div>
+            <h1 className="text-[13px] font-semibold tracking-tight text-text-primary">
+              Claude
+            </h1>
+            <p className="text-[11px] text-text-muted">
+              Enterprise Engine
+            </p>
+          </div>
+        </div>
       </div>
-      <nav className="flex-1 space-y-1 px-2 py-4">
-        {sections.map(({ id, label, icon: Icon }) => (
-          <button
-            key={id}
-            onClick={() => onSectionChange(id)}
-            className={cn(
-              "flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left text-[13px] transition-all duration-200",
-              activeSection === id
-                ? "bg-accent/12 text-text-primary shadow-[inset_0_0_0_1px_rgba(196,181,154,0.18)]"
-                : "text-text-muted hover:bg-surface-muted/55 hover:text-text-secondary"
-            )}
-          >
-            <Icon
-              className={cn(
-                "h-3.5 w-3.5 shrink-0",
-                activeSection === id ? "opacity-90" : "opacity-60"
-              )}
-            />
-            {label}
-          </button>
-        ))}
+
+      {/* Navigation */}
+      <nav className="flex-1 px-3 py-3">
+        <div className="space-y-0.5">
+          {sections.map(({ id, label, icon: Icon }) => {
+            const isActive = activeSection === id;
+            return (
+              <button
+                key={id}
+                onClick={() => onSectionChange(id)}
+                className={cn(
+                  "group flex w-full items-center gap-2 rounded-md px-2.5 py-[7px] text-left text-[13px] transition-all duration-150",
+                  isActive
+                    ? "bg-surface-muted/50 text-text-primary"
+                    : "text-text-muted hover:bg-surface-muted/30 hover:text-text-secondary"
+                )}
+              >
+                <Icon
+                  className={cn(
+                    "h-[14px] w-[14px] shrink-0 transition-colors duration-200",
+                    isActive ? "text-claude-coral/70" : "opacity-45 group-hover:opacity-70"
+                  )}
+                  strokeWidth={1.8}
+                />
+                <span className={cn(isActive && "font-medium")}>{label}</span>
+                {isActive && (
+                  <span className="ml-auto h-1 w-1 rounded-full bg-claude-coral/60" />
+                )}
+              </button>
+            );
+          })}
+        </div>
       </nav>
-      <div className="border-t border-surface-border/60 px-5 py-4">
-        <p className="text-[12px] text-text-secondary">George Trosley</p>
-        <p className="text-[11px] text-text-muted">Enterprise GTM</p>
+
+      {/* User section */}
+      <div className="mt-auto border-t border-surface-border/30 px-5 py-4">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-surface-muted/80 text-[10px] font-semibold text-text-secondary ring-1 ring-surface-border/50">
+            GT
+          </div>
+          <div className="min-w-0">
+            <p className="truncate text-[12px] font-medium text-text-secondary">George Trosley</p>
+            <p className="text-[10px] text-text-faint">Enterprise AE</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Anthropic footer */}
+      <div className="px-5 pb-4">
+        <p className="text-[10px] text-text-faint/60">
+          Powered by Anthropic
+        </p>
       </div>
     </aside>
   );

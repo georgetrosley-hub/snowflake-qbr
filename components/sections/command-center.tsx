@@ -10,6 +10,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { ClaudeSparkle } from "@/components/ui/claude-logo";
 import type { Account, Agent, Competitor } from "@/types";
 
 const ease = [0.25, 0.46, 0.45, 0.94];
@@ -43,28 +44,20 @@ export function CommandCenter({
       className="min-h-[70vh]"
     >
       {/* Hero */}
-      <section className="mb-20">
+      <section className="mb-16">
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.6, ease }}
-          className="text-[11px] font-medium uppercase tracking-[0.2em] text-text-muted mb-3"
+          className="text-[12px] text-text-muted mb-5"
         >
-          Anthropic enterprise motion
-        </motion.p>
-        <motion.p
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.12, duration: 0.6, ease }}
-          className="text-[11px] uppercase tracking-[0.16em] text-text-faint mb-6"
-        >
-          Target account
+          account
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.6, ease }}
-          className="text-4xl sm:text-5xl font-medium tracking-tight text-text-primary"
+          className="text-4xl sm:text-5xl font-semibold tracking-tight text-text-primary"
         >
           {account.name}
         </motion.h1>
@@ -72,41 +65,41 @@ export function CommandCenter({
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.5, ease }}
-          className="mt-4 text-lg text-text-secondary leading-relaxed max-w-2xl"
+          className="mt-4 text-[18px] text-text-secondary leading-relaxed max-w-2xl"
         >
           {account.firstWedge}
         </motion.p>
       </section>
 
       {/* Premium metric panel */}
-      <section className="mb-24">
+      <section className="mb-20">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6, ease }}
-          className="flex flex-col gap-12 sm:flex-row sm:gap-16 lg:gap-24 py-10 border-y border-surface-border/40"
+          className="grid gap-10 py-4 sm:grid-cols-3"
         >
           <div>
-            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-text-faint mb-2">
+            <p className="text-[12px] text-text-muted mb-1.5">
               Land
             </p>
-            <p className="text-3xl sm:text-4xl font-medium tabular-nums text-text-primary tracking-tight">
+            <p className="text-3xl sm:text-4xl font-semibold tabular-nums text-text-primary tracking-tight">
               ${account.estimatedLandValue.toFixed(2)}M
             </p>
           </div>
           <div>
-            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-text-faint mb-2">
+            <p className="text-[12px] text-text-muted mb-1.5">
               Expansion
             </p>
-            <p className="text-3xl sm:text-4xl font-medium tabular-nums text-text-primary tracking-tight">
+            <p className="text-3xl sm:text-4xl font-semibold tabular-nums text-text-primary tracking-tight">
               ${account.estimatedExpansionValue.toFixed(2)}M
             </p>
           </div>
           <div>
-            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-text-faint mb-2">
+            <p className="text-[12px] text-text-muted mb-1.5">
               Opportunity
             </p>
-            <p className="text-3xl sm:text-4xl font-medium tabular-nums text-accent-muted/90 tracking-tight">
+            <p className="text-3xl sm:text-4xl font-semibold tabular-nums text-claude-coral tracking-tight">
               ${totalOpportunity.toFixed(2)}M
             </p>
           </div>
@@ -114,13 +107,13 @@ export function CommandCenter({
       </section>
 
       {/* Forecast */}
-      <section className="mb-24">
+      <section className="mb-20">
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6, ease }}
         >
-          <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-text-faint mb-8">
+          <p className="text-[12px] text-text-muted mb-6">
             Pipeline forecast
           </p>
           <div className="h-48 lg:h-56">
@@ -128,23 +121,23 @@ export function CommandCenter({
               <AreaChart data={forecastData} margin={{ top: 8, right: 8, left: -24, bottom: 0 }}>
                 <defs>
                   <linearGradient id="landGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#c4b59a" stopOpacity={0.12} />
-                    <stop offset="100%" stopColor="#c4b59a" stopOpacity={0} />
+                    <stop offset="0%" stopColor="#DA7756" stopOpacity={0.15} />
+                    <stop offset="100%" stopColor="#DA7756" stopOpacity={0} />
                   </linearGradient>
                   <linearGradient id="expGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#9a8f7a" stopOpacity={0.06} />
-                    <stop offset="100%" stopColor="#9a8f7a" stopOpacity={0} />
+                    <stop offset="0%" stopColor="#C06A4B" stopOpacity={0.08} />
+                    <stop offset="100%" stopColor="#C06A4B" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="2 2" stroke="#2c2824" vertical={false} strokeOpacity={0.5} />
+                <CartesianGrid strokeDasharray="2 2" stroke="#272523" vertical={false} strokeOpacity={0.5} />
                 <XAxis
                   dataKey="month"
-                  tick={{ fontSize: 11, fill: "#6e6860" }}
+                  tick={{ fontSize: 11, fill: "#6B6560" }}
                   axisLine={false}
                   tickLine={false}
                 />
                 <YAxis
-                  tick={{ fontSize: 10, fill: "#6e6860" }}
+                  tick={{ fontSize: 10, fill: "#6B6560" }}
                   axisLine={false}
                   tickLine={false}
                   tickFormatter={(v) => `$${v}`}
@@ -152,27 +145,29 @@ export function CommandCenter({
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "#1e1c19",
-                    border: "1px solid #2c2824",
-                    borderRadius: "4px",
-                    padding: "8px 12px",
+                    backgroundColor: "#1B1A19",
+                    border: "1px solid #302D2A",
+                    borderRadius: "8px",
+                    padding: "8px 14px",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
                   }}
-                  labelStyle={{ color: "#b8b2a9", fontSize: 11 }}
+                  labelStyle={{ color: "#A8A29E", fontSize: 11 }}
                   formatter={(value: number) => [`$${value.toFixed(2)}M`, ""]}
                 />
                 <Area
                   type="monotone"
                   dataKey="land"
-                  stroke="#c4b59a"
-                  strokeWidth={1}
+                  stroke="#DA7756"
+                  strokeWidth={1.5}
                   fill="url(#landGrad)"
                 />
                 <Area
                   type="monotone"
                   dataKey="expansion"
-                  stroke="#9a8f7a"
-                  strokeWidth={0.8}
+                  stroke="#C06A4B"
+                  strokeWidth={1}
                   fill="url(#expGrad)"
+                  strokeDasharray="4 2"
                 />
               </AreaChart>
             </ResponsiveContainer>
@@ -181,7 +176,7 @@ export function CommandCenter({
       </section>
 
       {/* Context + recommendation */}
-      <section className="grid gap-16 lg:grid-cols-[1fr_1.2fr] lg:gap-24">
+      <section className="grid gap-14 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -189,7 +184,7 @@ export function CommandCenter({
           className="space-y-10"
         >
           <div>
-            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-text-faint mb-4">
+            <p className="text-[12px] text-text-muted mb-3">
               Competitive pressure
             </p>
             <p className="text-[15px] text-text-secondary leading-relaxed">
@@ -197,7 +192,7 @@ export function CommandCenter({
             </p>
           </div>
           <div>
-            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-text-faint mb-4">
+            <p className="text-[12px] text-text-muted mb-3">
               Blockers
             </p>
             <p className="text-[15px] text-text-secondary leading-relaxed">
@@ -205,7 +200,7 @@ export function CommandCenter({
             </p>
           </div>
           <div>
-            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-text-faint mb-4">
+            <p className="text-[12px] text-text-muted mb-3">
               Paths
             </p>
             <p className="text-[15px] text-text-secondary leading-relaxed">
@@ -218,11 +213,15 @@ export function CommandCenter({
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.55, duration: 0.5, ease }}
+          className="rounded-lg bg-surface-elevated/30 p-6"
         >
-          <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-text-faint mb-4">
-            Recommendation
-          </p>
-          <p className="text-[17px] text-text-primary leading-relaxed">
+          <div className="flex items-center gap-2 mb-3">
+            <ClaudeSparkle size={12} className="text-claude-coral/60" />
+            <p className="text-[12px] text-text-muted">
+              Claude recommendation
+            </p>
+          </div>
+          <p className="text-[18px] text-text-primary leading-relaxed">
             {currentRecommendation}
           </p>
         </motion.div>

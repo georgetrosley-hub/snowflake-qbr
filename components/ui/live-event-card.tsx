@@ -11,7 +11,7 @@ interface LiveEventCardProps {
 
 const priorityStyles = {
   low: {
-    dot: "bg-text-faint/60",
+    dot: "bg-text-faint/50",
     label: "Low",
   },
   medium: {
@@ -19,11 +19,11 @@ const priorityStyles = {
     label: "Medium",
   },
   high: {
-    dot: "bg-accent-muted/80",
+    dot: "bg-claude-coral/60",
     label: "High",
   },
   critical: {
-    dot: "bg-accent/70",
+    dot: "bg-claude-coral",
     label: "Critical",
   },
 };
@@ -53,6 +53,8 @@ export function LiveEventCard({ event, isNew }: LiveEventCardProps) {
     ? `${event.agentName} ${event.operationalPhrase}.`
     : event.title;
 
+  const isCritical = event.priority === "critical" || event.priority === "high";
+
   return (
     <motion.article
       layout
@@ -62,35 +64,37 @@ export function LiveEventCard({ event, isNew }: LiveEventCardProps) {
         duration: isNew ? 0.5 : 0.35,
         ease: [0.25, 0.46, 0.45, 0.94],
       }}
-      className="group flex gap-4 rounded-md border border-surface-border/40 bg-surface-elevated/30 px-5 py-4 hover:bg-surface-elevated/50 transition-colors"
+      className={cn(
+        "group flex gap-4 rounded-md px-5 py-4 transition-colors",
+        isCritical
+          ? "bg-claude-coral/[0.02] hover:bg-claude-coral/[0.035]"
+          : "bg-surface-elevated/20 hover:bg-surface-elevated/35"
+      )}
     >
-      {/* Agent avatar */}
       <div className="flex shrink-0 flex-col items-center gap-2">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-surface-border/60 bg-surface/60 text-[11px] font-medium text-text-secondary">
+        <div
+          className={cn(
+            "flex h-9 w-9 shrink-0 items-center justify-center rounded-full border text-[11px] font-medium",
+            isCritical
+              ? "border-claude-coral/20 bg-claude-coral/5 text-claude-coral"
+              : "border-surface-border/60 bg-surface/60 text-text-secondary"
+          )}
+        >
           {getAgentInitials(event.agentName)}
         </div>
         <span
-          className={cn(
-            "h-1.5 w-1.5 shrink-0 rounded-full",
-            priority.dot
-          )}
+          className={cn("h-1.5 w-1.5 shrink-0 rounded-full", priority.dot)}
           title={priority.label}
         />
       </div>
 
-      {/* Content */}
       <div className="min-w-0 flex-1 pt-0.5">
         <div className="flex flex-wrap items-baseline gap-2">
           <span className="text-[11px] tabular-nums text-text-faint">
             {formatTime(event.timestamp)}
           </span>
           <span
-            className={cn(
-              "rounded px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wider",
-              event.priority === "critical" && "text-accent-muted",
-              event.priority === "high" && "text-accent-muted/80",
-              (event.priority === "medium" || event.priority === "low") && "text-text-faint"
-            )}
+            className={cn("text-[10px]", isCritical ? "text-claude-coral/80" : "text-text-faint")}
           >
             {priority.label}
           </span>
@@ -102,7 +106,7 @@ export function LiveEventCard({ event, isNew }: LiveEventCardProps) {
           {event.explanation}
         </p>
         {event.recommendedAction && (
-          <p className="mt-3 text-[12px] text-accent-muted">
+          <p className="mt-3 text-[12px] text-claude-coral/80">
             {event.recommendedAction}
           </p>
         )}

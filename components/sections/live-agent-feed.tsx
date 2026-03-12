@@ -26,19 +26,18 @@ export function LiveAgentFeed({ events }: LiveAgentFeedProps) {
       transition={{ duration: 0.4 }}
       className="flex h-full flex-col"
     >
-      <div className="flex items-center justify-between mb-8">
+      <div className="mb-8 flex items-center justify-between">
         <SectionHeader
           title="Agent activity"
-          subtitle="Activity stream"
+          subtitle="Real-time intelligence stream"
         />
         <div className="flex items-center gap-2">
-          <motion.span
-            animate={{ opacity: [0.4, 1, 0.4] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            className="h-2 w-2 rounded-full bg-accent-muted"
-          />
-          <span className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
-            Live
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-claude-coral/40" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-claude-coral/70" />
+          </span>
+          <span className="text-[11px] text-text-muted">
+            live
           </span>
         </div>
       </div>
