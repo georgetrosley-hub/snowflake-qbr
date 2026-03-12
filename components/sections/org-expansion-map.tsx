@@ -149,10 +149,10 @@ export function OrgExpansionMap({ nodes, account, competitors }: OrgExpansionMap
         )}
       </div>
 
-      <div className="relative overflow-x-auto overflow-y-hidden rounded-[28px] border border-claude-coral/10 bg-gradient-to-br from-surface-elevated/85 via-surface/75 to-surface-elevated/85 px-6 py-8">
+      <div className="relative overflow-hidden rounded-[28px] border border-claude-coral/10 bg-gradient-to-br from-surface-elevated/85 via-surface/75 to-surface-elevated/85 px-8 py-10">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(218,119,86,0.08),transparent_45%),radial-gradient(circle_at_18%_18%,rgba(218,119,86,0.04),transparent_35%),radial-gradient(circle_at_86%_84%,rgba(218,119,86,0.03),transparent_30%)]" />
 
-        <div className="relative mx-auto h-[920px] min-w-[1240px]">
+        <div className="relative h-[920px] w-full">
           <svg
             className="pointer-events-none absolute inset-0 h-full w-full"
             viewBox="0 0 100 100"

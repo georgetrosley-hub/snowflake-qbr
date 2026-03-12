@@ -176,7 +176,7 @@ function MainContent() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="mx-auto max-w-5xl"
+              className={activeSection === "org" ? "mx-auto w-full max-w-[1600px]" : "mx-auto max-w-5xl"}
             >
               {sections[activeSection]}
             </motion.div>
