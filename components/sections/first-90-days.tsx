@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, BriefcaseBusiness, Target } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
-import { ClaudeActionBar } from "@/components/ui/claude-action-bar";
+import { DatabricksActionBar } from "@/components/ui/databricks-action-bar";
 import type { Account, Competitor, ExecutionItem } from "@/types";
 
 const phases = [
@@ -127,8 +127,8 @@ export function First90Days({
         </div>
       </section>
 
-      <ClaudeActionBar
-        title="Ask Claude about your first 90 days"
+      <DatabricksActionBar
+        title="Ask about your first 90 days"
         subtitle="Get a sequenced plan, messaging for the champion, or next-step recommendations."
         account={account}
         competitors={competitors}

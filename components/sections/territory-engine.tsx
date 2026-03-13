@@ -8,9 +8,9 @@ import {
   MessageSquare,
   LayoutTemplate,
   Zap,
-  ClaudeSparkle,
   ArrowRight,
 } from "lucide-react";
+import { DatabricksLogoIcon } from "@/components/ui/databricks-logo";
 import { SectionHeader } from "@/components/ui/section-header";
 
 const steps = [
@@ -59,17 +59,17 @@ export function TerritoryEngine() {
         subtitle="Claude isn't just the product. It's the tool I use to run territory."
       />
 
-      <div className="rounded-[22px] border border-claude-coral/25 bg-claude-coral/[0.04] p-4 sm:p-6">
+      <div className="rounded-[22px] border border-accent/25 bg-accent/[0.04] p-4 sm:p-6">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-claude-coral/15">
-            <ClaudeSparkle size={20} className="text-claude-coral" />
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/15">
+            <DatabricksLogoIcon size={20} className="text-accent" />
           </div>
           <div>
             <p className="text-[14px] font-medium text-text-primary">
-              This site is powered by Claude.
+              This site is powered by AI.
             </p>
             <p className="mt-0.5 text-[12px] text-text-muted">
-              Ask it how I would land Pfizer or Sanofi. Ask about objections, champion strategy, or pilot design.
+              Ask it how I would land enterprise accounts. Ask about objections, champion strategy, or pilot design.
             </p>
           </div>
         </div>
@@ -89,8 +89,8 @@ export function TerritoryEngine() {
               transition={{ delay: idx * 0.06, duration: 0.3 }}
               className="flex gap-4 rounded-xl border border-surface-border/40 bg-surface-elevated/30 px-4 py-4"
             >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-claude-coral/10">
-                <Icon className="h-4 w-4 text-claude-coral" strokeWidth={1.8} />
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent/10">
+                <Icon className="h-4 w-4 text-accent" strokeWidth={1.8} />
               </span>
               <div className="min-w-0 flex-1">
                 <p className="text-[13px] font-medium text-text-primary">
