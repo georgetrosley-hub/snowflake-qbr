@@ -413,13 +413,11 @@ export function buildWorkspaceDraft(
   account: Account,
   competitors: Competitor[]
 ): WorkspaceDraft {
-  const topCompetitor = getTopCompetitor(competitors);
-
   return {
-    dealThesis: `Land ${account.firstWedge.toLowerCase()} first, prove a controlled win quickly, then use that proof to open ${account.topExpansionPaths[0].toLowerCase()}.`,
-    winTheme: `Do not let ${topCompetitor?.name ?? "the incumbent"} turn this into a bundled platform decision. Keep the evaluation focused on model quality, governance, and the workflow where Claude clearly wins.`,
-    thisWeekFocus: ``,
-    operatorNotes: `Use executive alignment to create urgency, but keep the first ask narrow. This account should feel like a disciplined land-and-expand motion, not a broad transformation pitch.`,
+    dealThesis: "",
+    winTheme: "",
+    thisWeekFocus: "",
+    operatorNotes: "",
   };
 }
 
