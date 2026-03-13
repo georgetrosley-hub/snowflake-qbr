@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Handshake, ShieldAlert, Star, Users } from "lucide-react";
 import { ClaudeActionBar } from "@/components/ui/claude-action-bar";
@@ -28,9 +29,32 @@ export function Stakeholders({
   stakeholders,
   onUpdateStakeholderStance,
 }: StakeholdersProps) {
+  const [pendingStance, setPendingStance] = useState<Record<string, Stakeholder["stance"]>>({});
+
   const champions = stakeholders.filter((stakeholder) => stakeholder.stance === "champion" || stakeholder.stance === "ally");
   const blockers = stakeholders.filter((stakeholder) => stakeholder.stance === "blocker");
   const executiveCount = stakeholders.filter((stakeholder) => stakeholder.stance === "executive").length;
+
+  const handleStanceClick = (stakeholderId: string, stance: Stakeholder["stance"], currentStance: Stakeholder["stance"]) => {
+    if (stance === currentStance) {
+      setPendingStance((prev) => {
+        const next = { ...prev };
+        delete next[stakeholderId];
+        return next;
+      });
+    } else {
+      setPendingStance((prev) => ({ ...prev, [stakeholderId]: stance }));
+    }
+  };
+
+  const handleSaveStance = (stakeholderId: string, stance: Stakeholder["stance"]) => {
+    onUpdateStakeholderStance(stakeholderId, stance);
+    setPendingStance((prev) => {
+      const next = { ...prev };
+      delete next[stakeholderId];
+      return next;
+    });
+  };
 
   return (
     <motion.div
@@ -122,7 +146,7 @@ export function Stakeholders({
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.04, duration: 0.35 }}
-            className="rounded-[28px] border border-white/8 bg-white/[0.03] p-5"
+            className="rounded-[28px] bg-white/[0.02] p-5"
           >
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
@@ -132,79 +156,92 @@ export function Stakeholders({
                 </p>
               </div>
               <span
-                className={`rounded-full border px-2.5 py-1 text-[10px] uppercase tracking-[0.08em] ${stanceStyles[stakeholder.stance]}`}
+                className={`rounded-full border px-2.5 py-1 text-[10px] uppercase tracking-[0.08em] ${stanceStyles[pendingStance[stakeholder.id] ?? stakeholder.stance]}`}
               >
-                {stakeholder.stance}
+                {pendingStance[stakeholder.id] ?? stakeholder.stance}
               </span>
             </div>
 
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-[20px] border border-white/8 bg-black/10 px-4 py-3">
-                <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Influence</p>
-                <p className="mt-2 text-[13px] font-medium capitalize text-text-primary">
+            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              <div>
+                <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-text-faint">Influence</p>
+                <p className="mt-1 text-[13px] font-medium capitalize text-text-primary">
                   {stakeholder.influence}
                 </p>
               </div>
-              <div className="rounded-[20px] border border-white/8 bg-black/10 px-4 py-3">
-                <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Relationship</p>
-                <p className="mt-2 text-[13px] font-medium text-text-primary">
+              <div>
+                <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-text-faint">Relationship</p>
+                <p className="mt-1 text-[13px] font-medium text-text-primary">
                   {stakeholder.relationshipStrength}/100
                 </p>
               </div>
             </div>
 
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-[20px] border border-white/8 bg-black/10 px-4 py-4">
-                <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Last touch</p>
-                <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              <div>
+                <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-text-faint">Last touch</p>
+                <p className="mt-1 text-[13px] leading-relaxed text-text-secondary">
                   {stakeholder.lastTouch}
                 </p>
               </div>
-              <div className="rounded-[20px] border border-white/8 bg-black/10 px-4 py-4">
-                <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Proof needed</p>
-                <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
+              <div>
+                <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-text-faint">Proof needed</p>
+                <p className="mt-1 text-[13px] leading-relaxed text-text-secondary">
                   {stakeholder.proofNeeded}
                 </p>
               </div>
             </div>
 
-            <div className="mt-4 rounded-[20px] border border-white/8 bg-black/10 px-4 py-4">
-              <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Next step</p>
-              <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
+            <div className="mt-4">
+              <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-text-faint">Next step</p>
+              <p className="mt-1 text-[13px] leading-relaxed text-text-secondary">
                 {stakeholder.nextStep}
               </p>
             </div>
 
-            <div className="mt-4 rounded-[20px] border border-white/8 bg-black/10 px-4 py-4">
-              <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Recent moment</p>
-              <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
+            <div className="mt-4">
+              <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-text-faint">Recent moment</p>
+              <p className="mt-1 text-[13px] leading-relaxed text-text-secondary">
                 {stakeholder.recentMoment}
               </p>
             </div>
 
-            <div className="mt-4 flex flex-wrap gap-2">
-              {(["champion", "ally", "neutral", "blocker"] as const).map((stance) => (
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              {(["champion", "ally", "neutral", "blocker"] as const).map((stance) => {
+                const displayedStance = pendingStance[stakeholder.id] ?? stakeholder.stance;
+                const isSelected = displayedStance === stance;
+                return (
+                  <button
+                    key={stance}
+                    type="button"
+                    onClick={() => handleStanceClick(stakeholder.id, stance, stakeholder.stance)}
+                    className={cn(
+                      "rounded-full border px-3 py-1.5 text-[12px] transition-colors",
+                      isSelected
+                        ? "border-claude-coral/20 bg-claude-coral/[0.10] text-claude-coral"
+                        : "border-white/10 bg-white/[0.04] text-text-secondary hover:bg-white/[0.06]"
+                    )}
+                  >
+                    {stance}
+                  </button>
+                );
+              })}
+              {pendingStance[stakeholder.id] != null && pendingStance[stakeholder.id] !== stakeholder.stance && (
                 <button
-                  key={stance}
                   type="button"
-                  onClick={() => onUpdateStakeholderStance(stakeholder.id, stance)}
-                  className={cn(
-                    "rounded-full border px-3 py-1.5 text-[12px] transition-colors",
-                    stakeholder.stance === stance
-                      ? "border-claude-coral/20 bg-claude-coral/[0.10] text-claude-coral"
-                      : "border-white/10 bg-white/[0.04] text-text-secondary hover:bg-white/[0.06]"
-                  )}
+                  onClick={() => handleSaveStance(stakeholder.id, pendingStance[stakeholder.id]!)}
+                  className="rounded-full border-2 border-claude-coral/40 bg-claude-coral/15 px-3 py-1.5 text-[12px] font-medium text-claude-coral transition-colors hover:bg-claude-coral/25"
                 >
-                  {stance}
+                  Save
                 </button>
-              ))}
+              )}
             </div>
 
             <p className="mt-4 text-[13px] leading-relaxed text-text-muted">
               {stakeholder.note}
             </p>
-            <p className="mt-3 text-[12px] leading-relaxed text-rose-200/90">
-              Risk: {stakeholder.risk}
+            <p className="mt-3 text-[13px] font-semibold text-text-primary">
+              Risk: <span className="text-rose-500">{stakeholder.risk}</span>
             </p>
           </motion.article>
         ))}
