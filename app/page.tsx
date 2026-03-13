@@ -6,13 +6,17 @@ import { Sidebar, type SectionId } from "@/components/layout/sidebar";
 import { StatusBar } from "@/components/layout/status-bar";
 import { ChatPanel } from "@/components/layout/chat-panel";
 import { Overview } from "@/components/sections/overview";
+import { PipelineDashboard } from "@/components/sections/pipeline-dashboard";
+import { DealSimulation } from "@/components/sections/deal-simulation";
 import { DealProgression } from "@/components/sections/deal-progression";
 import { AccountLog } from "@/components/sections/account-log";
 import { Stakeholders } from "@/components/sections/stakeholders";
 import { Execution } from "@/components/sections/execution";
-import { First30Days } from "@/components/sections/first-30-days";
+import { First90Days } from "@/components/sections/first-90-days";
 import { Signals } from "@/components/sections/signals";
 import { ArtifactsWorkspace } from "@/components/sections/artifacts-workspace";
+import { TerritoryEngine } from "@/components/sections/territory-engine";
+import { EnterpriseComparison } from "@/components/sections/enterprise-comparison";
 import { motion, AnimatePresence } from "framer-motion";
 
 function MainContent() {
@@ -82,6 +86,14 @@ function MainContent() {
         onSectionChange={handleSectionChange}
       />
     ),
+    pipeline: <PipelineDashboard />,
+    dealSimulation: (
+      <DealSimulation
+        account={account}
+        stakeholders={stakeholders}
+        competitors={competitors}
+      />
+    ),
     dealProgression: (
       <DealProgression
         account={account}
@@ -119,8 +131,8 @@ function MainContent() {
         onUpdateExecutionStatus={updateExecutionStatus}
       />
     ),
-    first30Days: (
-      <First30Days
+    first90Days: (
+      <First90Days
         account={account}
         competitors={competitors}
         executionItems={executionItems}
@@ -140,6 +152,8 @@ function MainContent() {
         competitors={competitors}
       />
     ),
+    territoryEngine: <TerritoryEngine />,
+    enterpriseComparison: <EnterpriseComparison />,
   };
 
   return (

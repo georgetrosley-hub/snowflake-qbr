@@ -222,20 +222,23 @@ export function ChatPanel({
                     Your deal desk
                   </p>
                   <p className="text-[12px] text-text-muted leading-relaxed mb-6">
-                    I have context on {account.name}. Ask about pipeline creation, champion strategy,
-                    pilot design, competitive displacement, or next-step messaging.
+                    Ask the Claude GTM Agent anything. I have context on {account.name}.
                   </p>
                   {!hasApiKey && (
                     <div className="mb-6 rounded-lg border border-claude-coral/20 bg-claude-coral/[0.06] px-3 py-2 text-[11px] text-claude-coral/85">
                       If chat is not responding yet, add your Claude API key from the top right.
                     </div>
                   )}
+                  <p className="text-[10px] font-medium uppercase tracking-wider text-text-faint mb-2">
+                    Try asking:
+                  </p>
                   <div className="space-y-2 w-full">
                     {[
-                      `How would you land the first pilot at ${account.name}?`,
-                      `Who is the best likely champion path at ${account.name}?`,
-                      "How would you handle the security review and procurement path?",
-                      "Write the internal brief I should use with leadership",
+                      `How would you land ${account.name}?`,
+                      `Who is the likely champion at ${account.name}?`,
+                      "What objections will legal raise?",
+                      "What is the fastest pilot path?",
+                      "How would you handle security and procurement?",
                     ].map((suggestion) => (
                       <button
                         key={suggestion}

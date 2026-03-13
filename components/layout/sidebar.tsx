@@ -16,13 +16,19 @@ import {
   TrendingUp,
   ClipboardList,
   CalendarCheck,
+  BarChart3,
+  GitBranch,
+  Cpu,
+  Shield,
 } from "lucide-react";
 
 const sectionGroups = [
   {
-    label: "Deal Strategy",
+    label: "Territory",
     items: [
       { id: "overview", label: "War Room", icon: LayoutDashboard },
+      { id: "pipeline", label: "Pipeline", icon: BarChart3 },
+      { id: "dealSimulation", label: "Deal Simulation", icon: GitBranch },
       { id: "dealProgression", label: "Deal Progression", icon: TrendingUp },
       { id: "accountLog", label: "Account Log", icon: ClipboardList },
       { id: "stakeholders", label: "Stakeholder Map", icon: Users },
@@ -30,11 +36,18 @@ const sectionGroups = [
     ],
   },
   {
-    label: "Field Work",
+    label: "Execution",
     items: [
-      { id: "first30Days", label: "My First 30 Days", icon: CalendarCheck },
+      { id: "first90Days", label: "First 90 Days", icon: CalendarCheck },
       { id: "signals", label: "Deal Signals", icon: Radar },
       { id: "artifacts", label: "Field Kit", icon: FileText },
+    ],
+  },
+  {
+    label: "GTM Intel",
+    items: [
+      { id: "territoryEngine", label: "Territory Engine", icon: Cpu },
+      { id: "enterpriseComparison", label: "Claude vs Competitors", icon: Shield },
     ],
   },
 ] as const;
