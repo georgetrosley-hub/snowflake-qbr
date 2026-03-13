@@ -176,10 +176,10 @@ export function Overview({
         </div>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-3">
-          <div className="flex flex-col rounded-xl border border-surface-border bg-surface-muted/50 px-4 py-3.5">
+          <div className="flex flex-col rounded-xl border border-claude-coral/25 bg-surface-muted/50 px-4 py-3.5">
             <div className="flex items-center gap-2">
-              <Zap className="h-4 w-4 text-text-muted" strokeWidth={2} />
-              <p className="text-[11px] font-bold uppercase tracking-wider text-text-muted">Plans for this week</p>
+              <Zap className="h-4 w-4 text-claude-coral" strokeWidth={2} />
+              <p className="text-[11px] font-bold uppercase tracking-wider text-claude-coral">Plans for this week</p>
             </div>
             <textarea
               value={workspaceDraft.thisWeekFocus}
@@ -197,11 +197,11 @@ export function Overview({
                 : document.getElementById("account-log");
               el?.scrollIntoView({ behavior: "smooth", block: "start" });
             }}
-            className="flex flex-col justify-center rounded-xl border border-surface-border bg-surface-muted/50 px-4 py-3.5 text-left transition-colors hover:bg-surface-muted/70"
+            className="flex flex-col justify-center rounded-xl border border-claude-coral/25 bg-surface-muted/50 px-4 py-3.5 text-left transition-colors hover:bg-surface-muted/70 hover:border-claude-coral/40"
           >
             <div className="flex items-center gap-2">
-              <ArrowRight className="h-4 w-4 text-text-muted" strokeWidth={2} />
-              <p className="text-[11px] font-bold uppercase tracking-wider text-text-muted">Where I left off</p>
+              <ArrowRight className="h-4 w-4 text-claude-coral" strokeWidth={2} />
+              <p className="text-[11px] font-bold uppercase tracking-wider text-claude-coral">Where I left off</p>
             </div>
             <p className="mt-2 text-[15px] font-bold text-text-primary">
               {lastUpdate?.title ?? "Daily account reset"}
@@ -215,11 +215,11 @@ export function Overview({
               const targetId = inThisWeek ? `execution-item-${topPriority!.id}` : "my-first-30-days";
               document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
             }}
-            className="flex flex-col justify-center rounded-xl border border-surface-border bg-surface-muted/50 px-4 py-3.5 text-left transition-colors hover:bg-surface-muted/70"
+            className="flex flex-col justify-center rounded-xl border border-claude-coral/25 bg-surface-muted/50 px-4 py-3.5 text-left transition-colors hover:bg-surface-muted/70 hover:border-claude-coral/40"
           >
             <div className="flex items-center gap-2">
-              <Target className="h-4 w-4 text-text-muted" strokeWidth={2} />
-              <p className="text-[11px] font-bold uppercase tracking-wider text-text-muted">Today&apos;s priority</p>
+              <Target className="h-4 w-4 text-claude-coral" strokeWidth={2} />
+              <p className="text-[11px] font-bold uppercase tracking-wider text-claude-coral">Today&apos;s priority</p>
             </div>
             <p className="mt-2 text-[15px] font-bold text-text-primary">
               {topPriority?.title ?? "Define the first pilot"}
@@ -459,7 +459,7 @@ export function Overview({
             </div>
 
             <div>
-              <label className="mb-2 block text-[11px] font-medium uppercase tracking-[0.12em] text-text-faint">
+              <label className="mb-2 block text-[11px] font-medium uppercase tracking-[0.12em] text-claude-coral">
                 Plans for this week
               </label>
               <textarea
@@ -467,7 +467,7 @@ export function Overview({
                 onChange={(event) => handleWorkspaceFieldChange("thisWeekFocus", event.target.value)}
                 rows={2}
                 placeholder="e.g. Lock the pilot sponsor, define success criteria, schedule governance…"
-                className="w-full resize-none rounded-[22px] border border-surface-border/40 bg-surface-muted/20 px-4 py-3 text-[13px] font-normal leading-relaxed text-text-muted placeholder:text-text-faint/60 focus:border-claude-coral/30 focus:outline-none focus:text-text-primary focus:placeholder:opacity-0"
+                className="w-full resize-none rounded-[22px] border border-claude-coral/25 bg-surface-muted/20 px-4 py-3 text-[13px] font-normal leading-relaxed text-text-muted placeholder:text-text-faint/60 focus:border-claude-coral/40 focus:outline-none focus:text-text-primary focus:placeholder:opacity-0"
               />
             </div>
 

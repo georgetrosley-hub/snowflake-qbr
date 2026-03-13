@@ -418,7 +418,7 @@ export function buildWorkspaceDraft(
   return {
     dealThesis: `Land ${account.firstWedge.toLowerCase()} first, prove a controlled win quickly, then use that proof to open ${account.topExpansionPaths[0].toLowerCase()}.`,
     winTheme: `Do not let ${topCompetitor?.name ?? "the incumbent"} turn this into a bundled platform decision. Keep the evaluation focused on model quality, governance, and the workflow where Claude clearly wins.`,
-    thisWeekFocus: `Lock the pilot sponsor, define success criteria, and schedule the governance workstream before momentum stalls.`,
+    thisWeekFocus: ``,
     operatorNotes: `Use executive alignment to create urgency, but keep the first ask narrow. This account should feel like a disciplined land-and-expand motion, not a broad transformation pitch.`,
   };
 }
