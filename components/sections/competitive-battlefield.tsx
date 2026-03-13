@@ -63,7 +63,7 @@ export function CompetitiveBattlefield({ competitors, account }: CompetitiveBatt
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.45 }}
-      className="space-y-12"
+      className="space-y-8 sm:space-y-10 lg:space-y-12"
     >
       <SectionHeader
         title="Competitive landscape"
@@ -75,9 +75,9 @@ export function CompetitiveBattlefield({ competitors, account }: CompetitiveBatt
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.4 }}
-          className="rounded-lg border border-claude-coral/15 bg-claude-coral/[0.03] px-6 py-5"
+          className="rounded-lg border border-claude-coral/15 bg-claude-coral/[0.03] px-4 py-4 sm:px-6 sm:py-5"
         >
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-claude-coral/50 mb-2">
                 Primary competitive pressure
@@ -88,7 +88,7 @@ export function CompetitiveBattlefield({ competitors, account }: CompetitiveBatt
             <button
               onClick={() => generateBattleCard(topRisk.name)}
               disabled={battleCard.isStreaming}
-              className="flex items-center gap-2 rounded-lg border border-claude-coral/20 bg-claude-coral/[0.06] px-3 py-2 text-[12px] font-medium text-claude-coral/90 hover:bg-claude-coral/10 transition-colors disabled:opacity-50 shrink-0"
+              className="flex w-full shrink-0 items-center justify-center gap-2 rounded-lg border border-claude-coral/20 bg-claude-coral/[0.06] px-3 py-2 text-[12px] font-medium text-claude-coral/90 transition-colors hover:bg-claude-coral/10 disabled:opacity-50 sm:w-auto"
             >
               <Swords className="h-3.5 w-3.5" />
               Generate Battle Card
@@ -118,7 +118,7 @@ export function CompetitiveBattlefield({ competitors, account }: CompetitiveBatt
                   <CompetitorCard competitor={c} />
                   <button
                     onClick={() => generateBattleCard(c.name)}
-                    className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity rounded p-1 bg-surface-elevated/80 text-text-muted hover:text-claude-coral/80"
+                    className="absolute right-2 top-2 rounded bg-surface-elevated/80 p-1 text-text-muted transition-opacity hover:text-claude-coral/80 opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
                     title={`Battle card for ${c.name}`}
                   >
                     <ClaudeSparkle size={10} />

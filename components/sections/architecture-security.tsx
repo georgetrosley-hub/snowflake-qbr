@@ -40,21 +40,21 @@ export function ArchitectureSecurity({ account, competitors }: ArchitectureSecur
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.45 }}
-      className="space-y-10"
+      className="space-y-8 sm:space-y-10"
     >
       <SectionHeader
         title="Architecture"
         subtitle="Deployment planning & security posture"
       />
-      <div className="grid gap-10 lg:grid-cols-2">
+      <div className="grid gap-6 lg:grid-cols-2 lg:gap-10">
         <motion.div
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.5 }}
-          className="rounded-lg border border-surface-border/50 bg-surface-elevated/40 p-6"
+          className="rounded-lg border border-surface-border/50 bg-surface-elevated/40 p-4 sm:p-6"
         >
-          <div className="aspect-video rounded-md border border-surface-border/40 bg-surface/40 p-6 flex items-center">
-            <div className="grid grid-cols-3 gap-3 w-full">
+          <div className="flex min-h-[220px] items-center rounded-md border border-surface-border/40 bg-surface/40 p-4 sm:aspect-video sm:min-h-0 sm:p-6">
+            <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-3">
               <div className="flex flex-col gap-2">
                 <div className="rounded-md border border-claude-coral/25 bg-claude-coral/[0.04] px-3 py-2 text-[12px] font-medium text-claude-coral/90">
                   Claude API
@@ -84,7 +84,7 @@ export function ArchitectureSecurity({ account, competitors }: ArchitectureSecur
               </div>
             </div>
           </div>
-          <div className="mt-4 flex items-center gap-2 text-[11px] text-text-muted">
+          <div className="mt-4 flex flex-wrap items-center gap-2 text-[11px] text-text-muted">
             <span className="rounded-full border border-surface-border/40 px-2 py-0.5">
               {account.existingVendorFootprint.slice(0, 3).join(" · ")}
             </span>
@@ -96,11 +96,11 @@ export function ArchitectureSecurity({ account, competitors }: ArchitectureSecur
               Readiness
             </p>
             <ul className="space-y-2 text-[13px] text-text-secondary">
-              <li className="flex items-center gap-3">
+              <li className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
                 <span className="h-1 w-8 rounded-full bg-gradient-to-r from-claude-coral/60 to-claude-coral/20" style={{ width: `${account.securitySensitivity * 0.4}px` }} />
                 Data sensitivity {account.securitySensitivity}%
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
                 <span className="h-1 w-8 rounded-full bg-gradient-to-r from-claude-coral/60 to-claude-coral/20" style={{ width: `${account.complianceComplexity * 0.4}px` }} />
                 Compliance {account.complianceComplexity}%
               </li>
@@ -139,7 +139,7 @@ export function ArchitectureSecurity({ account, competitors }: ArchitectureSecur
       <button
         onClick={generateArchRecommendation}
         disabled={archRecommendation.isStreaming}
-        className="flex items-center gap-2 rounded-lg border border-claude-coral/20 bg-claude-coral/[0.06] px-4 py-2.5 text-[13px] font-medium text-claude-coral/90 hover:bg-claude-coral/10 transition-colors disabled:opacity-50"
+        className="flex w-full items-center justify-center gap-2 rounded-lg border border-claude-coral/20 bg-claude-coral/[0.06] px-4 py-2.5 text-[13px] font-medium text-claude-coral/90 transition-colors hover:bg-claude-coral/10 disabled:opacity-50 sm:w-auto"
       >
         <ClaudeSparkle size={14} />
         {archLoaded ? "Refresh Architecture Recommendation" : "Generate Architecture Recommendation"}

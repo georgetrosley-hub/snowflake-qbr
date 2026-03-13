@@ -165,7 +165,7 @@ export function ChatPanel({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-black/30"
+            className="fixed inset-0 z-40 bg-black/50 sm:bg-black/30"
             onClick={onClose}
           />
           <motion.div
@@ -173,16 +173,16 @@ export function ChatPanel({
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed right-0 top-0 z-50 flex h-full w-[480px] flex-col border-l border-surface-border/40 bg-surface shadow-2xl"
+            className="fixed inset-y-0 right-0 z-50 flex h-[100dvh] w-full flex-col bg-surface shadow-2xl sm:max-w-[480px] sm:border-l sm:border-surface-border/40"
           >
             {/* Header */}
-            <div className="flex h-12 shrink-0 items-center justify-between border-b border-surface-border/40 px-4">
-              <div className="flex items-center gap-2">
+            <div className="flex min-h-12 shrink-0 items-center justify-between border-b border-surface-border/40 px-4 py-3">
+              <div className="flex min-w-0 items-center gap-2">
                 <ClaudeSparkle size={14} className="text-claude-coral" />
-                <span className="text-[13px] font-medium text-text-primary">
+                <span className="truncate text-[13px] font-medium text-text-primary">
                   Claude Co-Pilot
                 </span>
-                <span className="rounded-full bg-surface-muted/60 px-2 py-0.5 text-[10px] text-text-muted">
+                <span className="hidden rounded-full bg-surface-muted/60 px-2 py-0.5 text-[10px] text-text-muted sm:inline-flex">
                   {account.name}
                 </span>
               </div>
@@ -210,10 +210,10 @@ export function ChatPanel({
             {/* Messages */}
             <div
               ref={scrollRef}
-              className="flex-1 overflow-y-auto px-4 py-4 space-y-4"
+              className="flex-1 space-y-4 overflow-y-auto px-4 py-4"
             >
               {messages.length === 0 && !streamingContent && (
-                <div className="flex h-full flex-col items-center justify-center text-center px-8">
+                <div className="flex h-full flex-col items-center justify-center px-4 text-center sm:px-8">
                   <ClaudeSparkle
                     size={24}
                     className="text-claude-coral/30 mb-4"
@@ -317,7 +317,7 @@ export function ChatPanel({
             </div>
 
             {/* Input */}
-            <div className="shrink-0 border-t border-surface-border/40 p-4">
+            <div className="shrink-0 border-t border-surface-border/40 px-4 pb-6 pt-4 sm:p-4">
               <div className="flex items-end gap-2">
                 <textarea
                   ref={inputRef}

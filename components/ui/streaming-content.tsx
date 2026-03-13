@@ -41,8 +41,8 @@ export function StreamingContent({
         className
       )}
     >
-      <div className="flex items-center justify-between px-5 py-3 border-b border-surface-border/30">
-        <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-surface-border/30 px-4 py-3 sm:px-5">
+        <div className="flex min-w-0 items-center gap-2">
           <ClaudeSparkle
             size={12}
             className={cn(
@@ -50,7 +50,7 @@ export function StreamingContent({
               isStreaming && "animate-pulse"
             )}
           />
-          <span className="text-[11px] text-text-muted">
+          <span className="truncate text-[11px] text-text-muted">
             {label ?? "Claude"}{isStreaming ? " · generating..." : ""}
           </span>
         </div>
@@ -79,7 +79,7 @@ export function StreamingContent({
           </div>
         )}
       </div>
-      <div className="px-5 py-4 text-[13px] text-text-secondary leading-relaxed whitespace-pre-wrap">
+      <div className="whitespace-pre-wrap px-4 py-4 text-[13px] leading-relaxed text-text-secondary sm:px-5">
         {content}
         {isStreaming && (
           <span className="inline-block w-1.5 h-4 bg-claude-coral/50 animate-pulse ml-0.5 align-text-bottom" />

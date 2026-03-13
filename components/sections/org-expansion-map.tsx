@@ -150,7 +150,7 @@ export function OrgExpansionMap({ nodes, account, competitors }: OrgExpansionMap
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="space-y-10"
+      className="space-y-8 sm:space-y-10"
     >
       <div className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
         <SectionHeader
@@ -170,7 +170,7 @@ export function OrgExpansionMap({ nodes, account, competitors }: OrgExpansionMap
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <div className="rounded-[24px] border border-white/8 bg-white/[0.03] p-4">
           <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">
             Departments in motion
@@ -220,7 +220,7 @@ export function OrgExpansionMap({ nodes, account, competitors }: OrgExpansionMap
         </div>
       </div>
 
-      <div className="grid gap-8 xl:grid-cols-[minmax(0,1.45fr)_380px]">
+      <div className="grid gap-6 lg:gap-8 xl:grid-cols-[minmax(0,1.45fr)_380px]">
         <div className="space-y-5">
           <div className="flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
             <div>
@@ -246,7 +246,7 @@ export function OrgExpansionMap({ nodes, account, competitors }: OrgExpansionMap
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: laneIndex * 0.06, duration: 0.4 }}
-                className={`rounded-[28px] border p-5 ${lane.className}`}
+                className={`rounded-[24px] border p-4 sm:p-5 ${lane.className}`}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
@@ -283,7 +283,7 @@ export function OrgExpansionMap({ nodes, account, competitors }: OrgExpansionMap
         </div>
 
         <div className="space-y-4">
-          <div className="rounded-[30px] border border-claude-coral/12 bg-gradient-to-br from-claude-coral/[0.06] via-surface-elevated/70 to-surface/60 p-6">
+          <div className="rounded-[24px] border border-claude-coral/12 bg-gradient-to-br from-claude-coral/[0.06] via-surface-elevated/70 to-surface/60 p-4 sm:rounded-[30px] sm:p-6">
             <div className="flex items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-2xl bg-claude-coral/[0.12]">
                 <ClaudeSparkle size={14} className="text-claude-coral" />
@@ -344,7 +344,7 @@ export function OrgExpansionMap({ nodes, account, competitors }: OrgExpansionMap
             </div>
           </div>
 
-          <div className="rounded-[24px] border border-white/8 bg-white/[0.03] p-5">
+          <div className="rounded-[24px] border border-white/8 bg-white/[0.03] p-4 sm:p-5">
             <div className="flex items-center gap-2">
               <Target className="h-4 w-4 text-claude-coral/75" strokeWidth={1.8} />
               <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-faint">
@@ -367,7 +367,7 @@ export function OrgExpansionMap({ nodes, account, competitors }: OrgExpansionMap
             </div>
           </div>
 
-          <div className="rounded-[24px] border border-white/8 bg-white/[0.03] p-5">
+          <div className="rounded-[24px] border border-white/8 bg-white/[0.03] p-4 sm:p-5">
             <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-faint">
               Top opportunities
             </p>
@@ -375,7 +375,7 @@ export function OrgExpansionMap({ nodes, account, competitors }: OrgExpansionMap
               {rankedNodes.slice(0, 3).map((node, index) => (
                 <div
                   key={node.id}
-                  className="flex items-center gap-3 rounded-[20px] border border-white/8 bg-black/10 px-4 py-3"
+                  className="flex flex-col gap-3 rounded-[20px] border border-white/8 bg-black/10 px-4 py-3 sm:flex-row sm:items-center"
                 >
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/[0.04] text-[11px] font-semibold text-text-secondary">
                     {index + 1}
@@ -388,7 +388,7 @@ export function OrgExpansionMap({ nodes, account, competitors }: OrgExpansionMap
                   </div>
                   <button
                     onClick={() => generateExpansionPitch(node.name)}
-                    className="rounded-full border border-claude-coral/15 bg-claude-coral/[0.08] p-2 text-claude-coral/80 transition-colors hover:bg-claude-coral/[0.14]"
+                    className="self-start rounded-full border border-claude-coral/15 bg-claude-coral/[0.08] p-2 text-claude-coral/80 transition-colors hover:bg-claude-coral/[0.14] sm:self-auto"
                     title={`Generate expansion pitch for ${node.name}`}
                   >
                     <ClaudeSparkle size={11} />
