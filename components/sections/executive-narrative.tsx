@@ -6,7 +6,7 @@ import { FileText, Presentation, BarChart3 } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
 import { StreamingContent } from "@/components/ui/streaming-content";
 import { useStreaming } from "@/lib/hooks/use-streaming";
-import { ClaudeSparkle } from "@/components/ui/claude-logo";
+import { OpenAILogo } from "@/components/ui/openai-logo";
 import type { Account, Competitor } from "@/types";
 
 interface ExecutiveNarrativeProps {
@@ -55,7 +55,7 @@ export function ExecutiveNarrative({ account, competitors }: ExecutiveNarrativeP
         messages: [
           {
             role: "user",
-            content: `Generate a board-level summary for ${account.name}. This should be a 1-page executive brief suitable for sharing with Anthropic leadership. Include: account overview, strategic importance, deal status, revenue potential ($${account.estimatedLandValue}M land / $${account.estimatedExpansionValue}M expansion), key risks, competitive dynamics, and what we need from leadership to win. Keep it concise and strategic.`,
+            content: `Generate a board-level summary for ${account.name}. This should be a 1-page executive brief suitable for sharing with OpenAI leadership. Include: account overview, strategic importance, deal status, revenue potential ($${account.estimatedLandValue}M land / $${account.estimatedExpansionValue}M expansion), key risks, competitive dynamics, and what we need from leadership to win. Keep it concise and strategic.`,
           },
         ],
         account,
@@ -99,7 +99,7 @@ export function ExecutiveNarrative({ account, competitors }: ExecutiveNarrativeP
 
   const sections = [
     { label: "Why now", content: n.whyNow },
-    { label: "Why Claude", content: n.whyClaude },
+    { label: "Why ChatGPT", content: n.whyClaude },
     { label: "Alternatives", content: n.whyNot },
     { label: "Impact", content: n.impact },
     { label: "Governance", content: n.governance },
@@ -138,7 +138,7 @@ export function ExecutiveNarrative({ account, competitors }: ExecutiveNarrativeP
         ))}
         <div className="pt-3 border-t border-surface-border/40">
           <div className="flex items-center gap-2 mb-2">
-            <ClaudeSparkle size={10} className="text-claude-coral/40" />
+            <OpenAILogo size={10} className="text-accent/40" />
             <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-accent/50">Value · Sponsors</p>
           </div>
           <p className="text-[13px] text-text-secondary leading-relaxed">
@@ -154,7 +154,7 @@ export function ExecutiveNarrative({ account, competitors }: ExecutiveNarrativeP
           disabled={narrative.isStreaming}
           className="flex items-center gap-2 rounded-lg border border-accent/20 bg-accent/[0.06] px-4 py-2.5 text-[13px] font-medium text-accent/90 hover:bg-accent/10 transition-colors disabled:opacity-50"
         >
-          <ClaudeSparkle size={14} />
+          <OpenAILogo size={14} />
           {narrativeLoaded ? "Refresh Full Narrative" : "Generate Full Narrative"}
         </button>
         <button

@@ -24,10 +24,10 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Claude Enterprise GTM",
-  description: "How I'd build pipeline and expansion for Claude Enterprise.",
+  title: "Enterprise GTM | OpenAI-Style War Room",
+  description: "How I'd build pipeline and expansion for enterprise AI — built to feel like an OpenAI product.",
   icons: {
-    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path fill='%23DA7756' d='M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5L12 2Z'/></svg>",
+    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path fill='%2310a37f' d='M12 2L14 8L20 9L15 12L16 18L12 15L8 18L9 12L4 9L10 8L12 2Z'/></svg>",
   },
 };
 

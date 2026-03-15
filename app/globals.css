@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* OpenAI / ChatGPT design system */
 :root {
   --surface: 17 17 16;
   --surface-elevated: 27 26 25;
@@ -12,25 +13,26 @@
   --text-secondary: 214 207 199;
   --text-muted: 157 146 137;
   --text-faint: 120 111 103;
-  --accent: 218 119 86;
-  --accent-muted: 225 140 110;
-  --accent-subtle: 50 30 25;
-  --claude-coral: 218 119 86;
+  /* OpenAI green #10a37f */
+  --accent: 16 163 127;
+  --accent-muted: 45 179 150;
+  --accent-subtle: 20 40 36;
+  --openai-green: 16 163 127;
   --warm: 59 52 48;
 }
 
 html[data-theme="light"] {
-  --surface: 250 247 243;
-  --surface-elevated: 255 252 248;
-  --surface-muted: 241 233 226;
-  --surface-border: 222 214 207;
-  --surface-divider: 231 224 217;
-  --text-primary: 23 19 16;
-  --text-secondary: 70 62 56;
-  --text-muted: 111 100 91;
-  --text-faint: 143 132 123;
-  --accent-subtle: 246 225 217;
-  --warm: 223 213 204;
+  --surface: 255 255 255;
+  --surface-elevated: 250 250 250;
+  --surface-muted: 245 245 245;
+  --surface-border: 229 229 229;
+  --surface-divider: 235 235 235;
+  --text-primary: 17 24 39;
+  --text-secondary: 55 65 81;
+  --text-muted: 107 114 128;
+  --text-faint: 156 163 175;
+  --accent-subtle: 236 253 245;
+  --warm: 243 244 246;
 }
 
 * {
@@ -60,7 +62,6 @@ body {
   padding-right: env(safe-area-inset-right);
 }
 
-/* Minimum touch target for mobile (44px) */
 @media (pointer: coarse) {
   .touch-target {
     min-height: 44px;
@@ -69,13 +70,13 @@ body {
 }
 
 ::selection {
-  background-color: rgb(var(--accent) / 0.25);
+  background-color: rgb(var(--accent) / 0.2);
   color: rgb(var(--text-primary));
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -88,14 +89,14 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(var(--accent-subtle));
+  background: rgb(var(--accent) / 0.3);
 }
 
 @keyframes subtle-glow {
-  0%, 100% { box-shadow: 0 0 0 rgba(218, 119, 86, 0); }
-  50% { box-shadow: 0 0 20px rgba(218, 119, 86, 0.06); }
+  0%, 100% { box-shadow: 0 0 0 rgba(16, 163, 127, 0); }
+  50% { box-shadow: 0 0 20px rgba(16, 163, 127, 0.08); }
 }
 
-.claude-glow {
+.openai-glow {
   animation: subtle-glow 4s ease-in-out infinite;
 }

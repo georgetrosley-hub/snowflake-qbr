@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { useApiKey } from "@/app/context/api-key-context";
 import { cn } from "@/lib/utils";
-import { ClaudeSparkle } from "@/components/ui/claude-logo";
+import { OpenAILogo } from "@/components/ui/openai-logo";
 import type { Account } from "@/types";
 import type { DealHealthSummary } from "@/lib/deal-health";
 
@@ -129,7 +129,7 @@ export function StatusBar({
                   className="flex items-center gap-1.5 rounded-md px-2 py-1 text-[11px] text-text-secondary transition-colors hover:bg-surface-muted/30 hover:text-text-primary"
                 >
                   <MessageCircle className="h-3 w-3" />
-                  <span className="hidden sm:inline">Ask Claude</span>
+                  <span className="hidden sm:inline">Ask ChatGPT</span>
                 </button>
               )}
               <div className="flex items-center gap-2 text-[11px]">
@@ -145,7 +145,7 @@ export function StatusBar({
                   </>
                 ) : (
                   <>
-                    <ClaudeSparkle size={10} className="text-text-faint" />
+                    <OpenAILogo size={10} className="text-text-faint" />
                     <span className="hidden text-[11px] text-text-faint sm:inline">In sync</span>
                   </>
                 )}
@@ -190,9 +190,9 @@ export function StatusBar({
           <div className="w-full max-w-md rounded-xl border border-surface-border/50 bg-surface-elevated shadow-2xl">
             <div className="flex items-center justify-between border-b border-surface-border/40 px-5 py-4">
               <div>
-                <p className="text-[13px] font-medium text-text-primary">Claude API Key</p>
+                <p className="text-[13px] font-medium text-text-primary">API Key</p>
                 <p className="mt-1 text-[11px] text-text-muted">
-                  Demo-only local key storage for generating deal materials in this artifact.
+                  Add your API key to enable chat and content generation in this demo.
                 </p>
               </div>
               <button
@@ -207,11 +207,11 @@ export function StatusBar({
 
             <div className="space-y-4 px-5 py-5">
               <div className="space-y-2">
-                <label htmlFor="claude-api-key" className="text-[11px] font-medium uppercase tracking-[0.08em] text-text-muted">
-                  Claude API Key
+                <label htmlFor="api-key-input" className="text-[11px] font-medium uppercase tracking-[0.08em] text-text-muted">
+                  API Key
                 </label>
                 <input
-                  id="claude-api-key"
+                  id="api-key-input"
                   type="password"
                   value={draftApiKey}
                   onChange={(e) => setDraftApiKey(e.target.value)}
@@ -222,8 +222,8 @@ export function StatusBar({
 
               <div className="rounded-lg bg-surface/60 px-3 py-2 text-[11px] text-text-secondary">
                 {hasApiKey
-                  ? "A Claude API key is currently saved for this browser."
-                  : "No Claude API key is saved yet. Add one here to enable chat and content generation."}
+                  ? "An API key is saved for this browser."
+                  : "Add an API key to enable chat and content generation."}
               </div>
 
               <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">

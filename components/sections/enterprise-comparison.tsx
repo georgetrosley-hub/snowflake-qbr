@@ -95,7 +95,7 @@ export function EnterpriseComparison() {
       className="space-y-8 sm:space-y-10"
     >
       <SectionHeader
-        title="Claude vs OpenAI vs Gemini vs Mistral"
+        title="ChatGPT vs Competitors"
         subtitle="Enterprise buying decisions — safety, governance, and model behavior. Not marketing fluff."
       />
 
@@ -106,8 +106,8 @@ export function EnterpriseComparison() {
               <th className="pb-3 pr-4 text-left text-[10px] font-medium uppercase tracking-wider text-text-faint">
                 Factor
               </th>
-              <th className="px-4 pb-3 text-left text-[10px] font-medium uppercase tracking-wider text-claude-coral/90">
-                Claude
+              <th className="px-4 pb-3 text-left text-[10px] font-medium uppercase tracking-wider text-accent">
+                ChatGPT
               </th>
               <th className="px-4 pb-3 text-left text-[10px] font-medium uppercase tracking-wider text-text-faint">
                 OpenAI
@@ -150,8 +150,8 @@ export function EnterpriseComparison() {
         </table>
       </div>
 
-      <div className="flex items-start gap-3 rounded-xl border border-claude-coral/20 bg-claude-coral/[0.04] px-4 py-3">
-        <Shield className="mt-0.5 h-4 w-4 shrink-0 text-claude-coral" strokeWidth={1.8} />
+      <div className="flex items-start gap-3 rounded-xl border border-accent/20 bg-accent/[0.06] px-4 py-3">
+        <Shield className="mt-0.5 h-4 w-4 shrink-0 text-accent" strokeWidth={1.8} />
         <div>
           <p className="text-[12px] font-medium text-text-primary">
             Deal positioning intelligence

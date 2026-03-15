@@ -6,7 +6,7 @@ import { Search, Lightbulb, Code, HeadphonesIcon, FileText, BarChart3, Scale, Sh
 import { SectionHeader } from "@/components/ui/section-header";
 import { StreamingContent } from "@/components/ui/streaming-content";
 import { useStreaming } from "@/lib/hooks/use-streaming";
-import { ClaudeSparkle } from "@/components/ui/claude-logo";
+import { OpenAILogo } from "@/components/ui/openai-logo";
 import { cn } from "@/lib/utils";
 import type { Account, Competitor } from "@/types";
 
@@ -90,7 +90,7 @@ export function UseCaseLibrary({ account, competitors }: UseCaseLibraryProps) {
           disabled={recommendation.isStreaming}
           className="flex w-full items-center justify-center gap-2 rounded-lg border border-accent/20 bg-accent/[0.06] px-4 py-2.5 text-[12px] font-medium text-accent/90 transition-colors hover:bg-accent/10 disabled:opacity-50 sm:w-auto lg:shrink-0"
         >
-          <ClaudeSparkle size={12} />
+          <OpenAILogo size={12} />
           Recommend for {account.name}
         </button>
       </div>

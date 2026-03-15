@@ -5,7 +5,7 @@ import { AlertTriangle, ArrowRight, Crosshair, Users, Eye, CircleDot, Zap, Targe
 import { SectionHeader } from "@/components/ui/section-header";
 import type { SectionId } from "@/components/layout/sidebar";
 import { MetricCard } from "@/components/ui/metric-card";
-import { ClaudeSparkle } from "@/components/ui/claude-logo";
+import { OpenAILogo } from "@/components/ui/openai-logo";
 import { useToast } from "@/app/context/toast-context";
 import { isStale } from "@/lib/deal-health";
 import { getPlansForThisWeek, getPlansForThisWeekShort } from "@/lib/plans-for-week";
@@ -106,7 +106,18 @@ export function Overview({
     <div
       className="space-y-10 sm:space-y-12"
     >
-      {/* VP oversight — 30-second scan for Ryan */}
+      {/* Recruiter-facing: OpenAI product feel */}
+      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-accent/15 bg-accent/[0.04] px-4 py-3">
+        <OpenAILogo size={16} className="text-accent" />
+        <span className="text-[12px] font-medium text-text-primary">
+          Enterprise GTM war room — built to feel like an OpenAI product
+        </span>
+        <span className="text-[11px] text-text-muted">
+          · George Trosley
+        </span>
+      </div>
+
+      {/* VP oversight — 30-second scan */}
       <section className="rounded-2xl border border-accent/20 bg-white/[0.02] p-4 sm:p-6">
         <div className="flex items-center gap-2">
           <Eye className="h-4 w-4 text-text-faint" strokeWidth={1.8} />
@@ -224,10 +235,10 @@ export function Overview({
         </p>
         <div className="max-w-4xl space-y-2">
           <h2 className="text-xl font-semibold tracking-tight text-text-primary sm:text-2xl">
-            How I&apos;d build pipeline and expansion for Claude Enterprise inside {account.name}
+            How I&apos;d build pipeline and expansion for OpenAI Enterprise inside {account.name}
           </h2>
           <p className="max-w-3xl text-[14px] leading-relaxed text-text-muted">
-            First wedge, champion path, pilot design, executive alignment, competitive displacement, and the expansion story.
+            First wedge, champion path, pilot design, executive alignment, competitive displacement, and the expansion story — built to feel like an OpenAI product.
           </p>
         </div>
       </section>
@@ -306,8 +317,8 @@ export function Overview({
         <aside className="min-w-0 space-y-4">
           <div className="rounded-[28px] border border-accent/15 bg-accent/[0.05] p-4 sm:p-6">
             <div className="flex items-center gap-2">
-              <ClaudeSparkle size={14} className="text-claude-coral" />
-              <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-accent/70">
+              <OpenAILogo size={14} className="text-accent" />
+              <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-accent/80">
                 My current take
               </p>
             </div>
@@ -333,7 +344,7 @@ export function Overview({
             </p>
             <p className="mt-3 text-[12px] leading-relaxed text-text-muted">
               I would not try to out-market the incumbent. I would force a narrower comparison around model quality,
-              enterprise governance, and the specific workflow where Claude wins.
+              enterprise governance, and the specific workflow where we win.
             </p>
           </div>
         </aside>

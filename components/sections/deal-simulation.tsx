@@ -96,8 +96,8 @@ export function DealSimulation({
               {champion?.proofNeeded ?? "Pilot scope with clear success criteria."}
             </p>
           </div>
-          <div className="rounded-xl border border-claude-coral/25 bg-claude-coral/[0.05] px-4 py-3">
-            <p className="text-[10px] font-medium uppercase tracking-wider text-claude-coral/90">
+          <div className="rounded-xl border border-accent/25 bg-accent/[0.05] px-4 py-3">
+            <p className="text-[10px] font-medium uppercase tracking-wider text-accent/90">
               Executive sponsor
             </p>
             <p className="mt-1 text-[14px] font-medium text-text-primary">
@@ -147,7 +147,7 @@ export function DealSimulation({
                 s.stance === "ally" && "border-sky-400/20 bg-sky-400/[0.04]",
                 s.stance === "blocker" && "border-rose-400/25 bg-rose-400/[0.06]",
                 s.stance === "neutral" && "border-surface-border/40 bg-surface-elevated/30",
-                s.stance === "executive" && "border-claude-coral/25 bg-claude-coral/[0.05]"
+                s.stance === "executive" && "border-accent/25 bg-accent/[0.05]"
               )}
             >
               <span
@@ -157,7 +157,7 @@ export function DealSimulation({
                   s.stance === "ally" && "bg-sky-400/20 text-sky-400",
                   s.stance === "blocker" && "bg-rose-400/20 text-rose-400",
                   s.stance === "neutral" && "bg-white/10 text-text-muted",
-                  s.stance === "executive" && "bg-claude-coral/20 text-claude-coral"
+                  s.stance === "executive" && "bg-accent/20 text-accent"
                 )}
               >
                 {s.stance}
@@ -203,7 +203,7 @@ export function DealSimulation({
               key={step.title}
               className="flex gap-4 rounded-xl border border-surface-border/40 px-4 py-3"
             >
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-claude-coral/15 text-[12px] font-semibold text-claude-coral">
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/15 text-[12px] font-semibold text-accent">
                 {i + 1}
               </span>
               <div>
@@ -221,8 +221,8 @@ export function DealSimulation({
           How the deal grows from first wedge to enterprise platform.
         </p>
         <div className="space-y-4">
-          <div className="rounded-xl border border-claude-coral/25 bg-claude-coral/[0.05] px-4 py-3">
-            <p className="text-[10px] font-medium uppercase tracking-wider text-claude-coral/90">
+          <div className="rounded-xl border border-accent/25 bg-accent/[0.05] px-4 py-3">
+            <p className="text-[10px] font-medium uppercase tracking-wider text-accent/90">
               Initial entry
             </p>
             <p className="mt-1 text-[14px] font-medium text-text-primary">{account.firstWedge}</p>
@@ -262,7 +262,7 @@ export function DealSimulation({
               className={cn(
                 "flex items-center justify-between gap-4 rounded-xl border px-4 py-3",
                 m.status === "done" && "border-emerald-400/20 bg-emerald-400/[0.04]",
-                m.status === "in_progress" && "border-claude-coral/25 bg-claude-coral/[0.06]",
+                m.status === "in_progress" && "border-accent/25 bg-accent/[0.06]",
                 m.status === "upcoming" && "border-surface-border/40"
               )}
             >
@@ -276,7 +276,7 @@ export function DealSimulation({
                 className={cn(
                   "rounded-full px-2 py-0.5 text-[10px] font-medium",
                   m.status === "done" && "bg-emerald-400/20 text-emerald-400",
-                  m.status === "in_progress" && "bg-claude-coral/20 text-claude-coral",
+                  m.status === "in_progress" && "bg-accent/20 text-accent",
                   m.status === "upcoming" && "bg-white/10 text-text-faint"
                 )}
               >
@@ -294,7 +294,7 @@ export function DealSimulation({
                 <p className="text-[13px] font-medium text-text-primary">Champion identified, pilot scope</p>
                 <p className="mt-0.5 text-[11px] text-text-muted">Weeks 3–6</p>
               </div>
-              <div className="rounded-xl border border-claude-coral/25 px-4 py-3 bg-claude-coral/[0.05]">
+              <div className="rounded-xl border border-accent/25 px-4 py-3 bg-accent/[0.05]">
                 <p className="text-[13px] font-medium text-text-primary">Security & legal review</p>
                 <p className="mt-0.5 text-[11px] text-text-muted">Weeks 7–10</p>
               </div>
@@ -338,7 +338,7 @@ export function DealSimulation({
               className={cn(
                 "flex items-center gap-2 rounded-lg px-3 py-2 text-[12px] font-medium transition-colors",
                 activeTab === tab.id
-                  ? "bg-claude-coral/15 text-claude-coral"
+                  ? "bg-accent/15 text-accent"
                   : "text-text-muted hover:bg-surface-muted/50 hover:text-text-secondary"
               )}
             >

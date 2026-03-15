@@ -6,7 +6,7 @@ import { Mail, UserPlus, Reply, FileText, Crown, Shield, ArrowUpRight } from "lu
 import { SectionHeader } from "@/components/ui/section-header";
 import { StreamingContent } from "@/components/ui/streaming-content";
 import { useStreaming } from "@/lib/hooks/use-streaming";
-import { ClaudeSparkle } from "@/components/ui/claude-logo";
+import { OpenAILogo } from "@/components/ui/openai-logo";
 import { cn } from "@/lib/utils";
 import type { Account, Competitor } from "@/types";
 
@@ -36,7 +36,7 @@ export function EmailStudio({ account, competitors }: EmailStudioProps) {
 
     let prompt: string;
     if (selectedType === "champion_enablement") {
-      prompt = `Generate an internal email that our champion at ${account.name} can send to their leadership to advocate for Claude.${recipientRole ? ` The champion's boss is: ${recipientRole}.` : ""}${context ? ` Context: ${context}` : ""}\n\nThe email should come FROM the champion (not from Anthropic), explaining why they want to move forward with the platform. Make it persuasive but authentic — it should sound like an internal advocate, not a vendor.`;
+      prompt = `Generate an internal email that our champion at ${account.name} can send to their leadership to advocate for our platform.${recipientRole ? ` The champion's boss is: ${recipientRole}.` : ""}${context ? ` Context: ${context}` : ""}\n\nThe email should come FROM the champion (not from the vendor), explaining why they want to move forward with the platform. Make it persuasive but authentic — it should sound like an internal advocate, not a vendor.`;
     } else {
       prompt = `Email type: ${typeLabel}${recipientRole ? `\nRecipient role: ${recipientRole}` : ""}${context ? `\nContext: ${context}` : ""}`;
     }

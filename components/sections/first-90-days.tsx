@@ -62,7 +62,7 @@ export function First90Days({
       className="space-y-10 sm:space-y-12"
     >
       <SectionHeader
-        title="First 90 days as Anthropic Enterprise AE"
+        title="First 90 days as OpenAI Enterprise AE"
         subtitle="Operator thinking: territory → pipeline → pilots. Not ideas, execution."
       />
 
@@ -73,7 +73,7 @@ export function First90Days({
             className="rounded-[22px] border border-surface-border/40 bg-surface-elevated/30 p-4"
           >
             <div className="flex items-center gap-2">
-              <Target className="h-4 w-4 text-claude-coral/75" strokeWidth={1.8} />
+              <Target className="h-4 w-4 text-accent/75" strokeWidth={1.8} />
               <p className="text-[12px] font-semibold text-text-primary">
                 {phase.title}
               </p>
@@ -84,7 +84,7 @@ export function First90Days({
                   key={item}
                   className="flex items-start gap-2 text-[12px] text-text-secondary"
                 >
-                  <ArrowRight className="mt-1 h-3 w-3 shrink-0 text-claude-coral/60" strokeWidth={2} />
+                  <ArrowRight className="mt-1 h-3 w-3 shrink-0 text-accent/60" strokeWidth={2} />
                   {item}
                 </li>
               ))}
@@ -95,23 +95,23 @@ export function First90Days({
 
       <section className="space-y-4">
         <div className="flex items-center gap-2">
-          <BriefcaseBusiness className="h-4 w-4 text-claude-coral/75" strokeWidth={1.8} />
+          <BriefcaseBusiness className="h-4 w-4 text-accent/75" strokeWidth={1.8} />
           <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-faint">
             This week at {account.name}
           </p>
         </div>
         <div className="space-y-3">
           {thisWeek.length === 0 ? (
-            <div className="rounded-[22px] border border-claude-coral/20 bg-white/[0.02] px-4 py-6 text-center text-[14px] text-text-muted">
+            <div className="rounded-[22px] border border-accent/20 bg-white/[0.02] px-4 py-6 text-center text-[14px] text-text-muted">
               No in-progress or ready items. Check the Deal Plan.
             </div>
           ) : (
             thisWeek.map((item) => (
               <div
                 key={item.id}
-                className="flex items-start gap-3 rounded-[22px] border border-claude-coral/20 bg-white/[0.02] px-4 py-4"
+                className="flex items-start gap-3 rounded-[22px] border border-accent/20 bg-white/[0.02] px-4 py-4"
               >
-                <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-claude-coral/70" strokeWidth={1.8} />
+                <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-accent/70" strokeWidth={1.8} />
                 <div className="min-w-0">
                   <p className="text-[14px] font-medium text-text-primary">{item.title}</p>
                   <p className="mt-1 text-[12px] text-text-muted">
@@ -136,7 +136,7 @@ export function First90Days({
           {
             id: "sequence-plan",
             label: "Sequence my first 90 days",
-            prompt: `I'm starting at Anthropic. Here are my current items for ${account.name}: ${thisWeek.map((i) => i.title).join("; ")}. Give me a clear 30/60/90 sequence with owners and suggested messaging.`,
+            prompt: `I'm starting at OpenAI. Here are my current items for ${account.name}: ${thisWeek.map((i) => i.title).join("; ")}. Give me a clear 30/60/90 sequence with owners and suggested messaging.`,
           },
           {
             id: "champion-messaging",

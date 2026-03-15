@@ -16,7 +16,7 @@ import {
   ShieldCheck,
   Boxes,
 } from "lucide-react";
-import { ClaudeSparkle } from "@/components/ui/claude-logo";
+import { OpenAILogo } from "@/components/ui/openai-logo";
 import { cn } from "@/lib/utils";
 import type { OrgNode } from "@/types";
 
@@ -177,7 +177,7 @@ export function OrgNodeCard({
                 className="self-start rounded-full border border-accent/15 bg-accent/[0.08] p-2 text-accent/80 transition-colors hover:bg-accent/[0.14] sm:self-auto"
                 title={`Generate expansion pitch for ${node.name}`}
               >
-                <ClaudeSparkle size={12} />
+                <OpenAILogo size={12} />
               </button>
             ) : null}
           </div>

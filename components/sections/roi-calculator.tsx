@@ -6,7 +6,7 @@ import { Calculator, DollarSign, Users, Clock } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
 import { StreamingContent } from "@/components/ui/streaming-content";
 import { useStreaming } from "@/lib/hooks/use-streaming";
-import { ClaudeSparkle } from "@/components/ui/claude-logo";
+import { OpenAILogo } from "@/components/ui/openai-logo";
 import { cn } from "@/lib/utils";
 import type { Account, Competitor } from "@/types";
 
@@ -174,7 +174,7 @@ export function ROICalculator({ account, competitors }: ROICalculatorProps) {
             : "border border-surface-border/30 bg-surface-muted/20 text-text-muted/50 cursor-not-allowed"
         )}
       >
-        <ClaudeSparkle size={14} />
+        <OpenAILogo size={14} />
         Generate Business Case
       </button>
 

@@ -7,7 +7,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { OrgNodeCard } from "@/components/ui/org-node-card";
 import { StreamingContent } from "@/components/ui/streaming-content";
 import { useStreaming } from "@/lib/hooks/use-streaming";
-import { ClaudeSparkle } from "@/components/ui/claude-logo";
+import { OpenAILogo } from "@/components/ui/openai-logo";
 import type { OrgNode, Account, Competitor } from "@/types";
 
 interface OrgExpansionMapProps {
@@ -286,7 +286,7 @@ export function OrgExpansionMap({ nodes, account, competitors }: OrgExpansionMap
           <div className="rounded-[24px] border border-accent/12 bg-gradient-to-br from-accent/[0.06] via-surface-elevated/70 to-surface/60 p-4 sm:rounded-[30px] sm:p-6">
             <div className="flex items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-2xl bg-accent/[0.12]">
-                <ClaudeSparkle size={14} className="text-accent" />
+                <OpenAILogo size={14} className="text-accent" />
               </div>
               <div>
                 <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-accent/65">
@@ -391,7 +391,7 @@ export function OrgExpansionMap({ nodes, account, competitors }: OrgExpansionMap
                     className="self-start rounded-full border border-accent/15 bg-accent/[0.08] p-2 text-accent/80 transition-colors hover:bg-accent/[0.14] sm:self-auto"
                     title={`Generate expansion pitch for ${node.name}`}
                   >
-                    <ClaudeSparkle size={11} />
+                    <OpenAILogo size={11} />
                   </button>
                 </div>
               ))}

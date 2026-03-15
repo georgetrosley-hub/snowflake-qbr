@@ -204,7 +204,7 @@ export function DealProgression({
         </section>
 
         <ClaudeActionBar
-          title="Ask Claude inside the capture plan"
+          title="Ask ChatGPT inside the capture plan"
           subtitle="Use Claude as the AE's live operator. These requests are specific to the deal you're in."
           account={account}
           competitors={competitors}

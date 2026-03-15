@@ -67,7 +67,7 @@ export function First30Days({
       </section>
 
       <ClaudeActionBar
-        title="Ask Claude about your first 30 days"
+        title="Ask ChatGPT about your first 30 days"
         subtitle="Get a sequenced plan, messaging for the champion, or next-step recommendations for this account."
         account={account}
         competitors={competitors}

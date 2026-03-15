@@ -22,7 +22,7 @@ const stageColors: Record<string, string> = {
   Discovery: "text-sky-400/90",
   "Champion Build": "text-amber-400/90",
   "POV Selected": "text-emerald-400/90",
-  "Pilot Design": "text-claude-coral/90",
+  "Pilot Design": "text-accent",
   "Security Review": "text-violet-400/90",
   "Legal Review": "text-rose-400/90",
   Procurement: "text-orange-400/90",
@@ -45,10 +45,10 @@ export function PipelineDashboard() {
         subtitle="Simulated pipeline view — this is how I think about multiple accounts in motion."
       />
 
-      <div className="rounded-[22px] border border-claude-coral/20 bg-white/[0.02] overflow-hidden">
+      <div className="rounded-[22px] border border-accent/20 bg-white/[0.02] overflow-hidden">
         <div className="flex items-center justify-between border-b border-surface-border/40 px-4 py-3 sm:px-5">
           <div className="flex items-center gap-2">
-            <BarChart3 className="h-4 w-4 text-claude-coral/70" strokeWidth={1.8} />
+            <BarChart3 className="h-4 w-4 text-accent/80" strokeWidth={1.8} />
             <span className="text-[12px] font-medium text-text-secondary">
               Pipeline total: ${totalValue.toFixed(1)}M
             </span>

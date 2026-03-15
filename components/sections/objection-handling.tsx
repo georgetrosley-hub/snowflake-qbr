@@ -6,7 +6,7 @@ import { MessageSquare, Send } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
 import { StreamingContent } from "@/components/ui/streaming-content";
 import { useStreaming } from "@/lib/hooks/use-streaming";
-import { ClaudeSparkle } from "@/components/ui/claude-logo";
+import { OpenAILogo } from "@/components/ui/openai-logo";
 import { cn } from "@/lib/utils";
 import type { Account, Competitor } from "@/types";
 
@@ -24,10 +24,10 @@ const commonObjections = [
     "How do we know you won't train on our data?",
   ]},
   { category: "Pricing & Value", items: [
-    "Claude is too expensive compared to alternatives",
+    "The platform is too expensive compared to alternatives",
     "We don't have budget for another AI tool",
     "What's the ROI? Show me hard numbers",
-    "Why pay for Claude when open-source models are free?",
+    "Why pay when open-source models are free?",
   ]},
   { category: "Technical", items: [
     "We tried the platform and had quality concerns",

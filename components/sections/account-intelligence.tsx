@@ -43,7 +43,7 @@ export function AccountIntelligence({
 
   const politicalMap = [
     champion && { role: "Champion", name: champion.name, title: champion.title, color: "emerald" },
-    executive && { role: "Economic buyer", name: executive.name, title: executive.title, color: "claude-coral" },
+    executive && { role: "Economic buyer", name: executive.name, title: executive.title, color: "accent" },
     blocker && { role: "Blocker", name: blocker.name, title: blocker.title, color: "rose" },
   ].filter(Boolean) as { role: string; name: string; title: string; color: string }[];
 
@@ -128,8 +128,8 @@ export function AccountIntelligence({
         {/* Political map */}
         <section className="rounded-2xl border border-surface-border/40 bg-surface-elevated/30 p-5 sm:p-6">
           <div className="flex items-center gap-2 mb-4">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-claude-coral/10">
-              <Building2 className="h-4 w-4 text-claude-coral" strokeWidth={1.8} />
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10">
+              <Building2 className="h-4 w-4 text-accent" strokeWidth={1.8} />
             </div>
             <h3 className="text-[13px] font-semibold uppercase tracking-wider text-text-primary">
               Political map
@@ -142,7 +142,7 @@ export function AccountIntelligence({
                 className={cn(
                   "rounded-lg border px-3 py-2",
                   p.color === "emerald" && "border-emerald-400/25 bg-emerald-400/[0.05]",
-                  p.color === "claude-coral" && "border-claude-coral/25 bg-claude-coral/[0.05]",
+                  p.color === "accent" && "border-accent/25 bg-accent/[0.05]",
                   p.color === "rose" && "border-rose-400/25 bg-rose-400/[0.05]"
                 )}
               >

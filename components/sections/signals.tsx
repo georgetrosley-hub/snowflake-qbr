@@ -53,7 +53,7 @@ export function Signals({
       />
 
       <ClaudeActionBar
-        title="Ask Claude from inside the signal desk"
+        title="Ask ChatGPT from inside the signal desk"
         subtitle="Use AI to challenge assumptions, generate discovery questions, and sharpen the competitive point of view."
         account={account}
         competitors={competitors}

@@ -7,7 +7,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { CompetitorCard } from "@/components/ui/competitor-card";
 import { StreamingContent } from "@/components/ui/streaming-content";
 import { useStreaming } from "@/lib/hooks/use-streaming";
-import { ClaudeSparkle } from "@/components/ui/claude-logo";
+import { OpenAILogo } from "@/components/ui/openai-logo";
 import type { Account, Competitor } from "@/types";
 
 const categoryOrder = ["frontier", "coding", "search", "workflow", "cloud", "vertical"] as const;
@@ -121,14 +121,14 @@ export function CompetitiveBattlefield({ competitors, account }: CompetitiveBatt
                     className="absolute right-2 top-2 hidden rounded bg-surface-elevated/80 p-1 text-text-muted opacity-0 transition-opacity hover:text-accent/80 sm:block sm:group-hover:opacity-100"
                     title={`Battle card for ${c.name}`}
                   >
-                    <ClaudeSparkle size={10} />
+                    <OpenAILogo size={10} />
                   </button>
                   <button
                     onClick={() => generateBattleCard(c.name)}
                     className="mt-2 flex w-full items-center justify-center gap-2 rounded-lg border border-accent/15 bg-accent/[0.04] px-3 py-2 text-[11px] font-medium text-accent/85 transition-colors hover:bg-accent/[0.08] sm:hidden"
                     title={`Battle card for ${c.name}`}
                   >
-                    <ClaudeSparkle size={10} />
+                    <OpenAILogo size={10} />
                     Battle Card
                   </button>
                 </div>

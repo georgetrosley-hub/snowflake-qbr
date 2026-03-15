@@ -6,7 +6,7 @@ import { X, Send, Square, Trash2 } from "lucide-react";
 import { useApiKey } from "@/app/context/api-key-context";
 import { cn } from "@/lib/utils";
 import { readApiErrorMessage } from "@/lib/client/api";
-import { ClaudeSparkle } from "@/components/ui/claude-logo";
+import { OpenAILogo } from "@/components/ui/openai-logo";
 import type { Account, Competitor } from "@/types";
 
 interface Message {
@@ -124,10 +124,10 @@ export function ChatPanel({
           ...prev,
           {
             role: "assistant",
-            content:
+                content:
               error instanceof Error
                 ? error.message
-                : "I couldn't process that request. Add your Claude API key in the top right and try again.",
+                : "I couldn't process that request. Add your API key in the top right and try again.",
           },
         ]);
       }
@@ -178,9 +178,9 @@ export function ChatPanel({
             {/* Header */}
             <div className="flex min-h-12 shrink-0 items-center justify-between border-b border-surface-border/40 px-4 py-3">
               <div className="flex min-w-0 items-center gap-2">
-                <ClaudeSparkle size={14} className="text-accent" />
+                <OpenAILogo size={14} className="text-accent" />
                 <span className="truncate text-[13px] font-medium text-text-primary">
-                  Claude Deal Desk
+                  ChatGPT
                 </span>
                 <span className="hidden rounded-full bg-surface-muted/60 px-2 py-0.5 text-[10px] text-text-muted sm:inline-flex">
                   {account.name}
@@ -214,19 +214,19 @@ export function ChatPanel({
             >
               {messages.length === 0 && !streamingContent && (
                 <div className="flex h-full flex-col items-center justify-center px-4 text-center sm:px-8">
-                  <ClaudeSparkle
-                    size={24}
-                    className="text-accent/30 mb-4"
+                  <OpenAILogo
+                    size={28}
+                    className="text-accent/40 mb-4"
                   />
-                  <p className="text-[14px] font-medium text-text-secondary mb-2">
-                    Your deal desk
+                  <p className="text-[15px] font-semibold text-text-primary mb-1">
+                    ChatGPT
                   </p>
-                  <p className="text-[12px] text-text-muted leading-relaxed mb-6">
-                    Ask the Claude GTM Agent anything. I have context on {account.name}.
+                  <p className="text-[13px] text-text-muted leading-relaxed mb-6">
+                    Ask me anything about {account.name}. I have full context on this deal.
                   </p>
                   {!hasApiKey && (
-                    <div className="mb-6 rounded-lg border border-accent/20 bg-accent/[0.06] px-3 py-2 text-[11px] text-accent/85">
-                      If chat is not responding yet, add your Claude API key from the top right.
+                    <div className="mb-6 rounded-lg border border-accent/20 bg-accent/[0.06] px-3 py-2 text-[11px] text-accent/90">
+                      Add your API key from the top right to start the conversation.
                     </div>
                   )}
                   <p className="text-[10px] font-medium uppercase tracking-wider text-text-faint mb-2">
@@ -265,7 +265,7 @@ export function ChatPanel({
                 >
                   {msg.role === "assistant" && (
                     <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-accent/10">
-                      <ClaudeSparkle size={12} className="text-accent" />
+                      <OpenAILogo size={12} className="text-accent" />
                     </div>
                   )}
                   <div
@@ -286,7 +286,7 @@ export function ChatPanel({
               {isStreaming && streamingContent && (
                 <div className="flex gap-3 justify-start">
                   <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-accent/10">
-                    <ClaudeSparkle
+                    <OpenAILogo
                       size={12}
                       className="text-accent animate-pulse"
                     />
@@ -303,7 +303,7 @@ export function ChatPanel({
               {isStreaming && !streamingContent && (
                 <div className="flex gap-3 justify-start">
                   <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-accent/10">
-                    <ClaudeSparkle
+                    <OpenAILogo
                       size={12}
                       className="text-accent animate-pulse"
                     />

@@ -31,9 +31,11 @@ const config: Config = {
           subtle: cssColor("--accent-subtle"),
           glow: "rgb(var(--accent) / 0.12)",
         },
-        "claude-coral": {
-          DEFAULT: cssColor("--claude-coral"),
+        "openai-green": {
+          DEFAULT: cssColor("--openai-green"),
         },
+        /* legacy alias for gradual replace */
+        "claude-coral": cssColor("--accent"),
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
@@ -55,9 +57,9 @@ const config: Config = {
         lg: "12px",
       },
       boxShadow: {
-        "glow-sm": "0 0 12px rgba(255, 54, 33, 0.08)",
-        "glow-md": "0 0 24px rgba(255, 54, 33, 0.12)",
-        "elevated": "0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08)",
+        "glow-sm": "0 0 12px rgba(16, 163, 127, 0.08)",
+        "glow-md": "0 0 24px rgba(16, 163, 127, 0.12)",
+        elevated: "0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06)",
       },
     },
   },
