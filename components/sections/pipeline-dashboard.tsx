@@ -1,22 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BarChart3 } from "lucide-react";
+import { BarChart3, Inbox } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
 import { pipelineRows } from "@/data/pipeline";
 import { cn } from "@/lib/utils";
-
-const stageOrder = [
-  "Discovery",
-  "Champion Build",
-  "POV Selected",
-  "Pilot Design",
-  "Security Review",
-  "Legal Review",
-  "Procurement",
-  "Negotiation",
-  "Closed",
-] as const;
 
 const stageColors: Record<string, string> = {
   Discovery: "text-sky-400/90",
@@ -32,6 +20,7 @@ const stageColors: Record<string, string> = {
 
 export function PipelineDashboard() {
   const totalValue = pipelineRows.reduce((sum, row) => sum + row.valueM, 0);
+  const hasRows = pipelineRows.length > 0;
 
   return (
     <motion.div
@@ -42,7 +31,7 @@ export function PipelineDashboard() {
     >
       <SectionHeader
         title="Territory pipeline"
-        subtitle="How I'd track and grow pipeline across these five accounts."
+        subtitle="Pipeline by account and stage. Add accounts in data/pipeline.ts and data/accounts.ts once you receive the 15 from the previous rep."
       />
 
       <div className="rounded-[22px] border border-accent/20 bg-white/[0.02] overflow-hidden">
@@ -50,66 +39,84 @@ export function PipelineDashboard() {
           <div className="flex items-center gap-2">
             <BarChart3 className="h-4 w-4 text-accent/80" strokeWidth={1.8} />
             <span className="text-[12px] font-medium text-text-secondary">
-              Pipeline total: ${totalValue.toFixed(1)}M
+              {hasRows ? `Pipeline total: $${totalValue.toFixed(1)}M` : "No accounts yet"}
             </span>
           </div>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[500px] text-[13px]">
-            <thead>
-              <tr className="border-b border-surface-border/40">
-                <th className="px-4 py-3 text-left text-[10px] font-medium uppercase tracking-wider text-text-faint">
-                  Account
-                </th>
-                <th className="px-4 py-3 text-left text-[10px] font-medium uppercase tracking-wider text-text-faint">
-                  Stage
-                </th>
-                <th className="px-4 py-3 text-right text-[10px] font-medium uppercase tracking-wider text-text-faint">
-                  Value
-                </th>
-                <th className="px-4 py-3 text-left text-[10px] font-medium uppercase tracking-wider text-text-faint">
-                  Next step
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {pipelineRows.map((row, idx) => (
-                <motion.tr
-                  key={row.accountId}
-                  initial={{ opacity: 0, y: 4 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.04, duration: 0.3 }}
-                  className="border-b border-surface-border/20 last:border-b-0 transition-colors hover:bg-surface-muted/20"
-                >
-                  <td className="px-4 py-3 font-medium text-text-primary">
-                    {row.accountName}
-                  </td>
-                  <td className="px-4 py-3">
-                    <span
-                      className={cn(
-                        "font-medium",
-                        stageColors[row.stage] ?? "text-text-secondary"
-                      )}
-                    >
-                      {row.stage}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3 text-right tabular-nums text-text-secondary">
-                    ${row.valueM.toFixed(1)}M
-                  </td>
-                  <td className="px-4 py-3 text-text-muted">
-                    {row.nextStep}
-                  </td>
-                </motion.tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        {hasRows ? (
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[500px] text-[13px]">
+              <thead>
+                <tr className="border-b border-surface-border/40">
+                  <th className="px-4 py-3 text-left text-[10px] font-medium uppercase tracking-wider text-text-faint">
+                    Account
+                  </th>
+                  <th className="px-4 py-3 text-left text-[10px] font-medium uppercase tracking-wider text-text-faint">
+                    Stage
+                  </th>
+                  <th className="px-4 py-3 text-right text-[10px] font-medium uppercase tracking-wider text-text-faint">
+                    Value
+                  </th>
+                  <th className="px-4 py-3 text-left text-[10px] font-medium uppercase tracking-wider text-text-faint">
+                    Next step
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {pipelineRows.map((row, idx) => (
+                  <motion.tr
+                    key={row.accountId}
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.04, duration: 0.3 }}
+                    className="border-b border-surface-border/20 last:border-b-0 transition-colors hover:bg-surface-muted/20"
+                  >
+                    <td className="px-4 py-3 font-medium text-text-primary">
+                      {row.accountName}
+                    </td>
+                    <td className="px-4 py-3">
+                      <span
+                        className={cn(
+                          "font-medium",
+                          stageColors[row.stage] ?? "text-text-secondary"
+                        )}
+                      >
+                        {row.stage}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-right tabular-nums text-text-secondary">
+                      ${row.valueM.toFixed(1)}M
+                    </td>
+                    <td className="px-4 py-3 text-text-muted">
+                      {row.nextStep}
+                    </td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center py-12 px-6 text-center">
+            <Inbox className="h-10 w-10 text-text-faint/50 mb-3" strokeWidth={1.5} />
+            <p className="text-[14px] font-medium text-text-primary">
+              No accounts in pipeline yet
+            </p>
+            <p className="mt-1 text-[12px] text-text-muted max-w-sm">
+              Once you receive the 15 accounts from the previous rep, add them to{" "}
+              <code className="rounded bg-surface-muted/50 px-1 py-0.5 text-[11px]">data/accounts.ts</code>
+              {" "}and{" "}
+              <code className="rounded bg-surface-muted/50 px-1 py-0.5 text-[11px]">data/pipeline.ts</code>
+              . Pipeline and war room will populate here.
+            </p>
+          </div>
+        )}
       </div>
 
-      <p className="text-[12px] text-text-faint max-w-2xl">
-        How I&apos;d run these accounts: multiple deals in motion, clear next steps, and a path to close.
-      </p>
+      {hasRows && (
+        <p className="text-[12px] text-text-faint max-w-2xl">
+          Multiple deals in motion, clear next steps, and a path to close.
+        </p>
+      )}
     </motion.div>
   );
 }
