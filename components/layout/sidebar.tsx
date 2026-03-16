@@ -24,6 +24,7 @@ import {
   Calculator,
   Lightbulb,
   UserCircle,
+  Target,
 } from "lucide-react";
 
 const ADAPTIVE_DEMO_URL = "https://www.adaptivesecurity.com/demo/security-awareness-training";
