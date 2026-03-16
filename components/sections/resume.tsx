@@ -76,6 +76,7 @@ export function Resume() {
       <SectionHeader
         title="Platform Overview"
         subtitle="The AI Data Cloud — one trusted platform for enterprise data and agentic intelligence"
+        showLogo
       />
 
       {/* Hero thesis */}

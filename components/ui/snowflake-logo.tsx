@@ -1,34 +1,28 @@
 "use client";
 
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-const SNOWFLAKE_BLUE = "rgb(var(--accent))";
+const LOGO_SRC = "/snowflake-logo.png";
 
 interface SnowflakeLogoProps {
   className?: string;
   size?: number;
 }
 
-/** Snowflake brand mark — six-arm snowflake in brand blue */
+/** Snowflake brand mark — PNG asset, works in both light and dark themes */
 export function SnowflakeLogoIcon({ className, size = 24 }: SnowflakeLogoProps) {
   const s = size ?? 24;
   return (
-    <svg
+    <Image
+      src={LOGO_SRC}
+      alt="Snowflake"
       width={s}
       height={s}
-      viewBox="0 0 24 24"
-      fill="none"
-      className={cn("shrink-0", className)}
+      className={cn("shrink-0 object-contain", className)}
       aria-hidden
-    >
-      <path
-        d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83M7.05 7.05l2.12 2.12M14.83 14.83l2.12 2.12M7.05 16.95l2.12-2.12M14.83 9.17l2.12-2.12M16.95 7.05l-2.12 2.12M9.17 14.83l-2.12 2.12M16.95 16.95l-2.12-2.12M9.17 9.17l-2.12-2.12M12 7v3l2.5 2.5M12 14v3"
-        stroke={SNOWFLAKE_BLUE}
-        strokeWidth="1.25"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+      unoptimized
+    />
   );
 }
 

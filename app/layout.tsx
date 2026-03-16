@@ -33,8 +33,8 @@ export const metadata: Metadata = {
   description:
     "Internal GTM command center for Snowflake Account Executives. Platform narrative, strategic timeline, deal playbooks, and field kit for the AI Data Cloud.",
   icons: {
-    icon: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: [{ url: "/snowflake-logo.png", type: "image/png", sizes: "any" }],
+    apple: [{ url: "/snowflake-logo.png", type: "image/png", sizes: "180x180" }],
   },
   openGraph: {
     title: "GTM Command Center | Snowflake",
@@ -43,11 +43,20 @@ export const metadata: Metadata = {
     url: "/",
     siteName: "Snowflake GTM",
     type: "website",
+    images: [
+      {
+        url: "/snowflake-logo.png",
+        width: 512,
+        height: 512,
+        alt: "Snowflake",
+      },
+    ],
   },
   twitter: {
     card: "summary",
     title: "GTM Command Center | Snowflake",
     description: "Internal GTM hub for Snowflake Account Executives.",
+    images: ["/snowflake-logo.png"],
   },
 };
 

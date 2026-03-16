@@ -103,25 +103,32 @@ export function Overview({
   const staleItems = executionItems.filter((i) => isStale(i.lastUpdated));
 
   return (
-    <div
-      className="space-y-10 sm:space-y-12"
-    >
-      {/* How I'd use this war room for these accounts */}
-      <div className="rounded-xl border border-accent/15 bg-accent/[0.04] px-4 py-3">
-        <div className="flex flex-wrap items-center gap-2">
-          <SnowflakeLogoIcon size={18} className="opacity-95" />
-          <span className="text-[12px] font-medium text-text-primary">
-            GTM Command Center — internal AE hub for the AI Data Cloud
-          </span>
-          <span className="text-[11px] text-text-muted">
-            · George Trosley
-          </span>
+    <div className="space-y-10 sm:space-y-12">
+      {/* Live document: account + TAM at top for rep */}
+      <div className="rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-5">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <SnowflakeLogoIcon size={32} className="shrink-0 opacity-95" />
+            <div>
+              <h1 className="text-[18px] font-semibold tracking-tight text-text-primary sm:text-[20px]">
+                {account.name}
+              </h1>
+              <p className="mt-0.5 text-[13px] text-text-muted">
+                War room · Live account view
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="rounded-lg border border-accent/25 bg-accent/[0.08] px-4 py-2">
+              <p className="text-[10px] font-medium uppercase tracking-wider text-accent/80">Total addressable market</p>
+              <p className="tabular-nums text-[17px] font-semibold text-accent">
+                {account.tam != null && account.tam > 0 ? `$${account.tam}M` : "N/A"}
+              </p>
+            </div>
+          </div>
         </div>
-        <p className="mt-2 text-[12px] font-medium text-text-primary">
-          Given these five accounts, this is how I would use this war room to generate pipeline and close deals.
-        </p>
-        <p className="mt-1 text-[11px] text-text-muted">
-          Select an account above when configured. War room, playbooks, and field kit are built for Snowflake internal AEs.
+        <p className="mt-4 text-[12px] text-text-secondary">
+          Use this view to run the account: pipeline, stakeholders, deal plan, and field kit. Select an account in the header to switch. TAM and metrics update per account.
         </p>
       </div>
 

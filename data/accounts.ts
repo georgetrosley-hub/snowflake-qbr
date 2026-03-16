@@ -7,6 +7,7 @@ export const accounts: Account[] = [
   {
     id: "na",
     name: "N/A",
+    tam: 0,
     employeeCount: 0,
     developerPopulation: 0,
     aiMaturityScore: 0,

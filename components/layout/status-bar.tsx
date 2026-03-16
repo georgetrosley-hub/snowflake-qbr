@@ -109,6 +109,12 @@ export function StatusBar({
                 </select>
                 <ChevronDown className="pointer-events-none absolute right-0 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-text-muted" />
               </div>
+              <div className="flex shrink-0 items-center gap-1.5 rounded-md border border-surface-border/50 bg-surface-elevated/40 px-2.5 py-1.5">
+                <span className="text-[10px] font-medium uppercase tracking-wider text-text-faint">TAM</span>
+                <span className="tabular-nums text-[13px] font-semibold text-accent">
+                  {account.tam != null && account.tam > 0 ? `$${account.tam}M` : "N/A"}
+                </span>
+              </div>
             </div>
 
             <div className="flex flex-wrap items-center justify-end gap-2 sm:gap-3">
@@ -216,11 +222,14 @@ export function StatusBar({
         <div className="fixed inset-0 z-[60] flex items-start justify-center bg-black/30 px-4 py-10 sm:py-24">
           <div className="w-full max-w-md rounded-xl border border-surface-border/50 bg-surface-elevated shadow-2xl">
             <div className="flex items-center justify-between border-b border-surface-border/40 px-5 py-4">
-              <div>
-                <p className="text-[13px] font-medium text-text-primary">API Key</p>
-                <p className="mt-1 text-[11px] text-text-muted">
-                  Add your API key to enable chat and content generation.
-                </p>
+              <div className="flex items-center gap-3">
+                <SnowflakeLogoIcon size={24} className="shrink-0 opacity-90" />
+                <div>
+                  <p className="text-[13px] font-medium text-text-primary">API Key</p>
+                  <p className="mt-1 text-[11px] text-text-muted">
+                    Add your API key to enable chat and content generation.
+                  </p>
+                </div>
               </div>
               <button
                 type="button"

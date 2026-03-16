@@ -3,6 +3,7 @@ import type { Account, Competitor } from "@/types";
 export function buildAccountContext(account: Account, competitors?: Competitor[]): string {
   const lines = [
     `## Account: ${account.name}`,
+    `- TAM: ${account.tam != null && account.tam > 0 ? `$${account.tam}M` : "N/A"}`,
     `- Employees: ${account.employeeCount.toLocaleString()}`,
     `- Developer population: ${account.developerPopulation.toLocaleString()}`,
     `- AI maturity: ${account.aiMaturityScore}/100`,

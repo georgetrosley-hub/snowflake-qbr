@@ -71,6 +71,8 @@ export interface ApprovalRequest {
 export interface Account {
   id: string;
   name: string;
+  /** Total Addressable Market in $M (e.g. 50 = $50M TAM). Optional; show "N/A" when missing/zero. */
+  tam?: number;
   employeeCount: number;
   developerPopulation: number;
   aiMaturityScore: number;

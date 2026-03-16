@@ -35,6 +35,7 @@ export function WhyGeorge() {
       <SectionHeader
         title="Why Snowflake, Why Now"
         subtitle="Strategic transition from data platform to governed AI application platform"
+        showLogo
       />
 
       {/* Thesis */}
