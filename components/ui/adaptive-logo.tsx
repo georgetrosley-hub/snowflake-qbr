@@ -24,11 +24,7 @@ export function AdaptiveLogoImage({ className, size = 24 }: AdaptiveLogoProps) {
       alt="Adaptive Security"
       width={s}
       height={s}
-      className={cn(
-        "shrink-0 object-contain",
-        !isDark && "brightness-0",
-        className
-      )}
+      className={cn("shrink-0 object-contain", className)}
       style={{ width: s, height: s }}
     />
   );
@@ -47,11 +43,7 @@ export function AdaptiveLogo({ className, size = 20 }: AdaptiveLogoProps) {
       alt=""
       width={s}
       height={s}
-      className={cn(
-        "shrink-0 object-contain",
-        !isDark && "brightness-0",
-        className
-      )}
+      className={cn("shrink-0 object-contain", className)}
       style={{ width: s, height: s }}
       aria-hidden
     />
