@@ -37,15 +37,7 @@ export function WhyGeorge() {
           This requires reframing the conversation from maintaining the status quo to showing why a new approach delivers measurable operational or risk improvements.
         </p>
         <p className="text-[13px] leading-relaxed text-text-secondary">
-          Examples of vendors I have displaced include legacy security and infrastructure platforms such as:
-        </p>
-        <ul className="list-disc space-y-1 pl-5 text-[13px] text-text-secondary">
-          <li>KnowBe4</li>
-          <li>Proofpoint</li>
-          <li>Traditional storage and infrastructure vendors</li>
-        </ul>
-        <p className="text-[13px] leading-relaxed text-text-secondary">
-          Winning these deals requires patience, executive alignment, and the ability to guide organizations through internal change.
+          In my experience, these have been heavily entrenched legacy vendors — platforms that customers had purchased and relied on for years, if not decades. Displacing them requires patience, executive alignment, and the ability to guide organizations through internal change.
         </p>
       </section>
 
