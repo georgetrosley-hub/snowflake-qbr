@@ -11,10 +11,11 @@ interface AdaptiveLogoProps {
   size?: number;
 }
 
-/** Adaptive brand mark — theme-aware transparent logo for header, sidebar, status bar, etc. */
+/** Adaptive brand mark — theme-aware: black on light, white on dark */
 export function AdaptiveLogoImage({ className, size = 24 }: AdaptiveLogoProps) {
   const { theme } = useTheme();
-  const src = theme === "dark" ? LOGO_WHITE : LOGO_DARK;
+  const isDark = theme === "dark";
+  const src = isDark ? LOGO_WHITE : LOGO_DARK;
   const s = size ?? 24;
 
   return (
@@ -23,16 +24,21 @@ export function AdaptiveLogoImage({ className, size = 24 }: AdaptiveLogoProps) {
       alt="Adaptive Security"
       width={s}
       height={s}
-      className={cn("shrink-0 object-contain", className)}
+      className={cn(
+        "shrink-0 object-contain",
+        !isDark && "brightness-0",
+        className
+      )}
       style={{ width: s, height: s }}
     />
   );
 }
 
-/** Same Adaptive logo at icon size — used in cards, sections, CTAs */
+/** Same Adaptive logo at icon size — black on light, white on dark */
 export function AdaptiveLogo({ className, size = 20 }: AdaptiveLogoProps) {
   const { theme } = useTheme();
-  const src = theme === "dark" ? LOGO_WHITE : LOGO_DARK;
+  const isDark = theme === "dark";
+  const src = isDark ? LOGO_WHITE : LOGO_DARK;
   const s = size ?? 20;
 
   return (
@@ -41,7 +47,11 @@ export function AdaptiveLogo({ className, size = 20 }: AdaptiveLogoProps) {
       alt=""
       width={s}
       height={s}
-      className={cn("shrink-0 object-contain", className)}
+      className={cn(
+        "shrink-0 object-contain",
+        !isDark && "brightness-0",
+        className
+      )}
       style={{ width: s, height: s }}
       aria-hidden
     />
