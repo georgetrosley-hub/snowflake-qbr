@@ -21,13 +21,13 @@ export function TerritoryEngine({ account, competitors }: TerritoryEngineProps) 
     >
       <SectionHeader
         title="Territory engine"
-        subtitle="Run the engine to create pipeline and move deals. Each action below uses AI to generate real outputs."
+        subtitle="Use these actions to generate pipeline and move deals for this account."
       />
 
       <div className="flex items-center gap-2 rounded-lg border border-emerald-400/20 bg-emerald-400/[0.05] px-4 py-3">
         <Zap className="h-4 w-4 shrink-0 text-emerald-400" strokeWidth={1.8} />
         <p className="text-[13px] text-text-primary">
-          Use the product to sell the product. Pick an action for {account.name} or ask a custom question.
+          Pick an action for {account.name} or ask a custom question to build pipeline and advance the deal.
         </p>
       </div>
 
@@ -54,7 +54,7 @@ export function TerritoryEngine({ account, competitors }: TerritoryEngineProps) 
           },
           {
             id: "simulate-objections",
-            label: "Simulate objections",
+            label: "Anticipate objections",
             prompt: `For ${account.name}, what are the top 5 objections I'll hear from security, legal, procurement, or the incumbent (${account.existingVendorFootprint.join(", ")})? For each, give me: the objection, why they'll say it, and a 2–3 sentence response I can use in the room. Account blockers: ${account.topBlockers.join("; ")}.`,
           },
           {

@@ -7,7 +7,7 @@ const roadmap = [
   {
     icon: Zap,
     title: "Claude API integration",
-    desc: "Replace deterministic simulation with live reasoning. Agents pull real account signals from CRM, call summaries, and documents to generate recommendations.",
+    desc: "Connect to CRM, call summaries, and documents. Agents use real account signals to generate recommendations and next steps.",
   },
   {
     icon: BarChart3,
@@ -39,7 +39,7 @@ export function Vision() {
           What I&apos;d build next
         </h2>
         <p className="mt-2 text-[15px] text-text-secondary leading-relaxed">
-          This demo uses deterministic simulation. With the Databricks Foundation Model API and real data sources, these agents could power a true enterprise GTM command center—assisted, not automated.
+          With live data (CRM, call summaries, docs), this war room would run on real signals. Here&apos;s what I&apos;d add next to scale pipeline and close deals.
         </p>
       </section>
 
@@ -68,7 +68,7 @@ export function Vision() {
 
       <section className="border-t border-surface-border/40 pt-8">
         <p className="text-[13px] text-text-muted leading-relaxed">
-          Built to show what Databricks-powered enterprise sales could look like. If you&apos;d like to explore this further, I&apos;d love to talk.
+          If you&apos;d like to talk through how I&apos;d run this on real data for these accounts, I&apos;d be happy to walk through it.
         </p>
       </section>
     </motion.div>

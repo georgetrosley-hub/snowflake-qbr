@@ -23,12 +23,40 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://adaptive-gtm.vercel.app");
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Enterprise GTM | Adaptive Security — George Trosley",
-  description: "Security awareness pipeline & expansion playbook for Adaptive — deepfake training, phishing simulations, legacy displacement. Built for recruiters & hiring managers.",
+  description:
+    "How I'd use a GTM war room to generate pipeline and close deals on five enterprise accounts (ADP, DuPont, St. Luke's, Tower Health, Penn State Health) for Adaptive Security. Built for recruiters & hiring managers.",
   icons: {
-    icon: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: "/adaptive-logo-dark.png",
+    apple: "/adaptive-logo-dark.png",
+  },
+  openGraph: {
+    title: "Enterprise GTM | Adaptive Security — George Trosley",
+    description:
+      "How I'd use a GTM war room to generate pipeline and close deals on five enterprise accounts for Adaptive Security.",
+    url: "/",
+    siteName: "Adaptive Security GTM",
+    images: [
+      {
+        url: "/adaptive-logo-dark.png",
+        width: 512,
+        height: 512,
+        alt: "Adaptive Security",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Enterprise GTM | Adaptive Security — George Trosley",
+    description:
+      "How I'd use a GTM war room to generate pipeline and close deals on five enterprise accounts for Adaptive Security.",
   },
 };
 

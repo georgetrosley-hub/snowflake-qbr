@@ -323,8 +323,8 @@ export function DealSimulation({
       className="space-y-8 sm:space-y-10"
     >
       <SectionHeader
-        title="Enterprise deal simulation"
-        subtitle={`Account: ${account.name} — How I would run this deal end-to-end.`}
+        title="How I'd run this deal"
+        subtitle={`Account: ${account.name} — My playbook for this deal end-to-end.`}
       />
 
       <div className="flex flex-wrap gap-1 overflow-x-auto pb-2">

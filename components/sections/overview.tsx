@@ -106,7 +106,7 @@ export function Overview({
     <div
       className="space-y-10 sm:space-y-12"
     >
-      {/* Recruiter-facing: Adaptive Security GTM */}
+      {/* How I'd use this war room for these accounts */}
       <div className="rounded-xl border border-accent/15 bg-accent/[0.04] px-4 py-3">
         <div className="flex flex-wrap items-center gap-2">
           <AdaptiveLogoImage size={18} className="opacity-95" />
@@ -117,7 +117,10 @@ export function Overview({
             · George Trosley
           </span>
         </div>
-        <p className="mt-2 text-[11px] text-text-muted">
+        <p className="mt-2 text-[12px] font-medium text-text-primary">
+          Given these five accounts, this is how I would use this war room to generate pipeline and close deals.
+        </p>
+        <p className="mt-1 text-[11px] text-text-muted">
           Accounts in the selector are my current Pure Storage territory (ADP, DuPont, St. Luke&apos;s, Tower Health, Penn State Health) — reframed for Adaptive Security.
         </p>
       </div>
@@ -250,9 +253,9 @@ export function Overview({
 
       <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <MetricCard
-          label="Modeled pipeline"
+          label="Pipeline target"
           value={`$${pipelineTarget.toFixed(2)}M`}
-          subtitle="Combined land motion plus near-term expansion path"
+          subtitle="How I'd size land plus near-term expansion across these accounts"
         />
         <MetricCard
           label="First pilot"

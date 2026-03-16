@@ -14,7 +14,7 @@ export function WhyGeorge() {
       className="space-y-10 sm:space-y-12"
     >
       <SectionHeader
-        title="Why My Background Aligns with Adaptive's Enterprise Motion"
+        title="How I Run Enterprise Displacement Deals"
         subtitle="One page for hiring managers"
       />
 
@@ -39,6 +39,20 @@ export function WhyGeorge() {
         <p className="text-[13px] leading-relaxed text-text-secondary">
           In my experience, these have been heavily entrenched legacy vendors — platforms that customers had purchased and relied on for years, if not decades. Displacing them requires patience, executive alignment, and the ability to guide organizations through internal change.
         </p>
+      </section>
+
+      {/* Deal framework — scannable playbook */}
+      <section className="space-y-3">
+        <h2 className="text-[15px] font-semibold tracking-tight text-text-primary">
+          How I Run Enterprise Displacement Deals
+        </h2>
+        <ul className="list-disc space-y-1.5 pl-5 text-[13px] text-text-secondary">
+          <li>Map the full buying committee early (IT, security, GRC, procurement)</li>
+          <li>Identify the real decision sponsor</li>
+          <li>Align the conversation around measurable risk or operational impact</li>
+          <li>Create executive urgency to challenge the incumbent vendor</li>
+          <li>Guide the organization through legal, procurement, and vendor transition</li>
+        </ul>
       </section>
 
       {/* Section 2: Navigating Complex Enterprise Buying Committees */}
@@ -142,10 +156,7 @@ export function WhyGeorge() {
         <div className="flex items-center gap-3">
           <AdaptiveLogo size={28} />
           <div>
-            <p className="font-semibold text-text-primary">Ready to talk?</p>
-            <p className="text-[13px] text-text-muted">
-              I&apos;m happy to walk through my background and how it fits.
-            </p>
+            <p className="font-semibold text-text-primary">If helpful, I&apos;d be happy to walk through how I would approach building pipeline and replacing incumbent platforms across Adaptive&apos;s enterprise accounts.</p>
           </div>
         </div>
         <div className="flex flex-wrap gap-3">

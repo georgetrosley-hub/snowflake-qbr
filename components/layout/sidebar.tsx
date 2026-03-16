@@ -34,7 +34,7 @@ const sectionGroups = [
     label: "You",
     items: [
       { id: "resume", label: "Resume", icon: UserCircle },
-      { id: "whyGeorge", label: "Why George", icon: Target },
+      { id: "whyGeorge", label: "How I Run Deals", icon: Target },
     ],
   },
   {
@@ -43,7 +43,7 @@ const sectionGroups = [
       { id: "overview", label: "War Room", icon: LayoutDashboard },
       { id: "accountIntelligence", label: "Account Intelligence", icon: Crosshair },
       { id: "pipeline", label: "Pipeline", icon: BarChart3 },
-      { id: "dealSimulation", label: "Deal Simulation", icon: GitBranch },
+      { id: "dealSimulation", label: "Deal playbook", icon: GitBranch },
       { id: "dealProgression", label: "Deal Progression", icon: TrendingUp },
       { id: "accountLog", label: "Account Log", icon: ClipboardList },
       { id: "stakeholders", label: "Stakeholder Map", icon: Users },

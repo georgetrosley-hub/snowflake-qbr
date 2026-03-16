@@ -209,7 +209,7 @@ export function StatusBar({
               <div>
                 <p className="text-[13px] font-medium text-text-primary">API Key</p>
                 <p className="mt-1 text-[11px] text-text-muted">
-                  Add your API key to enable chat and content generation in this demo.
+                  Add your API key to enable chat and content generation.
                 </p>
               </div>
               <button

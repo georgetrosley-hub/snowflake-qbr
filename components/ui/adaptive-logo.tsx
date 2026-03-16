@@ -11,21 +11,40 @@ interface AdaptiveLogoProps {
   size?: number;
 }
 
-/** Adaptive brand mark — theme-aware: black on light, white on dark */
+/** Adaptive brand mark — theme-aware: black on light, white on dark. Light mode uses mask so shape is crisp black. */
 export function AdaptiveLogoImage({ className, size = 24 }: AdaptiveLogoProps) {
   const { theme } = useTheme();
   const isDark = theme === "dark";
-  const src = isDark ? LOGO_WHITE : LOGO_DARK;
   const s = size ?? 24;
 
+  if (isDark) {
+    return (
+      <img
+        src={LOGO_WHITE}
+        alt="Adaptive Security"
+        width={s}
+        height={s}
+        className={cn("shrink-0 object-contain", className)}
+        style={{ width: s, height: s }}
+      />
+    );
+  }
+
   return (
-    <img
-      src={src}
-      alt="Adaptive Security"
-      width={s}
-      height={s}
-      className={cn("shrink-0 object-contain", className)}
-      style={{ width: s, height: s }}
+    <span
+      role="img"
+      aria-label="Adaptive Security"
+      className={cn("shrink-0 inline-block text-black", className)}
+      style={{
+        width: s,
+        height: s,
+        maskImage: `url(${LOGO_DARK})`,
+        WebkitMaskImage: `url(${LOGO_DARK})`,
+        maskSize: "contain",
+        maskRepeat: "no-repeat",
+        maskPosition: "center",
+        backgroundColor: "currentColor",
+      }}
     />
   );
 }
@@ -34,17 +53,35 @@ export function AdaptiveLogoImage({ className, size = 24 }: AdaptiveLogoProps) {
 export function AdaptiveLogo({ className, size = 20 }: AdaptiveLogoProps) {
   const { theme } = useTheme();
   const isDark = theme === "dark";
-  const src = isDark ? LOGO_WHITE : LOGO_DARK;
   const s = size ?? 20;
 
+  if (isDark) {
+    return (
+      <img
+        src={LOGO_WHITE}
+        alt=""
+        width={s}
+        height={s}
+        className={cn("shrink-0 object-contain", className)}
+        style={{ width: s, height: s }}
+        aria-hidden
+      />
+    );
+  }
+
   return (
-    <img
-      src={src}
-      alt=""
-      width={s}
-      height={s}
-      className={cn("shrink-0 object-contain", className)}
-      style={{ width: s, height: s }}
+    <span
+      className={cn("shrink-0 inline-block text-black", className)}
+      style={{
+        width: s,
+        height: s,
+        maskImage: `url(${LOGO_DARK})`,
+        WebkitMaskImage: `url(${LOGO_DARK})`,
+        maskSize: "contain",
+        maskRepeat: "no-repeat",
+        maskPosition: "center",
+        backgroundColor: "currentColor",
+      }}
       aria-hidden
     />
   );

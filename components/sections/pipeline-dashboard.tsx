@@ -42,7 +42,7 @@ export function PipelineDashboard() {
     >
       <SectionHeader
         title="Territory pipeline"
-        subtitle="Simulated pipeline view — this is how I think about multiple accounts in motion."
+        subtitle="How I'd track and grow pipeline across these five accounts."
       />
 
       <div className="rounded-[22px] border border-accent/20 bg-white/[0.02] overflow-hidden">
@@ -108,8 +108,7 @@ export function PipelineDashboard() {
       </div>
 
       <p className="text-[12px] text-text-faint max-w-2xl">
-        This view reflects how I run territory: multiple accounts at different stages, with clear next steps. 
-        The simulated data mirrors the capture plans and flagship deal context across these accounts.
+        How I'd run these accounts: multiple deals in motion, clear next steps, and a path to close.
       </p>
     </motion.div>
   );
