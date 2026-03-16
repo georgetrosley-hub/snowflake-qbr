@@ -165,7 +165,7 @@ export function Resume() {
     >
       <SectionHeader
         title="George Trosley"
-        subtitle="Enterprise Security Sales — Resume & background for recruiters and hiring managers"
+        subtitle="Enterprise GTM Sales — Resume & background for recruiters and hiring managers"
       />
 
       {/* Contact strip + CTA */}
