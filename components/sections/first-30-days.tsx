@@ -36,7 +36,7 @@ export function First30Days({
           </p>
         </div>
         <p className="max-w-2xl text-[14px] leading-relaxed text-text-muted">
-          The execution items that move the deal: in progress and ready. Use Claude below to get a sequenced plan or messaging suggestions.
+          The execution items that move the deal: in progress and ready. Use the panel below to get a sequenced plan or messaging suggestions.
         </p>
         <div className="mt-5 space-y-3">
           {thisWeek.length === 0 ? (
@@ -67,7 +67,7 @@ export function First30Days({
       </section>
 
       <ClaudeActionBar
-        title="Ask ChatGPT about your first 30 days"
+        title="Ask about your first 30 days"
         subtitle="Get a sequenced plan, messaging for the champion, or next-step recommendations for this account."
         account={account}
         competitors={competitors}

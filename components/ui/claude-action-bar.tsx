@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { OpenAILogo } from "@/components/ui/openai-logo";
+import { AdaptiveLogo } from "@/components/ui/adaptive-logo";
 import { StreamingContent } from "@/components/ui/streaming-content";
 import { useStreaming } from "@/lib/hooks/use-streaming";
 import { cn } from "@/lib/utils";
@@ -68,7 +68,7 @@ export function ClaudeActionBar({
     <section className={cn("min-w-0 rounded-[28px] border-2 border-accent/30 bg-white/[0.02] p-4 sm:p-6", className)}>
       <div className="flex items-start gap-3">
         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-accent/10">
-          <OpenAILogo size={14} className="text-accent" />
+          <AdaptiveLogo size={14} className="text-accent" />
         </div>
         <div className="min-w-0 flex-1">
           <p className="text-[13px] font-medium text-text-primary">{title}</p>
@@ -100,7 +100,7 @@ export function ClaudeActionBar({
 
       <div className="mt-4 sm:mt-5">
         <label className="mb-2 block text-[11px] font-medium uppercase tracking-[0.12em] text-text-faint/80">
-          Or ask ChatGPT something else
+          Or ask something else
         </label>
         <div className="relative rounded-[22px] border border-surface-border/40 bg-surface-muted/20 transition-colors focus-within:border-accent/30 focus-within:bg-surface-muted/30">
           <textarea
@@ -116,7 +116,7 @@ export function ClaudeActionBar({
             disabled={!customText.trim()}
             className="touch-target absolute bottom-3 right-3 flex min-h-[40px] min-w-[44px] items-center justify-center rounded-lg px-3 py-2 text-[12px] font-medium text-accent transition-colors active:bg-accent/15 hover:bg-accent/10 disabled:pointer-events-none disabled:opacity-40"
           >
-            Ask ChatGPT
+            Ask
           </button>
         </div>
       </div>

@@ -6,7 +6,7 @@ import { FileText, Presentation, BarChart3 } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
 import { StreamingContent } from "@/components/ui/streaming-content";
 import { useStreaming } from "@/lib/hooks/use-streaming";
-import { OpenAILogo } from "@/components/ui/openai-logo";
+import { AdaptiveLogo } from "@/components/ui/adaptive-logo";
 import type { Account, Competitor } from "@/types";
 
 interface ExecutiveNarrativeProps {

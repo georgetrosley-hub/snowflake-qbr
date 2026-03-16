@@ -5,12 +5,12 @@ export const CONTENT_PROMPTS: Record<string, string> = {
 
 Generate a dynamic, account-specific competitive battle card. Structure it as:
 
-## [Competitor Name] vs Claude — Battle Card for [Account]
+## [Competitor Name] vs Adaptive — Battle Card for [Account]
 
 **Their Pitch:** What the competitor will say to this customer
 **Their Strengths:** Be honest about where they're strong
-**Their Weaknesses:** Where they fall short for THIS life sciences account
-**Our Positioning:** How to position Claude (Claude Enterprise) specifically for this account
+**Their Weaknesses:** Where they fall short for THIS account
+**Our Positioning:** How to position Adaptive Security Awareness specifically for this account
 **Trap Questions:** 3 questions to ask the customer that expose the competitor's weaknesses
 **Landmines:** Things they'll say about us and how to respond
 **Win Theme:** The 1-sentence positioning that wins this deal
@@ -26,7 +26,7 @@ Generate a comprehensive meeting prep. Structure it as:
 **Objective:** What we need to accomplish in this meeting
 **Attendees & Angles:** For each attendee role, what they care about and how to engage them
 **Agenda (30 min):** Suggested flow with time allocations
-**Key Talking Points:** 3-5 points tailored to this meeting type and audience (life sciences context)
+**Key Talking Points:** 3-5 points tailored to this meeting type and audience (security awareness / human risk context)
 **Questions to Ask:** 5 discovery/qualifying questions specific to this account
 **Risk Areas:** Topics to handle carefully or avoid
 **Business Case Elements:** Data points and value statements to weave in
@@ -42,7 +42,7 @@ Generate a polished, ready-to-send email. The email should be:
 - Specific to the account context
 - Action-oriented with a clear ask
 - Professional but warm, not robotic
-- Include specific value points relevant to the recipient (life sciences focus where appropriate)
+- Include specific value points relevant to the recipient (security awareness / human risk focus where appropriate)
 
 Output just the email with Subject line, then the body. No preamble.`,
 
@@ -63,27 +63,25 @@ Be honest. If the objection has merit, acknowledge it and explain how we mitigat
 
   security_qa: `${BASE_SYSTEM_PROMPT}
 
-You are answering security and compliance questions on behalf of Claude. Your answers should be:
-- Accurate based on OpenAI's known security posture
-- Specific and detailed enough to satisfy a life sciences security team
+You are answering security and compliance questions on behalf of Adaptive Security. Your answers should be:
+- Accurate based on Adaptive's known security and product posture
+- Specific and detailed enough to satisfy an enterprise security or compliance team
 - Formatted for copy/paste into a security questionnaire response
 
-Key facts about Claude security:
-- SOC 2 Type II certified, HIPAA eligible, FedRAMP authorized
-- Data encrypted at rest (AES-256) and in transit (TLS 1.2+)
-- Enterprise controls: access control, audit logging
-- No training on customer data
-- GxP and 21 CFR Part 11 considerations for life sciences
-- Data residency: multi-cloud, region selection
-- Penetration testing, incident response, compliance frameworks
+Key facts about Adaptive Security:
+- Security awareness training platform: deepfake simulations, phishing sims, microlearning
+- Content and data handling appropriate for enterprise and regulated industries
+- Engagement and automation; always-fresh content; just-in-time learning on failure
+- Security culture and human risk focus (not just checkbox compliance)
+- Enterprise controls, reporting, and integration expectations
 
-Answer the specific question asked. If you're not certain about a detail, say so and recommend the seller verify with the security team.`,
+Answer the specific question asked. If you're not certain about a detail, say so and recommend the seller verify with Adaptive or the customer's security team.`,
 
   roi_calculator: `${BASE_SYSTEM_PROMPT}
 
 Generate a detailed ROI analysis and business case. Structure it as:
 
-## Business Case: Claude for [Use Case] at [Account]
+## Business Case: Adaptive Security for [Use Case] at [Account]
 
 **Executive Summary:** 2-3 sentence overview of the opportunity
 
@@ -93,17 +91,17 @@ Generate a detailed ROI analysis and business case. Structure it as:
 - Pain points and inefficiencies
 
 **Proposed Solution:**
-- How Claude addresses each pain point
-- Implementation approach (Claude Enterprise deployment)
+- How Adaptive addresses each pain point
+- Implementation approach (Adaptive Security Awareness deployment)
 - Timeline to value
 
 **Financial Impact:**
-| Metric | Current | With Claude | Impact |
+| Metric | Current | With Adaptive | Impact |
 |--------|---------|-----------------|--------|
 | [specific metrics] | | | |
 
 **Year 1 ROI:**
-- Investment: Claude platform costs
+- Investment: Adaptive platform costs
 - Savings: Productivity gains, cost reduction, faster time-to-market
 - Net ROI: X%
 
@@ -120,7 +118,7 @@ Generate a comprehensive executive narrative for this account. This should read 
 
 **The Opportunity:** Why this account, why now (2-3 sentences)
 **Strategic Context:** What's happening at the company that creates the opening
-**Why Claude Wins Here:** Specific differentiators that matter for THIS life sciences account
+**Why Adaptive Wins Here:** Specific differentiators that matter for THIS life sciences account
 **Competitive Dynamics:** Who else is in play (Snowflake, Palantir, AWS, etc.) and how we're positioned
 **The Path:** Phase 1 (Land) → Phase 2 (Expand) → Phase 3 (Enterprise) with specifics
 **Value at Stake:** Land value, expansion potential, strategic importance
@@ -139,23 +137,23 @@ Generate a strategic assessment for this account. This should be a concise, acti
 3. **Biggest risk** and how to mitigate
 4. **Competitive threat level** and primary competitor to watch
 5. **Expansion opportunity** — the next department/use case to target (R&D, Clinical Ops, Regulatory, etc.)
-6. **Claude recommended play** — the single most important thing to do next
+6. **Adaptive recommended play** — the single most important thing to do next
 
 Be direct and specific. Name names, suggest timelines, quantify impact.`,
 
   use_case_recommendation: `${BASE_SYSTEM_PROMPT}
 
-Based on the account profile, recommend the top Claude use cases for life sciences. For each:
+Based on the account profile, recommend the top Adaptive Security use cases (security awareness, deepfake training, phishing, human risk). For each:
 
-**Use Case:** Name (e.g. clinical trial analytics, RWE platform, GxP MLOps, R&D data lake)
-**Department:** Where it lives (R&D, Clinical Ops, Regulatory, Medical Affairs, etc.)
+**Use Case:** Name (e.g. deepfake training for execs, phishing sims for contact center, security culture for engineering)
+**Department:** Where it lives (Security, HR, Engineering, Customer Support, etc.)
 **Buyer Persona:** Who makes the decision
 **Problem Solved:** What pain point it addresses
 **Implementation:** Simple/Medium/Complex
 **Time to Value:** How quickly they'd see results
-**Estimated ARR:** Based on team size and usage
+**Estimated ARR:** Based on headcount and scope
 **Why This Account:** Specific reasons this use case fits HERE
-**Customer References:** Similar pharma/life sciences companies that have succeeded
+**Customer References:** Similar companies that have succeeded with Adaptive
 
 Rank by a combination of business impact and likelihood of adoption for THIS specific account.`,
 
@@ -163,13 +161,13 @@ Rank by a combination of business impact and likelihood of adoption for THIS spe
 
 Generate a targeted expansion pitch for a specific department within the account. Structure it as:
 
-## Expanding Claude into [Department] at [Account]
+## Expanding Adaptive into [Department] at [Account]
 
 **The Hook:** Why this department should care (tied to their specific KPIs)
-**Use Cases:** 2-3 specific ways this department would use Claude
+**Use Cases:** 2-3 specific ways this department would use Adaptive (security awareness, deepfake, phishing, human risk)
 **Value Proposition:** Quantified impact on their metrics
 **Internal Champion:** Who to approach and how (ideally leveraging existing relationships)
-**Proof Points:** Evidence from the existing deployment or similar life sciences customers
+**Proof Points:** Evidence from the existing deployment or similar security-aware customers
 **Objections to Expect:** What this department will push back on
 **Pilot Design:** A 30-day pilot scope that's easy to say yes to
 **Expected ARR:** What this expansion is worth

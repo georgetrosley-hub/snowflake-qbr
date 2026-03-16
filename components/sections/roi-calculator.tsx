@@ -6,7 +6,7 @@ import { Calculator, DollarSign, Users, Clock } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
 import { StreamingContent } from "@/components/ui/streaming-content";
 import { useStreaming } from "@/lib/hooks/use-streaming";
-import { OpenAILogo } from "@/components/ui/openai-logo";
+import { AdaptiveLogo } from "@/components/ui/adaptive-logo";
 import { cn } from "@/lib/utils";
 import type { Account, Competitor } from "@/types";
 
@@ -45,7 +45,7 @@ export function ROICalculator({ account, competitors }: ROICalculatorProps) {
         type: "roi_calculator",
         account,
         competitors,
-        context: `Use case: ${useCase}\nTeam size: ${teamSize || "Not specified"}\nAvg salary/cost per person: ${avgSalary ? `$${avgSalary}` : "Not specified"}\nHours/week on tasks Claude could assist: ${hoursPerWeek || "Not specified"}\nCurrent tool costs: ${currentToolCost ? `$${currentToolCost}/year` : "Not specified"}${additionalContext ? `\nAdditional context: ${additionalContext}` : ""}\n\nGenerate a detailed ROI model for this use case at ${account.name}. Use the inputs provided, and where inputs are missing, use reasonable industry estimates for a company of ${account.employeeCount.toLocaleString()} employees with ${account.developerPopulation.toLocaleString()} developers.`,
+        context: `Use case: ${useCase}\nTeam size: ${teamSize || "Not specified"}\nAvg salary/cost per person: ${avgSalary ? `$${avgSalary}` : "Not specified"}\nHours/week on security training / human risk: ${hoursPerWeek || "Not specified"}\nCurrent tool costs: ${currentToolCost ? `$${currentToolCost}/year` : "Not specified"}${additionalContext ? `\nAdditional context: ${additionalContext}` : ""}\n\nGenerate a detailed ROI model for this security awareness use case at ${account.name}. Use the inputs provided, and where inputs are missing, use reasonable industry estimates for a company of ${account.employeeCount.toLocaleString()} employees.`,
       },
     });
   }, [useCase, teamSize, avgSalary, hoursPerWeek, currentToolCost, additionalContext, account, competitors, roi]);
@@ -59,7 +59,7 @@ export function ROICalculator({ account, competitors }: ROICalculatorProps) {
     >
       <SectionHeader
         title="ROI & business case generator"
-        subtitle="Build a data-driven business case for any Claude use case"
+        subtitle="Build a data-driven business case for any Adaptive use case"
       />
 
       {/* Use case selector */}
@@ -174,7 +174,7 @@ export function ROICalculator({ account, competitors }: ROICalculatorProps) {
             : "border border-surface-border/30 bg-surface-muted/20 text-text-muted/50 cursor-not-allowed"
         )}
       >
-        <OpenAILogo size={14} />
+        <AdaptiveLogo size={14} />
         Generate Business Case
       </button>
 

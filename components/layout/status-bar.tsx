@@ -16,7 +16,7 @@ import {
 import { useApiKey } from "@/app/context/api-key-context";
 import { useTheme } from "@/app/context/theme-context";
 import { cn } from "@/lib/utils";
-import { OpenAILogoImage } from "@/components/ui/openai-logo";
+import { AdaptiveLogoImage } from "@/components/ui/adaptive-logo";
 import type { Account } from "@/types";
 import type { DealHealthSummary } from "@/lib/deal-health";
 
@@ -146,7 +146,7 @@ export function StatusBar({
                   className="flex items-center gap-1.5 rounded-md px-2 py-1 text-[11px] text-text-secondary transition-colors hover:bg-surface-muted/30 hover:text-text-primary"
                 >
                   <MessageCircle className="h-3 w-3" />
-                  <span className="hidden sm:inline">Ask ChatGPT</span>
+                  <span className="hidden sm:inline">Ask</span>
                 </button>
               )}
               <div className="flex items-center gap-2 text-[11px]">
@@ -162,7 +162,7 @@ export function StatusBar({
                   </>
                 ) : (
                   <>
-                    <OpenAILogoImage size={14} className="opacity-70" />
+                    <AdaptiveLogoImage size={14} className="opacity-70" />
                     <span className="hidden text-[11px] text-text-faint sm:inline">In sync</span>
                   </>
                 )}

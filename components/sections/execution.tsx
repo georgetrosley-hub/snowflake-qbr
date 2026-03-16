@@ -78,7 +78,7 @@ export function Execution({
       />
 
       <ClaudeActionBar
-        title="Ask ChatGPT from inside the deal plan"
+        title="Ask from inside the deal plan"
         subtitle="Use AI for mutual action planning, pilot design, and unblockers while you are actively running the deal."
         account={account}
         competitors={competitors}

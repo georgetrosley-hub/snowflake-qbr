@@ -20,7 +20,7 @@ export function TerritoryEngine({ account, competitors }: TerritoryEngineProps) 
       className="space-y-8 sm:space-y-10"
     >
       <SectionHeader
-        title="Claude-powered territory engine"
+        title="Territory engine"
         subtitle="Run the engine to create pipeline and move deals. Each action below uses AI to generate real outputs."
       />
 

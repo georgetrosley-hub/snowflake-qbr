@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* OpenAI / ChatGPT design system */
+/* Adaptive Security GTM design system */
 
 /* Dark theme (default) — ChatGPT.com-style black */
 :root,
@@ -19,7 +19,7 @@ html[data-theme="dark"] {
   --accent: 16 163 127;
   --accent-muted: 45 179 150;
   --accent-subtle: 20 40 36;
-  --openai-green: 16 163 127;
+  --adaptive-accent: 16 163 127;
   --warm: 38 38 38;
 }
 
@@ -105,6 +105,6 @@ body {
   50% { box-shadow: 0 0 20px rgba(16, 163, 127, 0.08); }
 }
 
-.openai-glow {
+.adaptive-glow {
   animation: subtle-glow 4s ease-in-out infinite;
 }

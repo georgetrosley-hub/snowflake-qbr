@@ -69,7 +69,7 @@ export function Stakeholders({
       />
 
       <ClaudeActionBar
-        title="Ask ChatGPT from inside the stakeholder map"
+        title="Ask from inside the stakeholder map"
         subtitle="Use AI to help multi-thread the account, coach the champion, and prep internal influence paths."
         account={account}
         competitors={competitors}

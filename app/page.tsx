@@ -20,6 +20,7 @@ import { UseCaseLibrary } from "@/components/sections/use-case-library";
 import { ROICalculator } from "@/components/sections/roi-calculator";
 import { TerritoryEngine } from "@/components/sections/territory-engine";
 import { EnterpriseComparison } from "@/components/sections/enterprise-comparison";
+import { Resume } from "@/components/sections/resume";
 import { motion, AnimatePresence } from "framer-motion";
 
 function MainContent() {
@@ -72,6 +73,7 @@ function MainContent() {
   const oversightStatus = pendingDecisionCount > 0 ? "active" as const : "idle" as const;
 
   const sections: Record<SectionId, React.ReactNode> = {
+    resume: <Resume />,
     overview: (
       <Overview
         account={account}

@@ -8,42 +8,45 @@ type Strength = "strong" | "strongest" | "moderate" | "improving" | "unknown";
 
 const rows: {
   factor: string;
-  claude: Strength;
-  openai: Strength;
-  gemini: Strength;
-  mistral?: Strength;
+  adaptive: Strength;
+  knowbe4: Strength;
+  cofense: Strength;
+  proofpoint?: Strength;
 }[] = [
   {
-    factor: "Safety alignment",
-    claude: "strongest",
-    openai: "moderate",
-    gemini: "moderate",
-    mistral: "moderate",
+    factor: "Deepfake & AI-generated threat training",
+    adaptive: "strongest",
+    knowbe4: "moderate",
+    cofense: "moderate",
+    proofpoint: "improving",
   },
   {
-    factor: "Enterprise governance",
-    claude: "strong",
-    openai: "improving",
-    gemini: "unknown",
-    mistral: "unknown",
+    factor: "Microlearning & engagement (TikTok-style)",
+    adaptive: "strongest",
+    knowbe4: "moderate",
+    cofense: "moderate",
+    proofpoint: "moderate",
   },
   {
-    factor: "Model behavior",
-    claude: "strong",
-    openai: "moderate",
-    gemini: "moderate",
+    factor: "Phishing simulation + just-in-time learning",
+    adaptive: "strong",
+    knowbe4: "strong",
+    cofense: "strong",
+    proofpoint: "strong",
   },
   {
-    factor: "Data & training posture",
-    claude: "strong",
-    openai: "moderate",
-    gemini: "moderate",
+    factor: "Always-fresh content & automation",
+    adaptive: "strong",
+    knowbe4: "moderate",
+    cofense: "moderate",
+    proofpoint: "moderate",
   },
   {
-    factor: "Regulated industry fit",
-    claude: "strong",
-    openai: "moderate",
-    gemini: "unknown",
+    factor: "Security culture vs checkbox compliance",
+    adaptive: "strong",
+    knowbe4: "moderate",
+    cofense: "moderate",
+    proofpoint: "unknown",
   },
 ];
 
@@ -95,8 +98,8 @@ export function EnterpriseComparison() {
       className="space-y-8 sm:space-y-10"
     >
       <SectionHeader
-        title="ChatGPT vs Competitors"
-        subtitle="Enterprise buying decisions — safety, governance, and model behavior. Not marketing fluff."
+        title="Adaptive vs Alternatives"
+        subtitle="Security awareness buying decisions — deepfake training, engagement, and security culture. Not checkbox compliance."
       />
 
       <div className="overflow-x-auto">
@@ -107,16 +110,16 @@ export function EnterpriseComparison() {
                 Factor
               </th>
               <th className="px-4 pb-3 text-left text-[10px] font-medium uppercase tracking-wider text-accent">
-                ChatGPT
+                Adaptive
               </th>
               <th className="px-4 pb-3 text-left text-[10px] font-medium uppercase tracking-wider text-text-faint">
-                OpenAI
+                KnowBe4
               </th>
               <th className="px-4 pb-3 text-left text-[10px] font-medium uppercase tracking-wider text-text-faint">
-                Gemini
+                Cofense
               </th>
               <th className="px-4 pb-3 text-left text-[10px] font-medium uppercase tracking-wider text-text-faint">
-                Mistral
+                Proofpoint
               </th>
             </tr>
           </thead>
@@ -133,16 +136,16 @@ export function EnterpriseComparison() {
                   {row.factor}
                 </td>
                 <td className="px-4 py-3">
-                  <StrengthBadge s={row.claude} />
+                  <StrengthBadge s={row.adaptive} />
                 </td>
                 <td className="px-4 py-3">
-                  <StrengthBadge s={row.openai} />
+                  <StrengthBadge s={row.knowbe4} />
                 </td>
                 <td className="px-4 py-3">
-                  <StrengthBadge s={row.gemini} />
+                  <StrengthBadge s={row.cofense} />
                 </td>
                 <td className="px-4 py-3">
-                  <StrengthBadge s={row.mistral ?? "unknown"} />
+                  <StrengthBadge s={row.proofpoint ?? "unknown"} />
                 </td>
               </motion.tr>
             ))}
@@ -157,7 +160,7 @@ export function EnterpriseComparison() {
             Deal positioning intelligence
           </p>
           <p className="mt-1 text-[11px] text-text-muted">
-            I use this framing to help enterprise buyers compare on what matters: governance, auditability, and predictable model behavior — not just capability.
+            I use this framing to help security leaders compare on what matters: deepfake defense, real engagement, and security culture — not just phishing click rates.
           </p>
         </div>
       </div>

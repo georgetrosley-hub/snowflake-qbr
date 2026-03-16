@@ -9,7 +9,7 @@ import {
   type ReactNode,
 } from "react";
 
-const THEME_STORAGE_KEY = "openai-gtm-theme";
+const THEME_STORAGE_KEY = "adaptive-gtm-theme";
 
 type Theme = "light" | "dark";
 

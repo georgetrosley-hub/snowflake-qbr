@@ -24,11 +24,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Enterprise GTM | OpenAI-Style War Room",
-  description: "How I'd build pipeline and expansion for enterprise AI — built to feel like an OpenAI product.",
+  title: "Enterprise GTM | Adaptive Security — George Trosley",
+  description: "Security awareness pipeline & expansion playbook for Adaptive — deepfake training, phishing simulations, legacy displacement. Built for recruiters & hiring managers.",
   icons: {
-    icon: "/openai-logo-dark.png",
-    apple: "/openai-logo-dark.png",
+    icon: "/favicon.ico",
+    apple: "/favicon.ico",
   },
 };
 
@@ -40,7 +40,7 @@ export default function RootLayout({
   const themeScript = `
     (() => {
       try {
-        var s = localStorage.getItem("openai-gtm-theme");
+        var s = localStorage.getItem("adaptive-gtm-theme");
         var theme = (s === "light" || s === "dark") ? s : "dark";
         document.documentElement.dataset.theme = theme;
         document.documentElement.classList.toggle("dark", theme === "dark");

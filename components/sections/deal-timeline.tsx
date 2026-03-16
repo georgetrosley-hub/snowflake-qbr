@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/section-header";
 import { TimelineStage } from "@/components/ui/timeline-stage";
-import { OpenAILogo } from "@/components/ui/openai-logo";
+import { AdaptiveLogo } from "@/components/ui/adaptive-logo";
 import type { DealStageInfo } from "@/types";
 
 interface DealTimelineProps {
@@ -32,7 +32,7 @@ export function DealTimeline({ stages }: DealTimelineProps) {
           className="rounded-lg border border-accent/20 bg-accent/[0.04] px-5 py-4 max-w-xl"
         >
           <div className="flex items-center gap-2 mb-1">
-            <OpenAILogo size={10} className="text-accent/50" />
+            <AdaptiveLogo size={10} className="text-accent/50" />
             <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-accent/50">Current stage</p>
           </div>
           <p className="mt-1 text-[15px] font-medium text-text-primary">{currentStage.label}</p>

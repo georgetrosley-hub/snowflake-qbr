@@ -31,8 +31,8 @@ const config: Config = {
           subtle: cssColor("--accent-subtle"),
           glow: "rgb(var(--accent) / 0.12)",
         },
-        "openai-green": {
-          DEFAULT: cssColor("--openai-green"),
+        "adaptive-accent": {
+          DEFAULT: cssColor("--adaptive-accent"),
         },
         /* legacy alias for gradual replace */
         "claude-coral": cssColor("--accent"),

@@ -6,7 +6,7 @@ import { Mail, UserPlus, Reply, FileText, Crown, Shield, ArrowUpRight } from "lu
 import { SectionHeader } from "@/components/ui/section-header";
 import { StreamingContent } from "@/components/ui/streaming-content";
 import { useStreaming } from "@/lib/hooks/use-streaming";
-import { OpenAILogo } from "@/components/ui/openai-logo";
+import { AdaptiveLogo } from "@/components/ui/adaptive-logo";
 import { cn } from "@/lib/utils";
 import type { Account, Competitor } from "@/types";
 
