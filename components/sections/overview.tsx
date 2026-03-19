@@ -73,7 +73,13 @@ export function Overview({
       likelyLand: "Drive the next expansion through a governed, high-control workflow (likely regulatory reporting or risk analytics) where auditability and lineage are required — establish Snowflake as the control plane before expanding further.",
       expansionPath: "Expand from that initial workload into adjacent reporting, data sharing across entities, and AI-adjacent decision workflows where trust and governance are more critical than experimentation speed.",
       pressure: "Snowflake may be present but not fully platformized. If Databricks is entrenched in ML or engineering workflows, expansion should start in governed analytics and data sharing — win the control narrative, then expand outward.",
-      personas: "CDO, Head of Data Engineering, Risk/Compliance leadership, Analytics leadership",
+      stakeholderStrategy: [
+        "Executive data owner (CDO or equivalent): align expansion priorities to regulated business workflows where Snowflake is already trusted.",
+        "Head of Data Engineering: map current workload ownership and identify adjacent teams that can adopt existing Snowflake patterns.",
+        "Risk and compliance leadership: confirm governance, lineage, and audit requirements that Snowflake expansion must satisfy.",
+        "Analytics leadership: prioritize one executive-visible reporting or risk use case that can scale usage quickly across teams.",
+        "Existing Snowflake champions: use current champions to open adjacent teams and validate what already works in production.",
+      ],
       hypothesis: "The constraint here is unlikely to be capability — it’s alignment. Expansion depends on connecting governance, ownership, and budget across teams that are currently operating independently.",
       pov: "If Snowflake is already trusted in one workflow, the fastest path to expansion is replicating that pattern in another regulated use case — not introducing net-new use cases too early.",
       nextMove: "Identify one executive-visible regulatory or reporting workflow where Snowflake can expand immediately, confirm who owns that outcome, and align expansion to a concrete business requirement — then use that as the repeatable pattern across additional teams.",
@@ -89,7 +95,13 @@ export function Overview({
       likelyLand: "Expand Snowflake usage in a lending operations workflow where cycle time and reconciliation pain are real, then use that momentum to pull adjacent teams onto a common governed layer.",
       expansionPath: "Increase consumption by widening adoption across operations analytics, reporting, and data engineering where Snowflake can remove handoffs and reduce workflow friction.",
       pressure: "Likely tension: ownership is split between product/ops and platform teams; Databricks can stay sticky in engineering-led areas unless expansion is anchored in an ops-owned workflow.",
-      personas: "CIO/CTO, Data Platform leader, Product/Operations analytics leader, Security/Governance owner.",
+      stakeholderStrategy: [
+        "Executive data/platform owner: align expansion to lending workflows with measurable operational impact.",
+        "Head of Data Engineering or platform lead: clarify where Snowflake is active today and where handoffs create friction.",
+        "Operations and analytics leadership: identify one ops-owned workflow where expanded Snowflake usage improves cycle time.",
+        "Security/governance owner: ensure expansion meets control requirements without slowing delivery.",
+        "Existing Snowflake champions: extend proven usage into adjacent lending teams instead of starting a net-new motion.",
+      ],
       hypothesis: "If Snowflake is currently used by one team but not platformized, the quickest expansion is to make one workflow unmistakably better — and use that credibility to expand team coverage.",
       pov: "Expansion is more likely constrained by fragmented ownership than lack of use cases; I’ll win by aligning ops + platform on one measurable workflow and using it as the template for the next two.",
       nextMove: "Force clarity on who owns the business workflow vs who owns the platform, then drive a decision on one ops-critical workload to expand next — not a general ‘platform evaluation’ conversation.",
@@ -105,7 +117,13 @@ export function Overview({
       likelyLand: "Expand Snowflake into a cross-functional domain where multiple teams touch the same data and governance friction slows decisions — then build repeatable patterns for the next domain.",
       expansionPath: "Drive adoption via shared data products, stronger governance standards, and operational analytics that cut across silos (product, supply chain, services, and commercial).",
       pressure: "Likely tension: technical teams may default to existing engineering tooling; Snowflake expansion wins when it’s positioned as the shared, governed layer that reduces cross-team friction.",
-      personas: "Chief Digital/Data leadership, Data Science leadership, Platform owner, Security/Governance.",
+      stakeholderStrategy: [
+        "Executive digital/data owner: align on which cross-functional domain should be expanded first.",
+        "Platform owner: determine whether Snowflake is platformized or isolated and what blocks broader team adoption.",
+        "Analytics and data science leadership: identify where shared governed data can improve production decision workflows.",
+        "Security/governance stakeholders: validate controls needed to expand usage across domains with confidence.",
+        "Existing Snowflake champions: use trusted relationships to bridge into adjacent product and operations teams.",
+      ],
       hypothesis: "This is the account where expansion is often ‘platformization by consensus’ — if ownership is unclear, Snowflake stays local to one team and the rest of the org routes around it.",
       pov: "If Snowflake is isolated to one org pocket, I’ll expand by making it the default governed ‘exchange’ layer across domains — data products, sharing, and trust — not by trying to rip out engineering tools.",
       nextMove: "Identify whether Snowflake is platformized or isolated today, then align the platform owner and a cross-functional business leader on one domain expansion decision that forces shared ownership and repeatable rollout.",
@@ -715,7 +733,14 @@ export function Overview({
                 <p><span className="font-semibold text-text-primary">Expansion Focus:</span> <span className="text-text-secondary">{priority.likelyLand}</span></p>
                 <p><span className="font-semibold text-text-primary">Broader Expansion Path:</span> <span className="text-text-secondary">{priority.expansionPath}</span></p>
                 <p><span className="font-semibold text-text-primary">Competitive Context:</span> <span className="text-text-secondary">{priority.pressure}</span></p>
-                <p><span className="font-semibold text-text-primary">Key Personas:</span> <span className="text-text-secondary">{priority.personas}</span></p>
+                <div>
+                  <p><span className="font-semibold text-text-primary">Likely Stakeholders &amp; Relationship Strategy:</span></p>
+                  <ul className="mt-1.5 list-disc space-y-1 pl-5 text-text-secondary">
+                    {priority.stakeholderStrategy.map((stakeholder) => (
+                      <li key={stakeholder}>{stakeholder}</li>
+                    ))}
+                  </ul>
+                </div>
                 <p><span className="font-semibold text-text-primary">Account Context:</span> <span className="text-text-secondary">{priority.hypothesis}</span></p>
                 <p><span className="font-semibold text-text-primary">POV:</span> <span className="text-text-secondary">{priority.pov}</span></p>
                 <p><span className="font-semibold text-text-primary">What I&apos;d Validate First:</span> <span className="text-text-secondary">{priority.validateFirst}</span></p>
