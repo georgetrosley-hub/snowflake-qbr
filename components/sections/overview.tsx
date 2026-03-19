@@ -585,7 +585,7 @@ export function Overview({
           title="Priority Accounts"
           subtitle="These are the first three existing Snowflake accounts I would focus on expanding."
         />
-        <div className="mt-3 grid grid-cols-1 gap-3 lg:grid-cols-3">
+        <div className="mt-3 grid grid-cols-1 gap-3 lg:grid-cols-2">
           <article
             className={`rounded-xl p-3 lg:col-span-2 ${
               activeDossierId === "us-financial-technology"
@@ -605,7 +605,7 @@ export function Overview({
             </p>
           </article>
           <article
-            className={`rounded-xl border bg-surface-muted/30 p-3 lg:col-span-1 ${
+            className={`rounded-xl border bg-surface-muted/30 p-3 ${
               activeDossierId === "sagent-lending"
                 ? "border-accent/30"
                 : "border-surface-border/50 opacity-85"
@@ -616,7 +616,7 @@ export function Overview({
             <p className="mt-2 text-[12px] text-text-secondary">Expansion focus: win one ops-owned workflow, then expand team coverage off the credibility of that result.</p>
           </article>
           <article
-            className={`rounded-xl border bg-surface-muted/30 p-3 lg:col-span-1 ${
+            className={`rounded-xl border bg-surface-muted/30 p-3 ${
               activeDossierId === "ciena-corp"
                 ? "border-accent/30"
                 : "border-surface-border/50 opacity-85"
@@ -680,13 +680,13 @@ export function Overview({
           {territoryPriorityAccounts.map((priority) => (
             <article
               key={priority.id}
-              className={`rounded-2xl border p-4 sm:p-5 transition-colors ${
+              className={`rounded-2xl border p-4 transition-colors ${
                 activeDossierId === priority.id
                   ? "border-accent/35 bg-accent/[0.05]"
                   : priority.isPrimary
                     ? "border-accent/25 bg-accent/[0.03] opacity-90"
                     : "border-surface-border/50 bg-surface-elevated/30 opacity-90"
-              }`}
+              } ${priority.isPrimary ? "xl:col-span-2" : ""}`}
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
