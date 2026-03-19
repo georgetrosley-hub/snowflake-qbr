@@ -2,8 +2,8 @@ import type { Account } from "@/types";
 
 export const accounts: Account[] = [
   {
-    id: "us-financial-technology",
-    name: "U.S. Financial Technology",
+    id: "css-confirming",
+    name: "CSS (confirming)",
     tam: 0,
     employeeCount: 0,
     developerPopulation: 0,
@@ -81,4 +81,4 @@ export const accounts: Account[] = [
   },
 ];
 
-export const defaultAccountId = "us-financial-technology";
+export const defaultAccountId = "css-confirming";

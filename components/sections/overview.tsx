@@ -60,8 +60,8 @@ export function Overview({
 
   const territoryPriorityAccounts = useMemo(() => [
     {
-      id: "us-financial-technology",
-      name: "U.S. Financial Technology",
+      id: "css-confirming",
+      name: "CSS (confirming)",
       industry: "Financial Technology",
       why: "Complex data and risk requirements create strong demand for governed analytics and AI-ready execution.",
       likelyLand: "Governed analytics and data engineering for a high-visibility operating workflow.",
@@ -118,7 +118,7 @@ export function Overview({
     recommendedAction: string;
   } | null>(null);
   const [accountLastUpdated, setAccountLastUpdated] = useState<Record<PriorityAccount["id"], string>>({
-    "us-financial-technology": "",
+    "css-confirming": "",
     "sagent-lending": "",
     "ciena-corp": "",
   });
@@ -147,7 +147,7 @@ export function Overview({
       }
     >
   > = useMemo(() => ({
-    "us-financial-technology": {
+    "css-confirming": {
       "24h": {
         keySignals: "Public signals suggest active modernization priorities and tighter execution expectations from leadership.",
         whatChanged: "Likely decision ownership is converging across business, platform, and governance stakeholders.",
@@ -323,7 +323,7 @@ export function Overview({
     {
       title: "Secure pilot scope and sponsor alignment",
       whyNow: "Decision criteria are still being shaped this week.",
-      targetAccount: "U.S. Financial Technology",
+      targetAccount: "CSS (confirming)",
       expectedOutcome: "Approved 90-day pilot charter with success metrics.",
     },
     {
@@ -506,106 +506,102 @@ export function Overview({
   }, []);
 
   return (
-    <div className="space-y-10 sm:space-y-12">
+    <div className="space-y-8 sm:space-y-10">
       {/* SECTION 1: HERO */}
       <div className="rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-5">
         <h1 className="text-[20px] font-semibold tracking-tight text-text-primary sm:text-[24px]">
-          How I Would Operate and Expand This Snowflake Territory
+          3 Priority Accounts. Clear Entry Points. Expansion-First Execution.
         </h1>
         <p className="mt-2 text-[13px] text-text-muted">
-          A practical system for prioritizing accounts, building account POVs, tracking market and competitive shifts, and turning insight into action.
+          This is a focused Snowflake territory plan built around three accounts I would prioritize first: CSS (confirming), Sagent Lending, and Ciena Corp. The goal is not broad coverage. The goal is to identify the right initial workload, earn the first win, and expand consumption over time.
         </p>
-        <p className="mt-4 text-[12px] text-text-secondary">
-          This is not a study guide or a fake dashboard. It is how I would get dangerous in the territory as quickly as possible using public signals, structured hypotheses, and disciplined account prioritization.
+        <p className="mt-3 text-[12px] text-text-secondary">
+          Built to reflect how strong enterprise reps actually operate: account selection, workload hypothesis, execution plan, and expansion path.
         </p>
         <p className="mt-3 rounded-lg border border-surface-border/50 bg-surface-muted/30 px-3 py-2 text-[11px] text-text-muted">
           Built using public information and structured hypotheses. Internal account detail, current consumption, active opportunities, and competitive footprint would need to be validated quickly post-onboarding.
         </p>
-      </div>
-
-      <section className="rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-5">
-        <SectionHeader
-          title="How I'm Approaching This Territory"
-          subtitle="Operating plan for stepping into the seat and driving early momentum."
-        />
-        <ul className="mt-3 list-disc space-y-1.5 pl-5 text-[12px] text-text-secondary">
-          <li>Focus first on 3 priority accounts where executive urgency and workload relevance are strongest.</li>
-          <li>Land a meaningful first workload tied to a business outcome leaders already measure.</li>
-          <li>Expand by multi-threading data, AI, and application stakeholders early in the cycle.</li>
-          <li>Use public signals to create timing, relevance, and a sharper first-call POV.</li>
-          <li>Validate assumptions quickly post-onboarding instead of pretending to know internal detail today.</li>
-        </ul>
+        <div className="mt-4 flex flex-wrap gap-2">
+          <button
+            type="button"
+            onClick={() => document.getElementById("territory-priorities")?.scrollIntoView({ behavior: "smooth", block: "start" })}
+            className="rounded-lg border border-accent/30 bg-accent/[0.08] px-3 py-2 text-[11px] font-medium uppercase tracking-[0.08em] text-accent transition-colors hover:bg-accent/[0.14]"
+          >
+            View Priority Accounts
+          </button>
+          <button
+            type="button"
+            onClick={() => document.getElementById("execution-model")?.scrollIntoView({ behavior: "smooth", block: "start" })}
+            className="rounded-lg border border-surface-border/60 bg-surface-muted/40 px-3 py-2 text-[11px] font-medium uppercase tracking-[0.08em] text-text-secondary transition-colors hover:border-accent/20 hover:text-text-primary"
+          >
+            Review Execution Model
+          </button>
+        </div>
       </section>
 
       <section className="rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-5">
         <SectionHeader
-          title="What I Need to Validate"
-          subtitle="Disciplined checks that increase execution quality in the first onboarding cycle."
+          title="Priority Accounts"
+          subtitle="These are the first three accounts I would focus on entering the patch."
         />
-        <ul className="mt-3 list-disc space-y-1.5 pl-5 text-[12px] text-text-secondary">
-          <li>Current Snowflake footprint, if any, and where it is materially used.</li>
-          <li>Databricks and other competitor presence by workflow, team, and sponsor alignment.</li>
-          <li>Active data, analytics, and AI initiatives with near-term executive visibility.</li>
-          <li>Budget ownership, buying process, and who can approve a first land motion.</li>
-          <li>Where urgency actually exists today and which partners influence platform choices.</li>
-        </ul>
+        <div className="mt-3 grid grid-cols-1 gap-3 lg:grid-cols-3">
+          <article className="rounded-xl border border-surface-border/50 bg-surface-muted/30 p-3">
+            <p className="text-[14px] font-semibold text-text-primary">CSS (confirming)</p>
+            <p className="mt-1 text-[11px] uppercase tracking-[0.08em] text-text-faint">Status: validating priority and fit</p>
+            <p className="mt-2 text-[12px] text-text-secondary">Initial focus: confirm strategic relevance, org structure, and likely Snowflake entry points.</p>
+          </article>
+          <article className="rounded-xl border border-surface-border/50 bg-surface-muted/30 p-3">
+            <p className="text-[14px] font-semibold text-text-primary">Sagent Lending</p>
+            <p className="mt-1 text-[11px] uppercase tracking-[0.08em] text-text-faint">Status: initial account hypothesis</p>
+            <p className="mt-2 text-[12px] text-text-secondary">Initial focus: identify high-value data workflows, platform ownership, and expansion potential.</p>
+          </article>
+          <article className="rounded-xl border border-surface-border/50 bg-surface-muted/30 p-3">
+            <p className="text-[14px] font-semibold text-text-primary">Ciena Corp</p>
+            <p className="mt-1 text-[11px] uppercase tracking-[0.08em] text-text-faint">Status: initial account hypothesis</p>
+            <p className="mt-2 text-[12px] text-text-secondary">Initial focus: evaluate where Snowflake can align to analytics, operational data, and AI-oriented use cases.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="execution-model" className="scroll-mt-24 rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-5">
+        <SectionHeader
+          title="My Snowflake Operating Model"
+          subtitle="Execution-focused approach for landing and expanding in enterprise accounts."
+        />
+        <div className="mt-3 grid grid-cols-1 gap-3 lg:grid-cols-3">
+          <article className="rounded-xl border border-surface-border/50 bg-surface-muted/30 p-3">
+            <p className="text-[11px] uppercase tracking-[0.08em] text-text-faint">Step 1</p>
+            <p className="mt-1 text-[14px] font-semibold text-text-primary">Identify the right entry workload</p>
+            <p className="mt-2 text-[12px] text-text-secondary">Start with a credible business problem, not a generic platform pitch. Prioritize the workload most likely to earn urgency, sponsorship, and near-term adoption.</p>
+          </article>
+          <article className="rounded-xl border border-surface-border/50 bg-surface-muted/30 p-3">
+            <p className="text-[11px] uppercase tracking-[0.08em] text-text-faint">Step 2</p>
+            <p className="mt-1 text-[14px] font-semibold text-text-primary">Build internal alignment and external momentum</p>
+            <p className="mt-2 text-[12px] text-text-secondary">Map the org, align the right technical and business stakeholders, and coordinate tightly across AE, SDR, SE, and partners to create a focused account motion.</p>
+          </article>
+          <article className="rounded-xl border border-surface-border/50 bg-surface-muted/30 p-3">
+            <p className="text-[11px] uppercase tracking-[0.08em] text-text-faint">Step 3</p>
+            <p className="mt-1 text-[14px] font-semibold text-text-primary">Expand through usage and adjacent workloads</p>
+            <p className="mt-2 text-[12px] text-text-secondary">Use the initial win to grow consumption over time through adjacent teams, broader data adoption, and new platform use cases.</p>
+          </article>
+        </div>
       </section>
 
       <section className="rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-5">
         <SectionHeader
-          title="What I'd Validate First"
-          subtitle="Critical unknowns to validate quickly post-onboarding."
+          title="How Accounts Expand"
+          subtitle="Clear land-and-expand sequence based on workload execution."
         />
-        <ul className="mt-3 list-disc space-y-1.5 pl-5 text-[12px] text-text-secondary">
-          <li>Current Snowflake footprint, if any, and where it is operationally relevant.</li>
-          <li>Databricks or competitor presence, and where it is strongest by team/workload.</li>
-          <li>Who owns data, AI, and application platform decisions.</li>
-          <li>Active workloads tied to current business priorities.</li>
-          <li>Budget ownership, buying process, and approval sequence.</li>
-          <li>Partner influence across architecture and procurement decisions.</li>
-          <li>Where urgency is real versus assumed.</li>
-        </ul>
-      </section>
-
-      <section className="rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-5">
-        <SectionHeader
-          title="My First 5 Territory Questions"
-          subtitle="Questions I would use to calibrate quickly and prioritize correctly."
-        />
-        <ul className="mt-3 list-disc space-y-1.5 pl-5 text-[12px] text-text-secondary">
-          <li>Which 3 accounts matter most in the next 6 months, not just on paper?</li>
-          <li>Where is Snowflake already in motion versus where are we starting cold?</li>
-          <li>In which accounts is Databricks a real competitive threat today?</li>
-          <li>Where is there already executive air cover or partner leverage?</li>
-          <li>Which account has the cleanest path to a fast, meaningful land?</li>
-        </ul>
-      </section>
-
-      <section className="rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-5">
-        <SectionHeader
-          title="How I'd Run Week 1"
-          subtitle="Immediate operating rhythm for stepping into the patch."
-        />
-        <ul className="mt-3 list-disc space-y-1.5 pl-5 text-[12px] text-text-secondary">
-          <li>Confirm the 3-account priority set with sales leadership and patch context.</li>
-          <li>Build first-pass POVs for each priority account from public signals and market shifts.</li>
-          <li>Map likely stakeholder ownership across data, AI, security, and application teams.</li>
-          <li>Identify likely competitor footprint and where Databricks is entrenched.</li>
-          <li>Prepare first outreach angles anchored in business priorities, not platform features.</li>
-        </ul>
-      </section>
-
-      <section className="rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-5">
-        <SectionHeader
-          title="What you'd get from me in this patch"
-          subtitle="Manager-facing operating commitments."
-        />
-        <ul className="mt-3 list-disc space-y-1.5 pl-5 text-[12px] text-text-secondary">
-          <li>Fast prioritization of the right accounts for near-term and expansion impact.</li>
-          <li>Structured POVs built from public signals and disciplined validation, not guesswork.</li>
-          <li>Clear next actions with explicit validation plans by account.</li>
-          <li>A repeatable operating rhythm for account reviews and expansion planning.</li>
-        </ul>
+        <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-4">
+          {["Initial Workload", "Early Adoption", "Broader Platform Trust", "Expanded Consumption"].map((step) => (
+            <div key={step} className="rounded-lg border border-surface-border/50 bg-surface-muted/30 px-3 py-2 text-[12px] font-medium text-text-secondary">
+              {step}
+            </div>
+          ))}
+        </div>
+        <p className="mt-3 text-[12px] text-text-secondary">
+          The goal is not a one-time transaction. The goal is to land a meaningful workload, prove value quickly, and create a path for broader Snowflake adoption across the account.
+        </p>
       </section>
 
       {/* SECTION 2: TERRITORY PRIORITIES */}
