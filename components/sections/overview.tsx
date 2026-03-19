@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useMemo, useRef, useCallback } from "react";
-import { AlertTriangle, ArrowRight, Crosshair, Users, Eye, CircleDot, Zap, Target } from "lucide-react";
+import { useMemo, useRef, useCallback } from "react";
+import { ArrowRight, Crosshair, CircleDot, Zap, Target } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
 import type { SectionId } from "@/components/layout/sidebar";
 import { MetricCard } from "@/components/ui/metric-card";
@@ -25,6 +25,11 @@ function getTodayLabel() {
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   return `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}`;
+}
+
+function formatMillionCurrency(value: number): string | null {
+  if (!Number.isFinite(value) || value <= 0) return null;
+  return `$${value.toFixed(2)}M`;
 }
 
 interface OverviewProps {
@@ -78,9 +83,10 @@ export function Overview({
   );
   const topCompetitor = [...competitors].sort((a, b) => b.accountRiskLevel - a.accountRiskLevel)[0];
   const champion = stakeholders.find((stakeholder) => stakeholder.stance === "champion");
-  const championCount = stakeholders.filter((stakeholder) => stakeholder.stance === "champion" || stakeholder.stance === "ally").length;
+  const championCount = stakeholders.filter(
+    (stakeholder) => stakeholder.stance === "champion" || stakeholder.stance === "ally"
+  ).length;
   const blockedCount = executionItems.filter((item) => item.status === "blocked").length;
-  const thisWeek = executionItems.filter((item) => item.status === "in_progress" || item.status === "ready").slice(0, 3);
   const firstDecision = executionItems.find((item) => item.phase === "Land");
   const expansionItem = executionItems.find((item) => item.phase === "Expansion");
 
@@ -101,44 +107,75 @@ export function Overview({
     (i) => i.decisionRequired && i.decisionStatus === "pending"
   );
   const staleItems = executionItems.filter((i) => isStale(i.lastUpdated));
+  const firstPilotValue = formatMillionCurrency(account.estimatedLandValue);
+  const expansionPathValue = formatMillionCurrency(account.estimatedExpansionValue);
+  const inPlayValue = formatMillionCurrency(pipelineTarget);
 
   return (
     <div className="space-y-10 sm:space-y-12">
-      {/* Live document: account + TAM at top for rep */}
+      {/* Hero */}
       <div className="rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-5">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <SnowflakeLogoIcon size={32} className="shrink-0 opacity-95" />
             <div>
               <h1 className="text-[18px] font-semibold tracking-tight text-text-primary sm:text-[20px]">
-                {account.name}
+                How I would operate and expand {account.name}
               </h1>
               <p className="mt-0.5 text-[13px] text-text-muted">
-                War room · Live account view
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="rounded-lg border border-accent/25 bg-accent/[0.08] px-4 py-2">
-              <p className="text-[10px] font-medium uppercase tracking-wider text-accent/80">Total addressable market</p>
-              <p className="tabular-nums text-[17px] font-semibold text-accent">
-                {account.tam != null && account.tam > 0 ? `$${account.tam}M` : "N/A"}
+                Practical territory operating system: own the patch, advance real deals daily, and expand into
+                multi-threaded platform adoption.
               </p>
             </div>
           </div>
         </div>
         <p className="mt-4 text-[12px] text-text-secondary">
-          This territory is built on existing customers. Use this view to land net-new logos and aggressively expand consumption and use cases within each account — pipeline, stakeholders, deal plan, and field kit. Select an account in the header to switch.
+          This view is designed to show execution quality: where the territory stands now, what to prioritize this
+          week, which signals matter most, and how the account strategy translates into expansion.
         </p>
       </div>
 
-      {/* VP oversight — 30-second scan */}
-      <section className="rounded-2xl border border-accent/20 bg-white/[0.02] p-4 sm:p-6">
-        <div className="flex items-center gap-2">
-          <Eye className="h-4 w-4 text-text-faint" strokeWidth={1.8} />
-          <p className="text-[11px] font-medium uppercase tracking-wider text-text-faint">
-            VP oversight · At a glance
-          </p>
+      {/* Territory priorities */}
+      <section className="space-y-4">
+        <SectionHeader
+          title="Territory priorities"
+          subtitle="What I would own now: landable wedge, expansion path, stakeholder coverage, and near-term revenue focus."
+        />
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <MetricCard
+            label="Revenue in motion"
+            value={inPlayValue ?? "Priority accounts scoped"}
+            subtitle={inPlayValue ? "Near-term land + expansion focus" : "Current week is focused on qualification and wedge definition"}
+          />
+          <MetricCard
+            label="First pilot"
+            value={firstPilotValue ?? "Pilot scope in progress"}
+            subtitle={account.firstWedge}
+          />
+          <MetricCard
+            label="Expansion path"
+            value={expansionPathValue ?? "Expansion thesis defined"}
+            subtitle={account.topExpansionPaths[0]}
+          />
+          <MetricCard
+            label="Deal coverage"
+            value={`${championCount} active threads`}
+            subtitle={`${blockedCount} blocker${blockedCount === 1 ? "" : "s"} requiring active management`}
+          />
+        </div>
+      </section>
+
+      {/* Daily account briefing */}
+      <section className="rounded-2xl border border-surface-border bg-surface-elevated p-4 sm:p-6 shadow-elevated">
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
+              {todayLabel} · {account.name}
+            </p>
+            <h1 className="mt-0.5 text-lg font-semibold tracking-tight text-text-primary sm:text-xl">
+              Daily account briefing
+            </h1>
+          </div>
         </div>
         <div className="mt-4 flex flex-wrap gap-3">
           <div
@@ -174,25 +211,11 @@ export function Overview({
           )}
           {staleItems.length > 0 && (
             <div className="flex items-center gap-2 rounded-full bg-white/5 px-3 py-1.5 text-[12px] text-text-muted">
-              {staleItems.length} stale
+              {staleItems.length} stale workstream{staleItems.length === 1 ? "" : "s"}
             </div>
           )}
         </div>
         <p className="mt-3 text-[12px] text-text-muted">{dealHealth.reason}</p>
-      </section>
-
-      {/* Today's workspace — compact status strip */}
-      <section className="rounded-2xl border border-surface-border bg-surface-elevated p-4 sm:p-6 shadow-elevated">
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
-              {todayLabel} · {account.name}
-            </p>
-            <h1 className="mt-0.5 text-lg font-semibold tracking-tight text-text-primary sm:text-xl">
-              Today&apos;s workspace
-            </h1>
-          </div>
-        </div>
 
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
           <button
@@ -202,7 +225,7 @@ export function Overview({
           >
             <div className="flex items-center gap-2">
               <Zap className="h-4 w-4 shrink-0 text-accent" strokeWidth={2} />
-              <p className="text-[11px] font-bold uppercase tracking-wider text-accent">Plans for this week</p>
+              <p className="text-[11px] font-bold uppercase tracking-wider text-accent">This week&apos;s operating priorities</p>
             </div>
             <p className="mt-2.5 whitespace-pre-wrap text-[13px] leading-relaxed text-text-secondary">
               {plansForThisWeekShort}
@@ -218,7 +241,7 @@ export function Overview({
           >
             <div className="flex items-center gap-2">
               <ArrowRight className="h-4 w-4 shrink-0 text-accent" strokeWidth={2} />
-              <p className="text-[11px] font-bold uppercase tracking-wider text-accent">Where I left off</p>
+              <p className="text-[11px] font-bold uppercase tracking-wider text-accent">Last account update</p>
             </div>
             <p className="mt-2 text-[15px] font-bold text-text-primary">
               {lastUpdate?.title ?? "Daily account reset"}
@@ -232,7 +255,7 @@ export function Overview({
           >
             <div className="flex items-center gap-2">
               <Target className="h-4 w-4 shrink-0 text-accent" strokeWidth={2} />
-              <p className="text-[11px] font-bold uppercase tracking-wider text-accent">Today&apos;s priority</p>
+              <p className="text-[11px] font-bold uppercase tracking-wider text-accent">Today&apos;s must-win move</p>
             </div>
             <p className="mt-2 text-[15px] font-bold text-text-primary">
               {topPriority?.title ?? "Define the first pilot"}
@@ -244,132 +267,12 @@ export function Overview({
         </div>
       </section>
 
-      <section className="space-y-4">
-        <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-text-faint">
-          Capture plan · {account.name}
-        </p>
-        <div className="max-w-4xl space-y-2">
-          <h2 className="text-xl font-semibold tracking-tight text-text-primary sm:text-2xl">
-            How I&apos;d build pipeline and expansion for the AI Data Cloud at {account.name}
-          </h2>
-          <p className="max-w-3xl text-[14px] leading-relaxed text-text-muted">
-            Workload-specific expansion (e.g. feature store → customer analytics → AI agents), consumption math (Year 1→2→3), and partner leverage (dbt, Fivetran, Sigma, SIs). First wedge, champion path, pilot design, land-and-expand. Governed AI story and Cortex Code / MCP for builder personas.
-          </p>
-        </div>
-      </section>
-
-      <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <MetricCard
-          label="Pipeline target"
-          value={`$${pipelineTarget.toFixed(2)}M`}
-          subtitle="How I'd size land plus near-term expansion across these accounts"
-        />
-        <MetricCard
-          label="First pilot"
-          value={`$${account.estimatedLandValue.toFixed(2)}M`}
-          subtitle={account.firstWedge}
-        />
-        <MetricCard
-          label="Expansion path"
-          value={`$${account.estimatedExpansionValue.toFixed(2)}M`}
-          subtitle={account.topExpansionPaths[0]}
-        />
-        <MetricCard
-          label="Deal coverage"
-          value={`${championCount} threads`}
-          subtitle={`${blockedCount} blocker${blockedCount === 1 ? "" : "s"} need to be actively managed`}
-        />
-      </div>
-
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1.4fr)_380px]">
-        <section className="min-w-0 rounded-[28px] border border-accent/20 bg-white/[0.02] p-4 sm:p-6">
-          <SectionHeader
-            title="How I&apos;d run this account"
-            subtitle="The capture-plan view: how I&apos;d create urgency, who I&apos;d build with, what pilot I&apos;d land, and how I&apos;d expand."
-          />
-          <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Land motion</p>
-              <p className="mt-3 text-[15px] font-medium text-text-primary">{account.firstWedge}</p>
-              <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
-                I would keep the first sale narrow, measurable, and easy to sponsor internally. The goal is not to sell
-                the whole platform first. The goal is to win a wedge that creates permission to expand.
-              </p>
-            </div>
-
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Champion building</p>
-              <p className="mt-3 text-[15px] font-medium text-text-primary">
-                {champion?.title ?? "Likely functional champion"}
-              </p>
-              <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
-                {champion?.note ?? "I would look for the operator with the most pain, the strongest urgency, and the most to gain from a successful pilot."}
-              </p>
-            </div>
-
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Pilot strategy</p>
-              <p className="mt-3 text-[15px] font-medium text-text-primary">
-                {firstDecision?.title ?? "Define the first pilot"}
-              </p>
-              <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
-                {firstDecision?.detail ?? "I would define success criteria, owners, timeline, and the exact workflow before asking for broad executive support."}
-              </p>
-            </div>
-
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Expansion path</p>
-              <p className="mt-3 text-[15px] font-medium text-text-primary">
-                {expansionItem?.title ?? account.topExpansionPaths[0]}
-              </p>
-              <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
-                I would name the second motion early so leadership sees this as a wedge into broader adoption, not a one-off tooling experiment.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <aside className="min-w-0 space-y-4">
-          <div className="rounded-[28px] border border-accent/15 bg-accent/[0.05] p-4 sm:p-6">
-            <div className="flex items-center gap-2">
-              <SnowflakeLogoIcon size={16} className="opacity-90" />
-              <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-accent/80">
-                My current take
-              </p>
-            </div>
-            <p className="mt-4 text-[16px] leading-relaxed text-text-primary">
-              {currentRecommendation}
-            </p>
-          </div>
-
-          <div className="rounded-[28px] border border-accent/20 bg-white/[0.02] p-4 sm:p-5">
-            <div className="flex items-center gap-2 text-text-secondary">
-              <Crosshair className="h-4 w-4 text-accent/75" strokeWidth={1.8} />
-              <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-faint">
-                Competitive displacement
-              </p>
-            </div>
-            <p className="mt-4 text-[14px] font-medium text-text-primary">
-              {topCompetitor?.name ?? "Incumbent platform pressure"}
-            </p>
-            <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
-              {topCompetitor
-                ? `${topCompetitor.strengthAreas.slice(0, 2).join(" · ")}`
-                : "The deal is most at risk when incumbent platforms make the customer default to convenience over quality."}
-            </p>
-            <p className="mt-3 text-[12px] leading-relaxed text-text-muted">
-              I would not try to out-market the incumbent. I would force a narrower comparison around model quality,
-              enterprise governance, and the specific workflow where we win.
-            </p>
-          </div>
-        </aside>
-      </div>
-
+      {/* This week's operating priorities */}
       <section id="plans-for-this-week-detail" className="scroll-mt-6 space-y-4">
         <div className="flex items-center gap-2">
           <Zap className="h-4 w-4 text-accent/75" strokeWidth={2} />
           <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-faint">
-            Plans for this week · full detail
+            This week&apos;s operating priorities
           </p>
         </div>
         <div className="rounded-2xl border border-accent/20 bg-surface-muted/50 p-4 sm:p-6">
@@ -382,36 +285,117 @@ export function Overview({
         </div>
       </section>
 
+      {/* Competitive and AI market signals */}
       <section className="space-y-4">
         <SectionHeader
-          title="Account hypotheses I would pressure-test"
-          subtitle="These are not claimed facts from a live CRM. They are the initial hypotheses I would bring into discovery, stakeholder mapping, and the first pilot cycle."
+          title="Competitive and AI market signals"
+          subtitle="Signals and competitive context that shape account strategy, urgency, and next actions."
         />
-        <div className="space-y-4">
-          {signals.slice(0, 3).map((signal) => (
-            <div
-              key={signal.id}
-              className="rounded-[22px] border border-accent/20 bg-white/[0.02] px-4 py-4"
-            >
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-full border border-white/8 bg-white/[0.04] px-2.5 py-1 text-[10px] uppercase tracking-[0.08em] text-text-faint">
-                  {signal.priority}
-                </span>
-                <span className="text-[11px] text-text-faint">
-                  {signal.sourceLabel} · {signal.sourceFreshness}
-                </span>
-              </div>
-              <p className="mt-3 text-[15px] font-medium text-text-primary">{signal.title}</p>
-              <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
-                {signal.summary}
-              </p>
-              <p className="mt-3 text-[12px] leading-relaxed text-accent/80">
-                {signal.recommendedAction}
+        <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
+          <div className="rounded-[28px] border border-accent/20 bg-white/[0.02] p-4 sm:p-5">
+            <div className="flex items-center gap-2 text-text-secondary">
+              <Crosshair className="h-4 w-4 text-accent/75" strokeWidth={1.8} />
+              <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-faint">
+                Competitive pressure point
               </p>
             </div>
-          ))}
+            <p className="mt-4 text-[14px] font-medium text-text-primary">
+              {topCompetitor?.name ?? "Incumbent platform pressure"}
+            </p>
+            <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
+              {topCompetitor
+                ? `${topCompetitor.strengthAreas.slice(0, 2).join(" · ")}`
+                : "The deal is most at risk when incumbent platforms make the customer default to convenience over quality."}
+            </p>
+            <p className="mt-3 text-[12px] leading-relaxed text-text-muted">
+              Win by forcing a narrow comparison around enterprise governance, measurable outcomes, and the exact workflow where the customer feels pain.
+            </p>
+          </div>
+          <div className="space-y-4">
+            {signals.slice(0, 3).map((signal) => (
+              <div
+                key={signal.id}
+                className="rounded-[22px] border border-accent/20 bg-white/[0.02] px-4 py-4"
+              >
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-full border border-white/8 bg-white/[0.04] px-2.5 py-1 text-[10px] uppercase tracking-[0.08em] text-text-faint">
+                    {signal.priority}
+                  </span>
+                  <span className="text-[11px] text-text-faint">
+                    {signal.sourceLabel} · {signal.sourceFreshness}
+                  </span>
+                </div>
+                <p className="mt-3 text-[15px] font-medium text-text-primary">{signal.title}</p>
+                <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
+                  {signal.summary}
+                </p>
+                <p className="mt-3 text-[12px] leading-relaxed text-accent/80">
+                  {signal.recommendedAction}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
+
+      {/* Platform narrative (lower on page) */}
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1.4fr)_380px]">
+        <section className="min-w-0 rounded-[28px] border border-accent/20 bg-white/[0.02] p-4 sm:p-6">
+          <SectionHeader
+            title="Platform narrative and account strategy"
+            subtitle="How I would position Snowflake in this account after priorities, stakeholders, and operating plan are clear."
+          />
+          <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Land motion</p>
+              <p className="mt-3 text-[15px] font-medium text-text-primary">{account.firstWedge}</p>
+              <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
+                Keep the first sale narrow, measurable, and sponsor-friendly. The first win should earn the right to expand.
+              </p>
+            </div>
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Champion building</p>
+              <p className="mt-3 text-[15px] font-medium text-text-primary">
+                {champion?.title ?? "Likely functional champion"}
+              </p>
+              <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
+                {champion?.note ?? "Find the operator with urgency, cross-functional influence, and clear upside from a successful pilot."}
+              </p>
+            </div>
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Pilot strategy</p>
+              <p className="mt-3 text-[15px] font-medium text-text-primary">
+                {firstDecision?.title ?? "Define the first pilot"}
+              </p>
+              <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
+                {firstDecision?.detail ?? "Define owners, timeline, success metrics, and required governance before broad executive escalation."}
+              </p>
+            </div>
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Expansion path</p>
+              <p className="mt-3 text-[15px] font-medium text-text-primary">
+                {expansionItem?.title ?? account.topExpansionPaths[0]}
+              </p>
+              <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
+                Name the second motion early so leadership sees a durable platform decision, not a one-off experiment.
+              </p>
+            </div>
+          </div>
+        </section>
+        <aside className="min-w-0 space-y-4">
+          <div className="rounded-[28px] border border-accent/15 bg-accent/[0.05] p-4 sm:p-6">
+            <div className="flex items-center gap-2">
+              <SnowflakeLogoIcon size={16} className="opacity-90" />
+              <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-accent/80">
+                Current account recommendation
+              </p>
+            </div>
+            <p className="mt-4 text-[16px] leading-relaxed text-text-primary">
+              {currentRecommendation}
+            </p>
+          </div>
+        </aside>
+      </div>
     </div>
   );
 }

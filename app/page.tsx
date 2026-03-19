@@ -15,7 +15,7 @@ import { SnowflakeCrashCourse } from "@/components/sections/snowflake-crash-cour
 import { motion, AnimatePresence } from "framer-motion";
 
 function MainContent() {
-  const [activeSection, setActiveSection] = useState<SectionId>("platformStrategy");
+  const [activeSection, setActiveSection] = useState<SectionId>("overview");
   const [chatOpen, setChatOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);

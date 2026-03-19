@@ -20,6 +20,11 @@ import { SnowflakeLogoIcon } from "@/components/ui/snowflake-logo";
 import type { Account } from "@/types";
 import type { DealHealthSummary } from "@/lib/deal-health";
 
+function formatMillionCurrency(value: number): string | null {
+  if (!Number.isFinite(value) || value <= 0) return null;
+  return `$${value.toFixed(2)}M`;
+}
+
 interface StatusBarProps {
   account: Account;
   accounts: Account[];
@@ -110,9 +115,9 @@ export function StatusBar({
                 <ChevronDown className="pointer-events-none absolute right-0 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-text-muted" />
               </div>
               <div className="flex shrink-0 items-center gap-1.5 rounded-md border border-surface-border/50 bg-surface-elevated/40 px-2.5 py-1.5">
-                <span className="text-[10px] font-medium uppercase tracking-wider text-text-faint">TAM</span>
+                <span className="text-[10px] font-medium uppercase tracking-wider text-text-faint">Territory</span>
                 <span className="tabular-nums text-[13px] font-semibold text-accent">
-                  {account.tam != null && account.tam > 0 ? `$${account.tam}M` : "N/A"}
+                  {account.name}
                 </span>
               </div>
             </div>
@@ -192,27 +197,26 @@ export function StatusBar({
               </span>
             )}
             <span className="text-text-muted">
-              {account.id === "na" ? (
-                <span className="text-text-faint">N/A</span>
-              ) : (
-                <span className="tabular-nums text-text-primary">${pipelineTarget.toFixed(2)}M</span>
-              )}
-              {" "}in play
+              <span className="tabular-nums text-text-primary">
+                {formatMillionCurrency(pipelineTarget) ?? "Priorities scoped"}
+              </span>{" "}
+              {formatMillionCurrency(pipelineTarget) ? "in play" : "for this week"}
             </span>
             <span className="text-text-muted">
-              {account.id === "na" ? (
-                <span className="text-text-faint">N/A</span>
-              ) : (
-                <span className="tabular-nums text-accent/90">${estimatedArr.toFixed(2)}M</span>
-              )}
-              {" "}at stake
+              <span className="tabular-nums text-accent/90">
+                {formatMillionCurrency(estimatedArr) ?? "Expansion path mapped"}
+              </span>{" "}
+              {formatMillionCurrency(estimatedArr) ? "at stake" : "for next cycle"}
             </span>
             {account.id !== "na" && (
               <span className="hidden text-text-muted md:inline">{currentPhase}</span>
             )}
             <span className="text-text-muted">
-              <span className="tabular-nums text-text-secondary">{signalCount}</span>
-              {" "}signals
+              <span className="tabular-nums text-text-secondary">
+                {signalCount > 0 ? signalCount : "Signal scan active"}
+              </span>
+              {" "}
+              {signalCount === 1 ? "signal" : signalCount > 1 ? "signals" : ""}
             </span>
           </div>
         </div>

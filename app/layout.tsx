@@ -29,17 +29,17 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "GTM Command Center | Snowflake — Internal AE Hub",
+  title: "Territory Operating System | Snowflake Enterprise AE",
   description:
-    "Internal GTM command center for Snowflake AEs. Territory of existing customers — land net-new logos and aggressively expand consumption and use cases. Platform narrative, deal playbooks, and field kit for the AI Data Cloud.",
+    "Practical territory operating system for Snowflake enterprise AEs. Own strategic accounts, run daily execution rhythm, and expand high-value platform use cases.",
   icons: {
     icon: [{ url: "/snowflake-logo.png", type: "image/png", sizes: "any" }],
     apple: [{ url: "/snowflake-logo.png", type: "image/png", sizes: "180x180" }],
   },
   openGraph: {
-    title: "GTM Command Center | Snowflake",
+    title: "Territory Operating System | Snowflake",
     description:
-      "Internal GTM hub for Snowflake AEs — existing customers, net-new logos, and expansion. AI Data Cloud platform story, deal execution, and field kit.",
+      "Commercial territory operating system for Snowflake enterprise accounts. Daily execution, expansion strategy, and platform narrative.",
     url: "/",
     siteName: "Snowflake GTM",
     type: "website",
@@ -54,8 +54,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "GTM Command Center | Snowflake",
-    description: "Internal GTM hub for Snowflake Account Executives.",
+    title: "Territory Operating System | Snowflake",
+    description: "Practical operating rhythm for Snowflake enterprise territory ownership and expansion.",
     images: ["/snowflake-logo.png"],
   },
 };

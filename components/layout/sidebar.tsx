@@ -22,17 +22,17 @@ const SNOWFLAKE_SUMMIT_URL = "https://www.snowflake.com/en/summit/";
 /** Simplified nav for interview: 5 sections, merged content. */
 const sectionGroups = [
   {
-    label: "Start",
+    label: "Territory Execution",
     items: [
-      { id: "platformStrategy", label: "Platform & Strategy", icon: Sparkles },
-      { id: "roiTco", label: "ROI / TCO Model", icon: Calculator },
+      { id: "overview", label: "Territory OS", icon: LayoutDashboard },
+      { id: "pipeline", label: "Pipeline", icon: BarChart3 },
     ],
   },
   {
-    label: "Territory",
+    label: "Platform Narrative",
     items: [
-      { id: "overview", label: "War Room", icon: LayoutDashboard },
-      { id: "pipeline", label: "Pipeline", icon: BarChart3 },
+      { id: "platformStrategy", label: "Platform & Strategy", icon: Sparkles },
+      { id: "roiTco", label: "ROI / TCO Model", icon: Calculator },
     ],
   },
   {
@@ -92,7 +92,7 @@ function SidebarBody({
               <div>
                 <SnowflakeWordmark />
                 <p className="text-[11px] text-text-muted">
-                  GTM Command Center
+                  Territory Operating System
                 </p>
               </div>
             )}
@@ -196,8 +196,8 @@ function SidebarBody({
           <SnowflakeLogoIcon size={20} className="shrink-0 opacity-80" />
           {!compact && (
             <div className="min-w-0">
-              <p className="truncate text-[12px] font-medium text-text-secondary">Internal AE</p>
-              <p className="text-[10px] text-text-faint">Net-new + expansion</p>
+              <p className="truncate text-[12px] font-medium text-text-secondary">Enterprise AE</p>
+              <p className="text-[10px] text-text-faint">Territory ownership + expansion</p>
             </div>
           )}
         </div>
@@ -214,7 +214,7 @@ function SidebarBody({
             Snowflake Summit →
           </a>
           <p className="text-[10px] text-text-faint/60">
-            Internal GTM · snowflake.com
+            Enterprise territory execution · snowflake.com
           </p>
         </div>
       )}
