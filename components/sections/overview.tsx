@@ -63,43 +63,50 @@ export function Overview({
       id: "us-financial-technology",
       name: "U.S. Financial Technology",
       industry: "Financial Technology",
-      status: "Existing Snowflake customer (footprint to validate)",
-      why: "Financial technology operations run on high-volume, high-sensitivity data where governed execution matters. The account can support multi-workload expansion across risk, operations, and analytics teams.",
-      likelyLand: "Expand existing Snowflake footprint in governed analytics and data engineering tied to a business-critical operating workflow.",
-      expansionPath: "Increase consumption across teams by extending adoption into secure data sharing, governance-heavy reporting, and AI-adjacent decision workflows.",
-      pressure: "Databricks may already be entrenched in some engineering paths, so expansion needs to be workload-specific and outcome-led.",
+      isPrimary: true,
+      primaryLabel: "Primary Expansion Focus",
+      status: "Existing Snowflake customer (mission-critical footprint to validate)",
+      why: "This is the serious enterprise expansion play in the territory: scale, regulatory scrutiny, and operational risk all raise the bar for governance. If Snowflake is platformized here, multi-team adoption and data sharing can drive durable consumption expansion.",
+      likelyLand: "Start expansion in governed analytics and data engineering tied to a high-control workflow (risk, compliance, finance, or operations) — then widen team coverage once governance confidence is established.",
+      expansionPath: "Broaden adoption through secure data sharing, standardized governance patterns, and AI-adjacent decision workflows where trust and lineage matter as much as speed.",
+      pressure: "Likely tension: Snowflake may be strong but not consistently adopted across teams; Databricks may hold mindshare in engineering/ML pockets if governance isn’t the narrative.",
       personas: "CDO, Head of Data Engineering, Risk/Compliance leader, Analytics leadership.",
-      hypothesis: "I am stepping into an existing Snowflake account where platform decisions are likely shared across business, data, and risk leaders. Expansion execution should prioritize controlled delivery speed, governance confidence, and clear workload ownership.",
-      nextMove: "Map current Snowflake usage across teams, identify one realistic expansion workload, and anchor the next conversation around that business workflow rather than platform preference.",
-      validateFirst: "Current Snowflake footprint and usage patterns, teams actively using Snowflake today, where Databricks or other tools are embedded, active data/analytics/AI initiatives, and ownership plus buying process.",
+      hypothesis: "I’m inheriting an account where the hardest part is usually not the technology — it’s getting governance, ownership, and budget aligned to scale usage beyond the initial team.",
+      pov: "If Databricks is entrenched in ML here, I would expand Snowflake first through governed analytics and data sharing — win the control narrative, then expand into adjacent workloads from a position of trust.",
+      nextMove: "Get crisp on who owns data governance vs who controls budget, then pick one regulated, executive-visible workflow where Snowflake can expand usage immediately and create a repeatable pattern across teams.",
+      validateFirst: "Current Snowflake footprint and usage patterns, which teams are active today, where Databricks or other tools are embedded, active governance/analytics/AI initiatives, and decision ownership plus buying process.",
     },
     {
       id: "sagent-lending",
       name: "Sagent Lending",
       industry: "Lending Technology",
       status: "Active account with expansion opportunity",
-      why: "Lending operations are data-intensive and operationally complex, with direct business impact from execution speed and control. This creates room to expand Snowflake usage into adjacent, high-value workflows.",
-      likelyLand: "Build on existing deployment by expanding data engineering and analytics usage around a customer-impacting lending workflow.",
-      expansionPath: "Broaden platform adoption across operations, analytics, and governance stakeholders to increase consumption in production business processes.",
-      pressure: "Databricks and cloud alternatives may already be embedded in engineering or ML paths, so expansion must align to business workflow outcomes.",
+      isPrimary: false,
+      why: "Lending is operationally intense: data quality, timeliness, and accountability are directly tied to customer outcomes and operational risk. Expansion wins here tend to come from standardizing execution in the workflows that ops leaders can feel.",
+      likelyLand: "Expand Snowflake usage in a lending operations workflow where cycle time and reconciliation pain are real, then use that momentum to pull adjacent teams onto a common governed layer.",
+      expansionPath: "Increase consumption by widening adoption across operations analytics, reporting, and data engineering where Snowflake can remove handoffs and reduce workflow friction.",
+      pressure: "Likely tension: ownership is split between product/ops and platform teams; Databricks can stay sticky in engineering-led areas unless expansion is anchored in an ops-owned workflow.",
       personas: "CIO/CTO, Data Platform leader, Product/Operations analytics leader, Security/Governance owner.",
-      hypothesis: "This is an existing Snowflake account with an opportunity to expand where data is still fragmented across teams and tools. The account plan should focus on increasing consumption through better governed execution in core lending workflows.",
-      nextMove: "Determine where Databricks is entrenched versus where Snowflake can expand, then align the next meeting to one high-friction lending workflow with a clear near-term expansion path.",
-      validateFirst: "Current Snowflake footprint and usage patterns, which teams are active on Snowflake, where Databricks or other platforms are embedded, active lending data/AI initiatives, and buying ownership.",
+      hypothesis: "If Snowflake is currently used by one team but not platformized, the quickest expansion is to make one workflow unmistakably better — and use that credibility to expand team coverage.",
+      pov: "Expansion is more likely constrained by fragmented ownership than lack of use cases; I’ll win by aligning ops + platform on one measurable workflow and using it as the template for the next two.",
+      nextMove: "Force clarity on who owns the business workflow vs who owns the platform, then drive a decision on one ops-critical workload to expand next — not a general ‘platform evaluation’ conversation.",
+      validateFirst: "Current Snowflake usage patterns, which teams are active vs adjacent, where Databricks or other tools are embedded, active data/analytics/AI initiatives, and budget ownership plus buying path.",
     },
     {
       id: "ciena-corp",
       name: "Ciena Corp",
       industry: "Networking Technology",
       status: "Existing deployment, scope to be mapped",
-      why: "Ciena operates at enterprise scale with cross-functional data and analytics requirements across product, operations, and commercial teams. The account has clear potential for multi-workload Snowflake expansion.",
-      likelyLand: "Expand existing Snowflake footprint into one priority operating domain where governed analytics and AI-readiness drive measurable business value.",
-      expansionPath: "Increase adoption across adjacent teams through shared data products, stronger governance standards, and higher-impact operational workflows.",
-      pressure: "Databricks may hold influence in technical teams, so expansion needs to be tied to business workflow impact and production governance.",
+      isPrimary: false,
+      why: "Enterprise networking organizations typically have dispersed data ownership across product, operations, and go-to-market teams. That fragmentation creates expansion opportunity if Snowflake can become the governed shared layer across domains.",
+      likelyLand: "Expand Snowflake into a cross-functional domain where multiple teams touch the same data and governance friction slows decisions — then build repeatable patterns for the next domain.",
+      expansionPath: "Drive adoption via shared data products, stronger governance standards, and operational analytics that cut across silos (product, supply chain, services, and commercial).",
+      pressure: "Likely tension: technical teams may default to existing engineering tooling; Snowflake expansion wins when it’s positioned as the shared, governed layer that reduces cross-team friction.",
       personas: "Chief Digital/Data leadership, Data Science leadership, Platform owner, Security/Governance.",
-      hypothesis: "I am inheriting an active Snowflake account where expansion depends on clarifying ownership and mapping where teams still operate outside the existing deployment. The motion should prioritize controlled rollout in business-critical workflows.",
-      nextMove: "Map current Snowflake usage and team coverage, pinpoint where governance or workflow fragmentation limits adoption, and identify one expansion workload that can drive near-term consumption.",
-      validateFirst: "Current Snowflake footprint and usage patterns, team-level adoption today, where Databricks or other tools are embedded, active analytics or AI programs, and ownership plus buying process.",
+      hypothesis: "This is the account where expansion is often ‘platformization by consensus’ — if ownership is unclear, Snowflake stays local to one team and the rest of the org routes around it.",
+      pov: "If Snowflake is isolated to one org pocket, I’ll expand by making it the default governed ‘exchange’ layer across domains — data products, sharing, and trust — not by trying to rip out engineering tools.",
+      nextMove: "Identify whether Snowflake is platformized or isolated today, then align the platform owner and a cross-functional business leader on one domain expansion decision that forces shared ownership and repeatable rollout.",
+      validateFirst: "Current Snowflake usage patterns and org coverage, where Databricks or other tools are embedded, active analytics/AI initiatives tied to business priorities, and decision ownership plus buying process.",
     },
   ] as const, []);
   type PriorityAccount = (typeof territoryPriorityAccounts)[number];
@@ -157,11 +164,11 @@ export function Overview({
         whyItMatters: "This is the moment to shape evaluation criteria around business outcomes and control.",
         snowflakeImplication: "Lead with one governed business workflow where speed and trust both matter.",
         databricksImplication: "Databricks remains a risk if evaluation remains tooling-centric.",
-        nextBestMove: "Confirm who owns data and AI strategy, then anchor first discovery on one executive-priority workflow.",
+        nextBestMove: "Confirm who owns governance vs who controls budget, then align on one regulated workflow to expand next and schedule an exec checkpoint to lock success criteria.",
       },
       "7d": {
         keySignals: "Signals indicate stronger urgency around delivery speed and risk-controlled execution.",
-        whatChanged: "The account appears to be moving from broad exploration to practical decision framing.",
+        whatChanged: "The account appears to be moving from open-ended assessment to practical decision framing.",
         whyItMatters: "Early POV quality now directly affects competitive position.",
         snowflakeImplication: "Frame Snowflake as the fastest governed path to production impact.",
         databricksImplication: "Incumbent engineering preference can harden if left unchallenged.",
@@ -173,7 +180,7 @@ export function Overview({
         whyItMatters: "Selection will favor practical production readiness over pure feature comparison.",
         snowflakeImplication: "Differentiate on enterprise governance with fast execution.",
         databricksImplication: "Competitive pressure increases if business proof is weak.",
-        nextBestMove: "Run joint business-platform-security workshop to scope first land and expansion path.",
+        nextBestMove: "Run a joint business + platform + security working session to lock one expansion workload, guardrails, and a path to widen adoption across teams.",
       },
       "12m": {
         keySignals: "Longer-horizon signals point to platform standardization and AI operating-model maturity.",
@@ -199,7 +206,7 @@ export function Overview({
         whyItMatters: "Outcome framing now matters more than feature parity.",
         snowflakeImplication: "Lead with measured operating improvement and controlled rollout.",
         databricksImplication: "Incumbent familiarity remains a durable competitor lever.",
-        nextBestMove: "Publish one-page pilot charter with owners, timeline, governance gates, and success metrics.",
+        nextBestMove: "Publish a one-page expansion charter: owner, workflow, decision path, and what ‘good’ looks like — then get it sponsored by the business leader who feels the pain.",
       },
       "30d": {
         keySignals: "Stakeholder map likely expanded to include finance and procurement oversight.",
@@ -225,7 +232,7 @@ export function Overview({
         whyItMatters: "Timing favors governed-first land positioning.",
         snowflakeImplication: "Position first motion as AI-ready data execution with enterprise safeguards.",
         databricksImplication: "Technical teams can default to incumbent patterns without business-led wedge.",
-        nextBestMove: "Align likely champion on one AI-adjacent workflow with measurable success metrics.",
+        nextBestMove: "Identify the platform owner and one cross-functional business sponsor, then agree on a domain expansion decision and the governance requirements to take it live.",
       },
       "7d": {
         keySignals: "Stakeholders appear to be converging around practical use-case sequencing.",
@@ -518,6 +525,9 @@ export function Overview({
         <p className="mt-2 text-[13px] text-text-muted">
           This is a focused Snowflake territory plan built around three existing customer accounts I would prioritize first: U.S. Financial Technology, Sagent Lending, and Ciena Corp. I am stepping into an existing footprint, and the objective is to expand usage, increase consumption, and broaden Snowflake adoption across teams.
         </p>
+        <p className="mt-2 text-[12px] text-text-secondary">
+          Expansion is driven by new workloads and increased usage within existing ones.
+        </p>
         <p className="mt-3 text-[12px] text-text-secondary">
           Built to reflect how strong enterprise reps actually operate when taking over live accounts: footprint mapping, expansion planning, execution discipline, and cross-team adoption growth.
         </p>
@@ -548,20 +558,27 @@ export function Overview({
           subtitle="These are the first three existing Snowflake accounts I would focus on expanding."
         />
         <div className="mt-3 grid grid-cols-1 gap-3 lg:grid-cols-3">
-          <article className="rounded-xl border border-surface-border/50 bg-surface-muted/30 p-3">
-            <p className="text-[14px] font-semibold text-text-primary">U.S. Financial Technology</p>
-            <p className="mt-1 text-[11px] uppercase tracking-[0.08em] text-text-faint">Status: existing Snowflake customer (footprint to validate)</p>
-            <p className="mt-2 text-[12px] text-text-secondary">Expansion focus: map current usage by team, then grow consumption in governance-heavy risk and operations workflows.</p>
+          <article className="rounded-xl border border-accent/35 bg-accent/[0.06] p-3 lg:col-span-2">
+            <div className="flex flex-wrap items-start justify-between gap-2">
+              <p className="text-[14px] font-semibold text-text-primary">U.S. Financial Technology</p>
+              <span className="rounded-full border border-accent/35 bg-accent/[0.10] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.08em] text-accent">
+                Primary Expansion Focus
+              </span>
+            </div>
+            <p className="mt-1 text-[11px] uppercase tracking-[0.08em] text-text-faint">Status: existing Snowflake customer (mission-critical footprint to validate)</p>
+            <p className="mt-2 text-[12px] text-text-secondary">
+              Expansion focus: make Snowflake the governed shared layer across risk, compliance, and analytics teams — then widen adoption into adjacent workflows.
+            </p>
           </article>
-          <article className="rounded-xl border border-surface-border/50 bg-surface-muted/30 p-3">
+          <article className="rounded-xl border border-surface-border/50 bg-surface-muted/30 p-3 lg:col-span-1">
             <p className="text-[14px] font-semibold text-text-primary">Sagent Lending</p>
             <p className="mt-1 text-[11px] uppercase tracking-[0.08em] text-text-faint">Status: active account with expansion opportunity</p>
-            <p className="mt-2 text-[12px] text-text-secondary">Expansion focus: increase adoption across lending operations, analytics, and engineering where Snowflake can scale business-critical workflows.</p>
+            <p className="mt-2 text-[12px] text-text-secondary">Expansion focus: win one ops-owned workflow, then expand team coverage off the credibility of that result.</p>
           </article>
-          <article className="rounded-xl border border-surface-border/50 bg-surface-muted/30 p-3">
+          <article className="rounded-xl border border-surface-border/50 bg-surface-muted/30 p-3 lg:col-span-1">
             <p className="text-[14px] font-semibold text-text-primary">Ciena Corp</p>
             <p className="mt-1 text-[11px] uppercase tracking-[0.08em] text-text-faint">Status: existing deployment, scope to be mapped</p>
-            <p className="mt-2 text-[12px] text-text-secondary">Expansion focus: broaden platform adoption into adjacent product and operational domains with governed analytics and AI-ready execution.</p>
+            <p className="mt-2 text-[12px] text-text-secondary">Expansion focus: platformize Snowflake across domains by reducing cross-team friction via shared data products and governance.</p>
           </article>
         </div>
       </section>
@@ -574,8 +591,8 @@ export function Overview({
         <div className="mt-3 grid grid-cols-1 gap-3 lg:grid-cols-3">
           <article className="rounded-xl border border-surface-border/50 bg-surface-muted/30 p-3">
             <p className="text-[11px] uppercase tracking-[0.08em] text-text-faint">Step 1</p>
-            <p className="mt-1 text-[14px] font-semibold text-text-primary">Identify the right entry workload</p>
-            <p className="mt-2 text-[12px] text-text-secondary">Start with a credible business problem, not a generic platform pitch. Prioritize the workload most likely to earn urgency, sponsorship, and near-term adoption.</p>
+            <p className="mt-1 text-[14px] font-semibold text-text-primary">Pick the right expansion workload</p>
+            <p className="mt-2 text-[12px] text-text-secondary">Start with one business workflow where ownership is clear and outcomes matter. Prioritize the expansion motion most likely to drive adoption and near-term consumption.</p>
           </article>
           <article className="rounded-xl border border-surface-border/50 bg-surface-muted/30 p-3">
             <p className="text-[11px] uppercase tracking-[0.08em] text-text-faint">Step 2</p>
@@ -617,7 +634,11 @@ export function Overview({
           {territoryPriorityAccounts.map((priority) => (
             <article
               key={priority.id}
-              className="rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-5"
+              className={`rounded-2xl border p-4 sm:p-5 ${
+                priority.isPrimary
+                  ? "border-accent/35 bg-accent/[0.05]"
+                  : "border-surface-border/50 bg-surface-elevated/30"
+              }`}
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
@@ -625,9 +646,15 @@ export function Overview({
                   <p className="mt-0.5 text-[12px] text-text-muted">{priority.industry}</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="rounded-full border border-accent/30 bg-accent/[0.08] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.08em] text-accent">
-                    Tier 1
-                  </span>
+                  {priority.isPrimary ? (
+                    <span className="rounded-full border border-accent/35 bg-accent/[0.10] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.08em] text-accent">
+                      {priority.primaryLabel ?? "Primary Expansion Focus"}
+                    </span>
+                  ) : (
+                    <span className="rounded-full border border-accent/30 bg-accent/[0.08] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.08em] text-accent">
+                      Tier 1
+                    </span>
+                  )}
                   <span className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.08em] text-text-faint">
                     Immediate Focus
                   </span>
@@ -642,6 +669,7 @@ export function Overview({
                 <p><span className="font-semibold text-text-primary">Competitive Context:</span> <span className="text-text-secondary">{priority.pressure}</span></p>
                 <p><span className="font-semibold text-text-primary">Key Personas:</span> <span className="text-text-secondary">{priority.personas}</span></p>
                 <p><span className="font-semibold text-text-primary">Account Context:</span> <span className="text-text-secondary">{priority.hypothesis}</span></p>
+                <p><span className="font-semibold text-text-primary">POV:</span> <span className="text-text-secondary">{priority.pov}</span></p>
                 <p><span className="font-semibold text-text-primary">What I&apos;d Validate First:</span> <span className="text-text-secondary">{priority.validateFirst}</span></p>
                 <p><span className="font-semibold text-text-primary">Next Best Move:</span> <span className="text-text-secondary">{priority.nextMove}</span></p>
               </div>
