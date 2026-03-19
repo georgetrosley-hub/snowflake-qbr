@@ -717,7 +717,7 @@ export function Overview({
       </section>
 
       {/* SECTION 2: TERRITORY PRIORITIES */}
-      <section id="territory-priorities" className="space-y-4">
+      <section id="territory-priorities" className="scroll-mt-24 space-y-4">
         <SectionHeader
           title="Territory Priorities"
           subtitle="Top five priority accounts I would run immediately in this territory."
@@ -761,7 +761,7 @@ export function Overview({
                     setActiveDossierId(priority.id);
                     setActiveDossierTab("Business Overview");
                     document
-                      .getElementById("account-dossier-view")
+                      .getElementById("account-dossiers")
                       ?.scrollIntoView({ behavior: "smooth", block: "start" });
                   }}
                   className="rounded-lg border border-accent/30 bg-accent/[0.08] px-3 py-2 text-[11px] font-medium uppercase tracking-[0.08em] text-accent transition-colors hover:bg-accent/[0.14]"
@@ -777,28 +777,8 @@ export function Overview({
         </div>
       </section>
 
-      {/* SECTION 3: THIS WEEK'S OPERATING PRIORITIES */}
-      <section id="operating-priorities" className="rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6">
-        <SectionHeader
-          title="This Week's Operating Priorities"
-          subtitle="Practical actions to advance account ownership this week."
-        />
-        <div className="mt-4 space-y-2.5">
-          {weeklyOperatingPriorities.slice(0, 5).map((item) => (
-            <article key={item.title} className="rounded-xl border border-surface-border/50 bg-surface-muted/30 p-3">
-              <div className="grid grid-cols-1 gap-1.5 text-[12px] sm:grid-cols-[1.2fr_1fr_1fr_1.2fr] sm:gap-3">
-                <p className="text-text-primary"><span className="text-text-faint">Action:</span> {item.title}</p>
-                <p className="text-text-secondary"><span className="text-text-faint">Why now:</span> {item.whyNow}</p>
-                <p className="text-text-secondary"><span className="text-text-faint">Target:</span> {item.targetAccount}</p>
-                <p className="text-text-secondary"><span className="text-text-faint">Expected outcome:</span> {item.expectedOutcome}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* SECTION 4: DAILY ACCOUNT BRIEFING */}
-      <section id="daily-account-briefing" className="rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6">
+      {/* SECTION 3: DAILY ACCOUNT BRIEFING */}
+      <section id="daily-account-briefing" className="scroll-mt-24 rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6">
         <SectionHeader
           title="Daily Account Briefing"
           subtitle="Example public-signal workflow for turning account changes into next actions."
@@ -864,11 +844,28 @@ export function Overview({
         </div>
       </section>
 
+      {/* SECTION 4: THIS WEEK'S OPERATING PRIORITIES */}
+      <section id="operating-priorities" className="scroll-mt-24 rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6">
+        <SectionHeader
+          title="This Week's Operating Priorities"
+          subtitle="Practical actions to advance account ownership this week."
+        />
+        <div className="mt-4 space-y-2.5">
+          {weeklyOperatingPriorities.slice(0, 5).map((item) => (
+            <article key={item.title} className="rounded-xl border border-surface-border/50 bg-surface-muted/30 p-3">
+              <div className="grid grid-cols-1 gap-1.5 text-[12px] sm:grid-cols-[1.2fr_1fr_1fr_1.2fr] sm:gap-3">
+                <p className="text-text-primary"><span className="text-text-faint">Action:</span> {item.title}</p>
+                <p className="text-text-secondary"><span className="text-text-faint">Why now:</span> {item.whyNow}</p>
+                <p className="text-text-secondary"><span className="text-text-faint">Target:</span> {item.targetAccount}</p>
+                <p className="text-text-secondary"><span className="text-text-faint">Expected outcome:</span> {item.expectedOutcome}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       {/* SECTION 5: ACCOUNT DOSSIER */}
-      <section
-        id="account-dossier-view"
-        className="rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6"
-      >
+      <section className="rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6">
         <SectionHeader
           title="Account Dossier"
           subtitle="Fact and inference are separated to keep account POVs practical and honest."
@@ -876,7 +873,7 @@ export function Overview({
       </section>
       <section
         id="account-dossiers"
-        className="rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6"
+        className="scroll-mt-24 rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6"
       >
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
@@ -1050,7 +1047,7 @@ export function Overview({
       </section>
 
       {/* SECTION 6: EXECUTION FRAMEWORK */}
-      <section id="execution-framework" className="rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6">
+      <section id="execution-framework" className="scroll-mt-24 rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6">
         <SectionHeader
           title="Execution Framework"
           subtitle="Support layer only: concise field guidance for execution."
@@ -1093,7 +1090,7 @@ export function Overview({
       </section>
 
       {/* SECTION 7: BRIEFING ENGINE */}
-      <section id="briefing-engine" className="rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6">
+      <section id="briefing-engine" className="scroll-mt-24 rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6">
         <div className="flex items-center gap-2">
           <BookOpenCheck className="h-4 w-4 text-accent/80" />
           <SectionHeader

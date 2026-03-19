@@ -24,8 +24,8 @@ const sectionGroups = [
     items: [
       { id: "territoryPriorities", label: "Territory Priorities", icon: Target },
       { id: "dailyBriefing", label: "Daily Briefing", icon: Newspaper },
-      { id: "accountDossiers", label: "Account Dossiers", icon: FileText },
       { id: "operatingPriorities", label: "Operating Priorities", icon: ClipboardCheck },
+      { id: "accountDossiers", label: "Account Dossiers", icon: FileText },
       { id: "executionFramework", label: "Execution Framework", icon: Compass },
       { id: "briefingEngine", label: "Briefing Engine", icon: BookOpenCheck },
     ],

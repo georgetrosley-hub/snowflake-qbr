@@ -7,14 +7,14 @@ import { StatusBar } from "@/components/layout/status-bar";
 import { ChatPanel } from "@/components/layout/chat-panel";
 import { Overview } from "@/components/sections/overview";
 
-const SECTION_ANCHOR_BY_NAV: Record<SectionId, string> = {
-  territoryPriorities: "territory-priorities",
-  dailyBriefing: "daily-account-briefing",
-  accountDossiers: "account-dossiers",
-  operatingPriorities: "operating-priorities",
-  executionFramework: "execution-framework",
-  briefingEngine: "briefing-engine",
-};
+const ORDERED_SECTIONS: ReadonlyArray<{ sectionId: SectionId; anchorId: string }> = [
+  { sectionId: "territoryPriorities", anchorId: "territory-priorities" },
+  { sectionId: "dailyBriefing", anchorId: "daily-account-briefing" },
+  { sectionId: "operatingPriorities", anchorId: "operating-priorities" },
+  { sectionId: "accountDossiers", anchorId: "account-dossiers" },
+  { sectionId: "executionFramework", anchorId: "execution-framework" },
+  { sectionId: "briefingEngine", anchorId: "briefing-engine" },
+] as const;
 const ACTIVATION_OFFSET_PX = 120;
 
 function MainContent() {
@@ -47,7 +47,7 @@ function MainContent() {
     setActiveSection(section);
     activeSectionRef.current = section;
     setMobileNavOpen(false);
-    const targetId = SECTION_ANCHOR_BY_NAV[section];
+    const targetId = ORDERED_SECTIONS.find((item) => item.sectionId === section)?.anchorId;
     const targetElement = targetId ? document.getElementById(targetId) : null;
     targetElement?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
@@ -85,22 +85,40 @@ function MainContent() {
     const scrollContainer = mainScrollRef.current;
     if (!scrollContainer) return;
 
-    const sectionEntries = (Object.entries(SECTION_ANCHOR_BY_NAV) as [SectionId, string][])
-      .map(([sectionId, anchorId]) => {
+    const sectionEntries = ORDERED_SECTIONS
+      .map(({ sectionId, anchorId }) => {
         const element = document.getElementById(anchorId);
         return element ? { sectionId, element } : null;
       })
       .filter((entry): entry is { sectionId: SectionId; element: HTMLElement } => entry !== null);
 
     if (!sectionEntries.length) return;
+    if (process.env.NODE_ENV === "development" && sectionEntries.length !== ORDERED_SECTIONS.length) {
+      const found = new Set(sectionEntries.map((entry) => entry.sectionId));
+      const missing = ORDERED_SECTIONS.filter((item) => !found.has(item.sectionId)).map(
+        (item) => `${item.sectionId}#${item.anchorId}`
+      );
+      if (missing.length) {
+        console.warn("Scrollspy missing sections:", missing.join(", "));
+      }
+    }
 
     const getSectionTops = () => {
       const containerRect = scrollContainer.getBoundingClientRect();
       const baseScrollTop = scrollContainer.scrollTop;
-      return sectionEntries.map(({ sectionId, element }) => ({
+      const tops = sectionEntries.map(({ sectionId, element }) => ({
         sectionId,
         top: baseScrollTop + (element.getBoundingClientRect().top - containerRect.top),
       }));
+      if (process.env.NODE_ENV === "development") {
+        for (let i = 1; i < tops.length; i += 1) {
+          if (tops[i].top < tops[i - 1].top) {
+            console.warn("Scrollspy section order is not ascending:", tops);
+            break;
+          }
+        }
+      }
+      return tops;
     };
 
     let frameRequested = false;
