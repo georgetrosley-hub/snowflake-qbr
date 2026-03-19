@@ -15,6 +15,7 @@ const SECTION_ANCHOR_BY_NAV: Record<SectionId, string> = {
   executionFramework: "execution-framework",
   briefingEngine: "briefing-engine",
 };
+const ACTIVATION_OFFSET_PX = 120;
 
 function MainContent() {
   const [activeSection, setActiveSection] = useState<SectionId>("territoryPriorities");
@@ -93,61 +94,58 @@ function MainContent() {
 
     if (!sectionEntries.length) return;
 
-    const ratios = new Map<SectionId, number>();
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          const matched = sectionEntries.find((item) => item.element === entry.target);
-          if (!matched) continue;
-          ratios.set(matched.sectionId, entry.intersectionRatio);
-        }
-
-        let bestSection = activeSection;
-        let bestRatio = -1;
-        for (const { sectionId } of sectionEntries) {
-          const ratio = ratios.get(sectionId) ?? 0;
-          if (ratio > bestRatio) {
-            bestRatio = ratio;
-            bestSection = sectionId;
-          }
-        }
-
-        if (bestSection !== activeSectionRef.current && bestRatio >= 0.3) {
-          activeSectionRef.current = bestSection;
-          setActiveSection(bestSection);
-        }
-      },
-      {
-        root: scrollContainer,
-        rootMargin: "-16% 0px -40% 0px",
-        threshold: [0.1, 0.25, 0.35, 0.5, 0.7, 0.9],
-      }
-    );
-
-    for (const { element } of sectionEntries) {
-      observer.observe(element);
-    }
+    const getSectionTops = () => {
+      const containerRect = scrollContainer.getBoundingClientRect();
+      const baseScrollTop = scrollContainer.scrollTop;
+      return sectionEntries.map(({ sectionId, element }) => ({
+        sectionId,
+        top: baseScrollTop + (element.getBoundingClientRect().top - containerRect.top),
+      }));
+    };
 
     let frameRequested = false;
-    const updateProgress = () => {
+    const updateScrollState = () => {
+      const scrollTop = scrollContainer.scrollTop;
       const maxScroll = Math.max(scrollContainer.scrollHeight - scrollContainer.clientHeight, 1);
-      const nextProgress = Math.min(Math.max(scrollContainer.scrollTop / maxScroll, 0), 1);
+      const nextProgress = Math.min(Math.max(scrollTop / maxScroll, 0), 1);
       setScrollProgress((prev) => (Math.abs(prev - nextProgress) > 0.002 ? nextProgress : prev));
+
+      const sectionTops = getSectionTops();
+      const activationLine = scrollTop + ACTIVATION_OFFSET_PX;
+      let nextActive = sectionTops[0]?.sectionId ?? activeSectionRef.current;
+      for (const section of sectionTops) {
+        if (section.top <= activationLine) {
+          nextActive = section.sectionId;
+        } else {
+          break;
+        }
+      }
+      if (scrollTop + scrollContainer.clientHeight >= scrollContainer.scrollHeight - 2) {
+        nextActive = sectionTops[sectionTops.length - 1]?.sectionId ?? nextActive;
+      }
+      if (nextActive !== activeSectionRef.current) {
+        activeSectionRef.current = nextActive;
+        setActiveSection(nextActive);
+      }
+
       frameRequested = false;
     };
-    const onScroll = () => {
+    const requestScrollStateUpdate = () => {
       if (frameRequested) return;
       frameRequested = true;
-      requestAnimationFrame(updateProgress);
+      requestAnimationFrame(updateScrollState);
     };
 
-    updateProgress();
+    const onScroll = () => requestScrollStateUpdate();
+    const onResize = () => requestScrollStateUpdate();
+
+    updateScrollState();
     scrollContainer.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize);
 
     return () => {
-      observer.disconnect();
       scrollContainer.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
