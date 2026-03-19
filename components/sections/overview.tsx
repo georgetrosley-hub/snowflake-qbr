@@ -540,7 +540,7 @@ export function Overview({
             Review Execution Model
           </button>
         </div>
-      </section>
+      </div>
 
       <section className="rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-5">
         <SectionHeader
