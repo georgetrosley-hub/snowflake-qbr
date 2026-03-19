@@ -224,47 +224,59 @@ export function Overview({
     expectedOutcome: string;
   };
 
-  const discoveryScenarioOptions: Array<{ id: DiscoveryScenarioId; label: string }> = [
-    { id: "single-team-usage", label: "Single Team Usage" },
-    { id: "databricks-stronghold", label: "Databricks Stronghold" },
-    { id: "tool-sprawl", label: "Tool Sprawl" },
-    { id: "flat-consumption", label: "Flat Consumption" },
-    { id: "ai-pressure", label: "AI Pressure" },
-    { id: "shadow-it", label: "Shadow IT" },
-    { id: "executive-skeptic", label: "Executive Skeptic" },
-    { id: "fragmented-enterprise", label: "Fragmented Enterprise" },
-    { id: "everything-fine", label: "Everything's Fine" },
-    { id: "fifteen-minute-call", label: "15-Minute Call" },
-  ];
+  const discoveryScenarioOptions: Array<{ id: DiscoveryScenarioId; label: string }> = useMemo(
+    () => [
+      { id: "single-team-usage", label: "Single Team Usage" },
+      { id: "databricks-stronghold", label: "Databricks Stronghold" },
+      { id: "tool-sprawl", label: "Tool Sprawl" },
+      { id: "flat-consumption", label: "Flat Consumption" },
+      { id: "ai-pressure", label: "AI Pressure" },
+      { id: "shadow-it", label: "Shadow IT" },
+      { id: "executive-skeptic", label: "Executive Skeptic" },
+      { id: "fragmented-enterprise", label: "Fragmented Enterprise" },
+      { id: "everything-fine", label: "Everything's Fine" },
+      { id: "fifteen-minute-call", label: "15-Minute Call" },
+    ],
+    []
+  );
 
-  const discoveryPersonaOptions: Array<{ id: DiscoveryPersonaId; label: string }> = [
-    { id: "vp-executive", label: "VP / Executive" },
-    { id: "cdo-data-leader", label: "CDO / Data Leader" },
-    { id: "head-data-engineering", label: "Head of Data Engineering" },
-    { id: "analytics-leader", label: "Analytics Leader" },
-    { id: "ml-product-data-science-leader", label: "ML / Product / Data Science Leader" },
-    { id: "finance-cost-stakeholder", label: "Finance / Cost Stakeholder" },
-  ];
+  const discoveryPersonaOptions: Array<{ id: DiscoveryPersonaId; label: string }> = useMemo(
+    () => [
+      { id: "vp-executive", label: "VP / Executive" },
+      { id: "cdo-data-leader", label: "CDO / Data Leader" },
+      { id: "head-data-engineering", label: "Head of Data Engineering" },
+      { id: "analytics-leader", label: "Analytics Leader" },
+      { id: "ml-product-data-science-leader", label: "ML / Product / Data Science Leader" },
+      { id: "finance-cost-stakeholder", label: "Finance / Cost Stakeholder" },
+    ],
+    []
+  );
 
-  const discoverySignalOptions: Array<{ id: DiscoverySignalId; label: string }> = [
-    { id: "snowflake-one-team", label: "Snowflake isolated to one team" },
-    { id: "databricks-strong-in-ml", label: "Databricks strong in ML" },
-    { id: "tool-sprawl", label: "Tool sprawl" },
-    { id: "governance-pain", label: "Governance pain" },
-    { id: "shadow-it", label: "Shadow IT" },
-    { id: "flat-consumption", label: "Flat consumption" },
-    { id: "ai-pressure", label: "AI pressure" },
-    { id: "executive-cost-concern", label: "Executive cost concern" },
-    { id: "fragmented-ownership", label: "Fragmented ownership" },
-    { id: "adjacent-teams-not-on-snowflake", label: "Adjacent teams not yet on Snowflake" },
-  ];
+  const discoverySignalOptions: Array<{ id: DiscoverySignalId; label: string }> = useMemo(
+    () => [
+      { id: "snowflake-one-team", label: "Snowflake isolated to one team" },
+      { id: "databricks-strong-in-ml", label: "Databricks strong in ML" },
+      { id: "tool-sprawl", label: "Tool sprawl" },
+      { id: "governance-pain", label: "Governance pain" },
+      { id: "shadow-it", label: "Shadow IT" },
+      { id: "flat-consumption", label: "Flat consumption" },
+      { id: "ai-pressure", label: "AI pressure" },
+      { id: "executive-cost-concern", label: "Executive cost concern" },
+      { id: "fragmented-ownership", label: "Fragmented ownership" },
+      { id: "adjacent-teams-not-on-snowflake", label: "Adjacent teams not yet on Snowflake" },
+    ],
+    []
+  );
 
-  const defaultDiscoveryDraft: DiscoveryLabDraft = {
-    scenarioId: "single-team-usage",
-    personaId: "vp-executive",
-    signalIds: [],
-    liveNotes: "",
-  };
+  const defaultDiscoveryDraft: DiscoveryLabDraft = useMemo(
+    () => ({
+      scenarioId: "single-team-usage",
+      personaId: "vp-executive",
+      signalIds: [],
+      liveNotes: "",
+    }),
+    []
+  );
 
   const [discoveryDraftByAccountId, setDiscoveryDraftByAccountId] = useState<
     Partial<Record<PriorityAccount["id"], DiscoveryLabDraft>>
@@ -311,7 +323,7 @@ export function Overview({
         },
       }));
     },
-    [selectedAccountId]
+    [defaultDiscoveryDraft, selectedAccountId]
   );
 
   const toggleDiscoverySignal = (signalId: DiscoverySignalId) => {
@@ -945,7 +957,7 @@ export function Overview({
       nextBestMove,
       likelyStakeholdersToInvolveNext,
     };
-  }, [activeDossierAccount, discoveryDraft]);
+  }, [activeDossierAccount, discoveryDraft, discoverySignalOptions]);
 
   const discoveryWeeklyBriefOutput = useMemo<WeeklyBriefOutput>(() => {
     const topHeard = discoveryLabOutput.whatIHeard.slice(0, 2).join(" ");
@@ -1554,7 +1566,7 @@ export function Overview({
           </div>
 
           <div className="rounded-xl border border-emerald-400/20 bg-emerald-400/[0.05] p-4">
-            <p className="text-[10px] uppercase tracking-[0.1em] text-emerald-300/90">What I'm Listening For</p>
+            <p className="text-[10px] uppercase tracking-[0.1em] text-emerald-300/90">What I&apos;m Listening For</p>
             <ul className="mt-2 list-disc space-y-1 pl-5 text-[12px] text-text-secondary">
               {discoveryLabOutput.whatImListeningFor.map((q) => (
                 <li key={q}>{q}</li>
