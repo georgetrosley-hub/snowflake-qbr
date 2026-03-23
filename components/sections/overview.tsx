@@ -115,7 +115,6 @@ export function Overview({
   const [signalInput, setSignalInput] = useState("");
   const [activityAccount, setActivityAccount] = useState(account.id);
   const [signalAccount, setSignalAccount] = useState(account.id);
-  const [briefingWindow, setBriefingWindow] = useState<"24h" | "7d" | "30d">("7d");
 
   // Keep the tracker selectors aligned when the rep switches accounts.
   useEffect(() => {
@@ -127,20 +126,6 @@ export function Overview({
     () => priorityAccounts.find((p) => p.id === account.id) ?? priorityAccounts[0],
     [account.id, priorityAccounts]
   );
-
-  const briefingContent = useMemo(() => {
-    const w = briefingWindow;
-    const base = {
-      whatChanged: "Sponsor ownership and evaluation criteria tightening across accounts.",
-      whyMatters: "Early POV quality now directly affects competitive position.",
-      snowflakeImplication: "Lead with governed execution in high-urgency workflows.",
-      databricksImplication: "Incumbent inertia persists without business-led wedge.",
-      nextAction: selectedAccount.nextAction,
-    };
-    if (w === "24h") return { ...base, whatChanged: "Decision ownership converging across stakeholders." };
-    if (w === "30d") return { ...base, whatChanged: "Formalized buying motion with governance influence." };
-    return base;
-  }, [briefingWindow, selectedAccount.nextAction]);
 
   const discoveryPrep = useMemo(
     () => ({
@@ -185,7 +170,7 @@ export function Overview({
           Territory Execution
         </h1>
         <p className="mt-2 text-[13px] text-text-muted">
-          One screen for priority accounts, briefs, POV, and expansion. Built for live reviews and fast CRM paste.
+          One screen for priority accounts, POV, and expansion. Built for live reviews and fast CRM paste.
         </p>
         <p className="mt-2 text-[11px] text-text-faint">
           Internal execution workspace — validate account motion, pipeline hygiene, and execution readiness after onboarding.
@@ -216,7 +201,7 @@ export function Overview({
           title="Priority Accounts"
           subtitle="Three named accounts — same job: prove value, then expand consumption."
         />
-        <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           {priorityAccounts.map((pa) => (
             <AccountCard
               key={pa.id}
@@ -227,66 +212,6 @@ export function Overview({
           ))}
         </div>
         <AccountDetailCard account={selectedAccount} />
-      </section>
-
-      <section id="account-brief" className="scroll-mt-24 rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6">
-        <SectionHeader
-          title="Account Brief"
-          subtitle={`${selectedAccount.name} — what shifted, Snowflake angle, next move`}
-        />
-        <div className="mt-3 flex gap-2">
-          {(["24h", "7d", "30d"] as const).map((w) => (
-            <button
-              key={w}
-              type="button"
-              onClick={() => setBriefingWindow(w)}
-              className={cn(
-                "rounded-full px-3 py-1.5 text-[11px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent/25",
-                briefingWindow === w
-                  ? "border border-accent/30 bg-accent/[0.10] text-accent"
-                  : "border border-surface-border/50 bg-surface-muted/40 text-text-muted hover:text-text-secondary"
-              )}
-            >
-              {w}
-            </button>
-          ))}
-        </div>
-        <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
-          <div className="rounded-lg border border-surface-border/50 bg-surface-muted/30 p-3">
-            <p className="text-[10px] uppercase text-text-faint">Signal shift</p>
-            <p className="mt-1 text-[12px] text-text-secondary">{briefingContent.whatChanged}</p>
-          </div>
-          <div className="rounded-lg border border-accent/25 bg-accent/[0.06] p-3">
-            <p className="text-[10px] uppercase text-accent/90">Recommended next action</p>
-            <p className="mt-1 text-[12px] text-text-secondary">{briefingContent.nextAction}</p>
-          </div>
-          <div className="rounded-lg border border-surface-border/50 p-3 sm:col-span-2">
-            <p className="text-[10px] uppercase text-text-faint">Snowflake angle</p>
-            <p className="mt-1 text-[12px] text-text-secondary">{briefingContent.snowflakeImplication}</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="discovery-prep" className="scroll-mt-24 rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6">
-        <SectionHeader title="Discovery Prep" subtitle="Qualification angles and talk tracks" />
-        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div>
-            <p className="text-[11px] font-medium uppercase text-text-faint">Qualification angles</p>
-            <ul className="mt-2 space-y-1.5 text-[12px] text-text-secondary">
-              {discoveryPrep.angles.map((a) => (
-                <li key={a}>• {a}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p className="text-[11px] font-medium uppercase text-text-faint">Talk tracks</p>
-            <ul className="mt-2 space-y-1.5 text-[12px] text-text-secondary">
-              {discoveryPrep.talkTracks.map((t) => (
-                <li key={t}>• {t}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
       </section>
 
       {onOpenStrategyWithPrompt ? (
@@ -461,6 +386,28 @@ export function Overview({
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="discovery-prep" className="scroll-mt-24 rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6">
+        <SectionHeader title="Discovery Prep" subtitle="Qualification angles and talk tracks" />
+        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div>
+            <p className="text-[11px] font-medium uppercase text-text-faint">Qualification angles</p>
+            <ul className="mt-2 space-y-1.5 text-[12px] text-text-secondary">
+              {discoveryPrep.angles.map((a) => (
+                <li key={a}>• {a}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p className="text-[11px] font-medium uppercase text-text-faint">Talk tracks</p>
+            <ul className="mt-2 space-y-1.5 text-[12px] text-text-secondary">
+              {discoveryPrep.talkTracks.map((t) => (
+                <li key={t}>• {t}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
