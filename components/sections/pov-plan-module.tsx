@@ -22,6 +22,15 @@ interface PovPlanModuleProps {
   onGeneratePovPlan?: (prompt: string) => void;
 }
 
+const WHY_NOW_BY_ACCOUNT: Record<string, string> = {
+  "us-financial-technology":
+    "Regulatory pressure is accelerating and delayed anomaly detection increases immediate compliance and operating risk.",
+  "sagent-lending":
+    "Deployment risk is immediate across early Dara cohorts and leadership needs proof of reliable customer outcomes now.",
+  "ciena-corp":
+    "Execution risk is rising against AI demand and leaders need defensible order-to-margin visibility before the next forecast cycle.",
+};
+
 export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanModuleProps) {
   const plan: PovPlan = buildPovPlanFromPriorityAccount(priorityAccount);
   const [podcastBrief, setPodcastBrief] = useState<string>("");
@@ -57,12 +66,22 @@ export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanMod
   );
 
   const compactTimeline = [
-    { phase: "Week 1", milestone: "Setup + baseline" },
-    { phase: "Week 2", milestone: "Proof" },
-    { phase: "Final", milestone: "Executive readout" },
+    {
+      phase: "Week 1",
+      bullets: ["Finalize scope and owners.", "Establish baseline KPI and governance controls."],
+    },
+    {
+      phase: "Week 2",
+      bullets: ["Run side-by-side proof on one workload.", "Quantify business impact against baseline."],
+    },
+    {
+      phase: "Executive readout",
+      bullets: ["Present decision-grade outcome.", "Align approved expansion scope and timeline."],
+    },
   ];
 
   const successMetrics = plan.successCriteria.slice(0, 3);
+  const whyNow = WHY_NOW_BY_ACCOUNT[priorityAccount.id] ?? priorityAccount.status;
 
   const recommendedNextStep = `${priorityAccount.nextAction}`;
 
@@ -93,7 +112,7 @@ export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanMod
       `Recommended workload: ${recommendedWorkload.join(" | ")}`,
       `Business stakeholders: ${groupedStakeholders.business.join(", ") || "N/A"}`,
       `Technical stakeholders: ${groupedStakeholders.technical.join(", ") || "N/A"}`,
-      `Timeline: ${compactTimeline.map((t) => `${t.phase}: ${t.milestone}`).join(" | ")}`,
+      `Timeline: ${compactTimeline.map((t) => `${t.phase}: ${t.bullets.join(" / ")}`).join(" | ")}`,
       `Success metrics: ${successMetrics.join(" | ")}`,
       `Recommended next step: ${recommendedNextStep}`,
     ].join("\n");
@@ -110,7 +129,7 @@ export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanMod
       `Workload: ${recommendedWorkload[0]}`,
       `Business: ${groupedStakeholders.business.join(", ") || "TBD"}`,
       `Technical: ${groupedStakeholders.technical.join(", ") || "TBD"}`,
-      `Timeline: ${compactTimeline.map((t) => `${t.phase} ${t.milestone}`).join(" -> ")}`,
+      `Timeline: ${compactTimeline.map((t) => `${t.phase} ${t.bullets.join(" / ")}`).join(" -> ")}`,
       `Success: ${successMetrics.join(" | ")}`,
       `Next step: ${recommendedNextStep}`,
     ].join("\n");
@@ -169,6 +188,7 @@ export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanMod
             </button>
           </div>
         </div>
+        <p className="mt-3 text-[10px] text-text-faint">Generated from account signals and POV framework.</p>
       </div>
 
       <div className="space-y-3 p-5 sm:p-6">
@@ -178,6 +198,7 @@ export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanMod
           summary="What this POV proves and why now"
         >
           <p className="text-[12px] leading-relaxed text-text-secondary">{objectiveText}</p>
+          <p className="mt-2 text-[11px] font-medium text-amber-300/90">Why now: {whyNow}</p>
         </PovBlock>
 
         <div className="grid gap-4 lg:grid-cols-2">
@@ -219,14 +240,21 @@ export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanMod
 
         <div className="grid gap-4 lg:grid-cols-2">
           <PovBlock icon={Timer} title="POV Plan" summary="Three-phase execution plan">
-            <ul className="space-y-2">
+            <div className="space-y-2">
               {compactTimeline.map((row) => (
-                <li key={row.phase} className="flex items-center gap-2 rounded-lg border border-surface-border/35 bg-surface-elevated/35 px-3 py-2 text-[12px] text-text-secondary">
-                  <span className="min-w-12 text-[11px] font-semibold text-accent/90">{row.phase}</span>
-                  <span>{row.milestone}</span>
-                </li>
+                <div key={row.phase} className="rounded-lg border border-surface-border/35 bg-surface-elevated/35 px-3 py-2">
+                  <p className="text-[11px] font-semibold text-accent/90">{row.phase}</p>
+                  <ul className="mt-1 space-y-1 text-[12px] text-text-secondary">
+                    {row.bullets.map((item) => (
+                      <li key={item} className="flex gap-2">
+                        <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent/60" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </ul>
+            </div>
           </PovBlock>
 
           <PovBlock icon={Target} title="Success Metrics" summary="Measurable proof criteria">
@@ -245,7 +273,9 @@ export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanMod
         </div>
 
         <PovBlock icon={Briefcase} title="Recommended Next Step" summary="Single decisive action">
-          <p className="text-[12px] font-medium text-text-primary">{recommendedNextStep}</p>
+          <p className="rounded-lg border border-accent/35 bg-accent/[0.12] px-3 py-3 text-[14px] font-semibold leading-relaxed text-text-primary">
+            {recommendedNextStep}
+          </p>
         </PovBlock>
 
         <PovBlock icon={BookOpenCheck} title="NotebookLM Prompt Generator" summary="Generate a share-ready briefing prompt">

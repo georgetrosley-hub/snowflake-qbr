@@ -7,6 +7,15 @@ import type { PriorityAccount } from "@/data/territory-data";
 import { PovPlanModule } from "@/components/sections/pov-plan-module";
 import { cn } from "@/lib/utils";
 
+const WHY_NOW_BY_ACCOUNT: Record<string, string> = {
+  "us-financial-technology":
+    "Regulatory scrutiny is tightening now, and delayed anomaly visibility increases audit and operating risk.",
+  "sagent-lending":
+    "Early Dara deployments are under delivery pressure now, so proving reliable outcomes is time-critical.",
+  "ciena-corp":
+    "AI demand is outpacing execution now, and leadership needs defensible margin visibility before forecast risk compounds.",
+};
+
 function AccountCard({
   account,
   isSelected,
@@ -41,7 +50,8 @@ function AccountCard({
         </span>
       </div>
       <p className="mt-2 text-[12px] text-text-secondary line-clamp-2">{account.whyMatters}</p>
-      <p className="mt-2 text-[11px] font-medium text-accent/90">→ {account.nextAction}</p>
+      <p className="mt-2 text-[11px] font-medium text-amber-300/90">Why now: {WHY_NOW_BY_ACCOUNT[account.id] ?? account.status}</p>
+      <p className="mt-2 text-[11px] font-semibold text-accent">Next action: {account.nextAction}</p>
     </article>
   );
 }
@@ -67,7 +77,7 @@ export function Overview({
       <section id="overview" className="scroll-mt-24 rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-5 sm:p-6">
         <h1 className="text-[20px] font-semibold tracking-tight text-text-primary sm:text-[22px]">POV Builder</h1>
         <p className="mt-2 text-[12px] text-text-muted">
-          Select an account and generate one concise, executive-ready POV artifact for live presentation and sharing.
+          Select an account, create urgency, and produce one sendable POV plan leadership can approve.
         </p>
       </section>
 
