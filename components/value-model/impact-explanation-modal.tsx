@@ -91,10 +91,24 @@ export function ImpactExplanationModal({
           </button>
         </div>
         <div className="space-y-4 overflow-y-auto px-5 py-4 text-[12px] leading-relaxed text-text-secondary">
-          {sections.map((s) => (
+          {sections.map((s, i) => (
             <div key={s.title}>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-text-faint">{s.title}</p>
-              <p className="mt-1.5 text-text-secondary">{s.body}</p>
+              <p
+                className={cn(
+                  "text-[11px] font-semibold uppercase tracking-[0.08em]",
+                  i === 0 ? "text-accent/90" : "text-text-faint"
+                )}
+              >
+                {s.title}
+              </p>
+              <p
+                className={cn(
+                  "mt-1.5",
+                  i === 0 ? "text-[13px] font-medium leading-relaxed text-text-primary" : "text-text-secondary"
+                )}
+              >
+                {s.body}
+              </p>
             </div>
           ))}
         </div>
