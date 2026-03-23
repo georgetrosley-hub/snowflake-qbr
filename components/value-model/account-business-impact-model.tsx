@@ -6,6 +6,8 @@ import {
   InsightBox,
   OutputMetricRow,
   SliderField,
+  SnowflakeAttributionBlock,
+  TimeToValueRow,
   ValueModelCard,
 } from "@/components/value-model/value-model-primitives";
 import { ImpactExplanationModal, type ImpactExplanationSection } from "@/components/value-model/impact-explanation-modal";
@@ -80,20 +82,20 @@ function CienaImpactModel({ accountName, proofPoint }: { accountName: string; pr
   const sections: ImpactExplanationSection[] = useMemo(
     () => [
       {
-        title: "What this model means",
-        body: `Directionally: ${formatCurrencyCompact(revenueAtRisk)} revenue at risk → ${formatCurrencyCompact(marginExposure)} margin exposure (${formatPercent(grossMarginPct)} GM) → ${formatCurrencyCompact(recoverableMargin)} recoverable at ${formatPercent(improvementPct)} of that exposure. Inputs: ${formatCurrencyCompact(backlog)} backlog, ${formatPercent(riskPct)} at-risk. Proof: ${proofPoint}.`,
+        title: "What the numbers imply",
+        body: `At these inputs, directionally ${formatCurrencyCompact(revenueAtRisk)} revenue at risk flows to ${formatCurrencyCompact(marginExposure)} margin exposure (${formatPercent(grossMarginPct)} GM) and ${formatCurrencyCompact(recoverableMargin)} recoverable if visibility improves ${formatPercent(improvementPct)} of that exposure — anchored to ${formatCurrencyCompact(backlog)} backlog with ${formatPercent(riskPct)} at-risk. Proof bar: ${proofPoint}.`,
       },
       {
-        title: "Why the business impact matters",
-        body: `When demand outpaces execution, the failure mode isn’t “more AI revenue” — it’s margin surprise and forecast credibility. This framing keeps the conversation on CFO-relevant outcomes: timing, margin bridge, and decision-grade reporting.`,
+        title: "Why that matters commercially",
+        body: `This isn’t “better reporting.” It’s whether finance and ops can see backlog-driven margin exposure before the forecast locks — when trade-offs are still available. That’s the difference between a dashboard and a decision artifact.`,
       },
       {
-        title: "How Snowflake helps solve it",
-        body: `Snowflake becomes the governed layer that joins order, backlog, and fulfillment signals to margin logic — so leadership sees exposure as it forms, not after reporting cycles reconcile. The workload is narrow: a few AI deals, decision-grade lineage, and a refresh cadence executives trust.`,
+        title: "Why Snowflake makes this outcome practical",
+        body: `The value lands because Snowflake unifies ERP/CRM-backed signals into a governed cross-functional view quickly — without forcing a long pipeline rebuild before leadership sees anything useful. Friction drops, time-to-insight compresses, and the POV stays narrow: a few AI deals, defensible lineage, refresh leadership trusts.`,
       },
       {
-        title: "Why this is a strong first workload",
-        body: `It’s scoped, measurable, and directly tied to the POV: unified visibility from order → backlog → fulfillment → margin. Win here, and expansion is portfolio coverage and executive Q&A on governed data — not a platform debate.`,
+        title: "Why this is the right first workload",
+        body: `It matches the wedge: order → backlog → fulfillment → margin on 2–3 deals. Win the proof, and expansion is portfolio coverage and governed exec readouts — not a platform bake-off.`,
       },
     ],
     [
@@ -171,6 +173,20 @@ function CienaImpactModel({ accountName, proofPoint }: { accountName: string; pr
           </div>
 
           <InsightBox>{insight}</InsightBox>
+
+          <SnowflakeAttributionBlock
+            lines={[
+              "Works directly on existing ERP and CRM data — no prerequisite “clean everything first” science project.",
+              "Avoids a long pipeline rebuild before the business sees backlog-to-margin exposure.",
+              "Creates finance, ops, and sales visibility on the same governed view of demand vs. fulfillment.",
+              "Useful output in days — not months — so the POV proves value before architecture debates take over.",
+            ]}
+          />
+
+          <TimeToValueRow
+            headline="Days, not months"
+            subline="First cross-functional backlog-to-margin signal without a multi-quarter replatform gate."
+          />
         </div>
       </ValueModelCard>
 
@@ -210,20 +226,20 @@ function SagentImpactModel({ accountName, proofPoint }: { accountName: string; p
   const sections: ImpactExplanationSection[] = useMemo(
     () => [
       {
-        title: "What this model means",
-        body: `Directionally: ${formatCount(atRiskDeployments)} at-risk deployments, ${formatCurrencyCompact(arrAtRisk)} ARR at risk (${formatCurrencyCompact(arr)} avg ARR), ${formatCurrencyCompact(recoverableArr)} recoverable at ${formatPercent(recoverablePct)}. Detection lag modeled ~${detectDays} days. Proof: ${proofPoint}.`,
+        title: "What the numbers imply",
+        body: `Directionally ${formatCount(atRiskDeployments)} at-risk deployments → ${formatCurrencyCompact(arrAtRisk)} ARR at risk (${formatCurrencyCompact(arr)} avg ARR) → ${formatCurrencyCompact(recoverableArr)} recoverable at ${formatPercent(recoverablePct)}. Detection lag modeled ~${detectDays} days. Proof bar: ${proofPoint}.`,
       },
       {
-        title: "Why the business impact matters",
-        body: `Dara can be “built” and still fail in market if deployments drift. Boards don’t reward launches; they reward retention, expansion, and predictable outcomes. This keeps the POV tied to customer health and revenue protection.`,
+        title: "Why that matters commercially",
+        body: `Retention is the board metric. If Dara rollouts drift, ARR leaks quietly — and CS can’t fix what it can’t see across customers. This is a health-and-economics story, not a telemetry flex.`,
       },
       {
-        title: "How Snowflake helps solve it",
-        body: `Snowflake operationalizes deployment and exception signals into a governed ops mart — so teams align on which customers are off-track, why, and what it costs. The motion is commercially sharp: identify the cohort, quantify exposure, then tighten the workflow.`,
+        title: "Why Snowflake makes this outcome practical",
+        body: `Snowflake collapses product, CS, and deployment signals into governed cross-customer visibility without a custom engineering program before action is possible. You get speed and alignment: identify the cohort, quantify exposure, then tighten the workflow — without slowing active rollouts.`,
       },
       {
-        title: "Why this is a strong first workload",
-        body: `It’s narrow, time-boxed, and aligned to your execution plan: one ops-owned workflow, measurable cycle-time improvement, and a dashboard CS + Product can trust for the pilot cohort.`,
+        title: "Why this is the right first workload",
+        body: `It matches the POV: one ops-owned exception path, measurable cycle-time improvement, and a pilot cohort view CS + Product will defend. Win that, then widen coverage — still anchored to retention economics.`,
       },
     ],
     [arr, arrAtRisk, atRiskDeployments, detectDays, proofPoint, recoverableArr, recoverablePct, underPct]
@@ -302,6 +318,20 @@ function SagentImpactModel({ accountName, proofPoint }: { accountName: string; p
           </div>
 
           <InsightBox>{insight}</InsightBox>
+
+          <SnowflakeAttributionBlock
+            lines={[
+              "Unifies product, customer success, and deployment data for cross-customer truth.",
+              "Visibility without heavy bespoke engineering — fewer hand-built bridges, faster alignment.",
+              "Insight across Dara customers without slowing active rollouts.",
+              "Moves you from “quarterly surprises” to weekly operational clarity on what’s failing.",
+            ]}
+          />
+
+          <TimeToValueRow
+            headline="Weeks, not quarters"
+            subline="Cross-customer cohort visibility before you fund a slow custom rebuild."
+          />
         </div>
       </ValueModelCard>
 
@@ -337,20 +367,20 @@ function UsFintechImpactModel({ accountName, proofPoint }: { accountName: string
   const sections: ImpactExplanationSection[] = useMemo(
     () => [
       {
-        title: "What this model means",
-        body: `Directionally: ${formatCurrencyCompact(volumeImpacted)} impacted volume → ${formatCurrencyCompact(riskExposure)} exposure (${formatPercent(lossRatePct, 2)} loss on affected flow) → ${formatCurrencyCompact(avoidableRisk)} avoidable at ${formatPercent(avoidablePct)}. Baseline: ${formatCurrencyCompact(annualVolume)} annual flow, ${formatPercent(anomalyPct, 1)} affected. Proof: ${proofPoint}.`,
+        title: "What the numbers imply",
+        body: `${formatCurrencyCompact(annualVolume)} annual flow, ${formatPercent(anomalyPct, 1)} affected → ${formatCurrencyCompact(volumeImpacted)} impacted volume → ${formatCurrencyCompact(riskExposure)} exposure at ${formatPercent(lossRatePct, 2)} loss on affected flow → ${formatCurrencyCompact(avoidableRisk)} avoidable at ${formatPercent(avoidablePct)}. Proof bar: ${proofPoint}.`,
       },
       {
-        title: "Why the business impact matters",
-        body: `You already have secure access to data — the constraint is decision speed under scrutiny. Regulators and boards care about control and evidence, not “more dashboards.” This model keeps the POV in risk and operating terms.`,
+        title: "Why that matters commercially",
+        body: `Secure access isn’t the bottleneck — decision speed under scrutiny is. The risk is downstream exposure that compounds while reporting catches up. The POV is measured: faster anomaly surfacing on a governed slice, not a platform science fair.`,
       },
       {
-        title: "How Snowflake helps solve it",
-        body: `Snowflake becomes the governed path from curated marts to published KPIs — with lineage and access controls leadership can defend. The POV compares anomaly detection speed against the current reporting cycle on a scoped workflow slice.`,
+        title: "Why Snowflake makes this outcome practical",
+        body: `Snowflake extends existing secure sharing patterns so insights land on governed data without unnecessary new movement or shadow copies. You reduce detection lag without increasing architectural risk — the regulated-environment tradeoff executives actually care about.`,
       },
       {
-        title: "Why this is a strong first workload",
-        body: `It’s aligned to your plan: one regulatory reporting domain, side-by-side proof, and an executive readout that ties speed to audit-ready evidence — the wedge for broader governed expansion.`,
+        title: "Why this is the right first workload",
+        body: `One regulatory reporting domain, side-by-side vs. delayed reporting, executive readout tied to lineage and access controls. Prove speed with evidence, then expand the governed footprint — that’s the wedge.`,
       },
     ],
     [
@@ -427,6 +457,20 @@ function UsFintechImpactModel({ accountName, proofPoint }: { accountName: string
           </div>
 
           <InsightBox>{insight}</InsightBox>
+
+          <SnowflakeAttributionBlock
+            lines={[
+              "Extends existing secure data sharing — fewer new seams in a regulated environment.",
+              "Faster anomaly detection on governed data — evidence leadership can defend.",
+              "Avoids unnecessary data movement and duplicate copies just to chase speed.",
+              "Supports faster decisions without increasing architectural or compliance risk.",
+            ]}
+          />
+
+          <TimeToValueRow
+            headline="Faster decisions on governed data"
+            subline="Reduce detection lag without new data sprawl or ungoverned copies."
+          />
         </div>
       </ValueModelCard>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef } from "react";
+import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -57,10 +58,13 @@ export function ImpactExplanationModal({
         aria-label="Close"
         onClick={onClose}
       />
-      <div
+      <motion.div
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
+        initial={{ opacity: 0, y: 10, scale: 0.99 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
         className={cn(
           "relative z-[81] w-full max-w-lg rounded-2xl border border-surface-border/50",
           "bg-surface-elevated/95 shadow-[0_24px_80px_rgba(0,0,0,0.45)]",
@@ -94,7 +98,7 @@ export function ImpactExplanationModal({
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

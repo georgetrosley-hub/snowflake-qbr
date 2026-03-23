@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { BarChart3 } from "lucide-react";
+import { BarChart3, Clock3 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function ValueModelCard({
@@ -177,6 +177,39 @@ export function InsightBox({ children }: { children: ReactNode }) {
     <div className="rounded-lg border border-surface-border/35 bg-surface-muted/[0.08] px-3.5 py-3">
       <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-text-faint">Executive insight</p>
       <p className="mt-2 text-[12px] leading-relaxed text-text-secondary">{children}</p>
+    </div>
+  );
+}
+
+/** Tight attribution layer — causal, not a product list. */
+export function SnowflakeAttributionBlock({ lines }: { lines: readonly string[] }) {
+  return (
+    <div className="rounded-lg border border-accent/22 bg-gradient-to-br from-accent/[0.07] to-transparent px-3.5 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-accent/95">Impact enabled by Snowflake</p>
+      <ul className="mt-2 space-y-1.5">
+        {lines.map((line) => (
+          <li key={line} className="flex gap-2.5 text-[12px] leading-snug text-text-secondary">
+            <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent/75" aria-hidden />
+            <span>{line}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/** Single time-to-value signal — pairs with attribution, stays compact. */
+export function TimeToValueRow({ headline, subline }: { headline: string; subline?: string }) {
+  return (
+    <div className="flex flex-col gap-1 rounded-lg border border-surface-border/40 bg-surface-muted/[0.10] px-3.5 py-2.5 sm:flex-row sm:items-center sm:gap-3">
+      <div className="flex items-center gap-2 text-text-muted">
+        <Clock3 className="h-3.5 w-3.5 shrink-0 text-accent/85" strokeWidth={2} aria-hidden />
+        <span className="text-[10px] font-semibold uppercase tracking-[0.12em]">Time to value</span>
+      </div>
+      <div className="min-w-0 flex-1">
+        <p className="text-[12px] font-semibold text-text-primary">{headline}</p>
+        {subline ? <p className="mt-0.5 text-[11px] leading-snug text-text-faint">{subline}</p> : null}
+      </div>
     </div>
   );
 }
