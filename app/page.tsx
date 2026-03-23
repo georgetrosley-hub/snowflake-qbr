@@ -70,35 +70,9 @@ function MainContent() {
     />
   );
 
-  if (status === "loading") {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-surface px-6 text-center text-sm text-content-secondary">
-        Checking your sign-in status...
-      </div>
-    );
-  }
-
-  if (!session) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-surface px-6">
-        <div className="w-full max-w-md rounded-2xl border border-white/10 bg-white/[0.02] p-8 text-center shadow-xl backdrop-blur">
-          <h1 className="text-xl font-semibold text-content-primary">Sign in required</h1>
-          <p className="mt-2 text-sm text-content-secondary">
-            Continue with Google to open your territory workspace.
-          </p>
-          <button
-            type="button"
-            onClick={() => signIn("google")}
-            className="mt-6 inline-flex items-center justify-center rounded-lg bg-sky-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-sky-400"
-          >
-            Continue with Google
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   useEffect(() => {
+    if (!session) return;
+
     const scrollContainer = mainScrollRef.current;
     if (!scrollContainer) return;
 
@@ -182,7 +156,35 @@ function MainContent() {
       scrollContainer.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
     };
-  }, []);
+  }, [session]);
+
+  if (status === "loading") {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-surface px-6 text-center text-sm text-content-secondary">
+        Checking your sign-in status...
+      </div>
+    );
+  }
+
+  if (!session) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-surface px-6">
+        <div className="w-full max-w-md rounded-2xl border border-white/10 bg-white/[0.02] p-8 text-center shadow-xl backdrop-blur">
+          <h1 className="text-xl font-semibold text-content-primary">Sign in required</h1>
+          <p className="mt-2 text-sm text-content-secondary">
+            Continue with Google to open your territory workspace.
+          </p>
+          <button
+            type="button"
+            onClick={() => signIn("google")}
+            className="mt-6 inline-flex items-center justify-center rounded-lg bg-sky-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-sky-400"
+          >
+            Continue with Google
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-[100dvh] overflow-x-hidden bg-surface pb-[env(safe-area-inset-bottom)] lg:flex lg:h-screen">
