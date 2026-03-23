@@ -7,7 +7,6 @@ import type { PriorityAccount } from "@/data/territory-data";
 import { PovPlanModule } from "@/components/sections/pov-plan-module";
 import { AccountExecutionPanel } from "@/components/sections/account-execution-panel";
 import { BusinessImpactSection } from "@/components/sections/business-impact-section";
-import { SectionHeader } from "@/components/ui/section-header";
 import { cn } from "@/lib/utils";
 
 const WHY_NOW_BY_ACCOUNT: Record<string, string> = {
