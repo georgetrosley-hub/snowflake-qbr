@@ -241,7 +241,7 @@ function SagentImpactModel({ accountName, proofPoint }: { accountName: string; p
         body: `It matches the POV: one ops-owned exception path, measurable cycle-time improvement, and a pilot cohort view CS + Product will defend. Win that, then widen coverage — still anchored to retention economics.`,
       },
     ],
-    [arr, arrAtRisk, atRiskDeployments, detectDays, proofPoint, recoverableArr, recoverablePct, underPct]
+    [arr, arrAtRisk, atRiskDeployments, detectDays, proofPoint, recoverableArr, recoverablePct]
   );
 
   return (

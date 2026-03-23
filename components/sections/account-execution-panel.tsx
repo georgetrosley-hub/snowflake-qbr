@@ -227,7 +227,7 @@ export function AccountExecutionPanel() {
     } catch {
       // Ignore invalid local state.
     }
-  }, [account.id]);
+  }, [account.id, runbookOutputsKey]);
 
   useEffect(() => {
     try {
