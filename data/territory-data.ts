@@ -45,7 +45,7 @@ export const priorityAccounts: PriorityAccount[] = [
       "Current Snowflake footprint, which teams are active, where Databricks sits, active regulatory initiatives, who owns governance and budget.",
     povHypothesis: "Constraint is alignment, not capability. Expansion depends on connecting governance, ownership, and budget across siloed teams.",
     nextAction:
-      "Identify one executive-visible regulatory workflow, confirm owner, align expansion to concrete business requirement.",
+      "Run a 2-week POV with Risk and Data Engineering on one regulatory reporting domain to prove anomaly detection speed and audit-ready lineage, then align expansion scope across additional regulatory workflows.",
     proofPoint: "Surface real-time anomaly vs delayed reporting",
     pivotIfNeeded: "Stakeholder reporting latency",
     lastTouch: "2025-03-12",
@@ -69,7 +69,7 @@ export const priorityAccounts: PriorityAccount[] = [
       "Current Snowflake usage, which teams are active vs adjacent, Databricks footprint, active data/AI initiatives, budget ownership.",
     povHypothesis: "Risk isn't building Dara—it's proving it works across customers. Win one ops-owned workflow, then expand team coverage.",
     nextAction:
-      "Ask Product/CS which of first 3–5 Dara deployments are at risk and why.",
+      "Run a 2-week POV with Product and Data Engineering on one Dara deployment domain to prove cycle-time reduction and governed exception visibility, then align expansion scope across additional customer rollout workflows.",
     proofPoint: "Identify 1–2 underperforming Dara deployments",
     pivotIfNeeded: "Borrower-level intelligence",
     lastTouch: "2025-03-15",
@@ -93,7 +93,7 @@ export const priorityAccounts: PriorityAccount[] = [
       "Snowflake usage and org coverage, Databricks footprint, active analytics/AI initiatives, decision ownership and buying process.",
     povHypothesis: "Risk is not demand—it's execution against that demand.",
     nextAction:
-      "Request 2–3 AI deals from CFO org to map order > backlog > fulfillment > margin.",
+      "Run a 2-week POV with FP&A and Data Engineering on one AI deal reporting domain to prove backlog-to-margin visibility and decision-grade lineage, then align expansion scope across additional portfolio workflows.",
     proofPoint: "Show backlog risk on 2–3 AI deals within 24 hours",
     pivotIfNeeded: "Supply chain constraint visibility",
     lastTouch: "2025-03-18",
