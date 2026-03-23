@@ -18,16 +18,11 @@ import { useTheme } from "@/app/context/theme-context";
 import { cn } from "@/lib/utils";
 import { SnowflakeBrandmark, SnowflakeLogoIcon } from "@/components/ui/snowflake-logo";
 import type { Account } from "@/types";
-import type { DealHealthSummary } from "@/lib/deal-health";
 
 interface StatusBarProps {
   account: Account;
   accounts: Account[];
   onAccountChange: (id: string) => void;
-  signalCount: number;
-  pendingDecisions: number;
-  oversightStatus: "active" | "idle";
-  dealHealth?: DealHealthSummary;
   onOpenChat?: () => void;
   onOpenMobileNav: () => void;
   sidebarCollapsed: boolean;
@@ -38,10 +33,6 @@ export function StatusBar({
   account,
   accounts,
   onAccountChange,
-  signalCount,
-  pendingDecisions,
-  oversightStatus,
-  dealHealth,
   onOpenChat,
   onOpenMobileNav,
   sidebarCollapsed,
@@ -119,48 +110,6 @@ export function StatusBar({
           </div>
 
           <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
-            {oversightStatus === "active" && (
-              <>
-                <span className="hidden items-center gap-1.5 rounded border border-accent/15 bg-accent/10 px-2 py-1 text-[11px] font-medium text-accent sm:inline-flex">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                  {pendingDecisions} open decisions
-                </span>
-                <span
-                  className="inline-flex h-8 min-w-[2rem] items-center justify-center rounded-lg border border-accent/20 bg-accent/10 px-2 text-[11px] font-semibold tabular-nums text-accent sm:hidden"
-                  title={`${pendingDecisions} open decisions`}
-                >
-                  {pendingDecisions}
-                </span>
-              </>
-            )}
-            {dealHealth && (
-              <>
-                <span
-                  className={`hidden rounded px-2 py-1 text-[10px] font-medium sm:inline-block ${
-                    dealHealth.status === "healthy"
-                      ? "bg-emerald-500/10 text-emerald-400/90"
-                      : dealHealth.status === "attention"
-                        ? "bg-accent/10 text-accent/90"
-                        : "bg-rose-500/10 text-rose-400/90"
-                  }`}
-                  title={dealHealth.reason}
-                >
-                  {dealHealth.label}
-                </span>
-                <span
-                  className={`inline-flex h-8 max-w-[5.5rem] items-center justify-center truncate rounded-lg px-2 text-[9px] font-semibold leading-tight sm:hidden ${
-                    dealHealth.status === "healthy"
-                      ? "bg-emerald-500/10 text-emerald-400/90"
-                      : dealHealth.status === "attention"
-                        ? "bg-accent/10 text-accent/90"
-                        : "bg-rose-500/10 text-rose-400/90"
-                  }`}
-                  title={`${dealHealth.label} — ${dealHealth.reason}`}
-                >
-                  {dealHealth.label}
-                </span>
-              </>
-            )}
             <button
               type="button"
               onClick={toggleTheme}

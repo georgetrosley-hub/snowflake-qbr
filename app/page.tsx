@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AppProvider, useApp } from "@/app/context/app-context";
-import { useTerritoryData } from "@/app/context/territory-data-context";
 import { Sidebar, type SectionId } from "@/components/layout/sidebar";
 import { StatusBar } from "@/components/layout/status-bar";
 import { ChatPanel } from "@/components/layout/chat-panel";
@@ -24,8 +23,7 @@ function MainContent() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const mainScrollRef = useRef<HTMLElement | null>(null);
   const activeSectionRef = useRef<SectionId>("overview");
-  const { account, accounts, competitors, pendingDecisionCount, dealHealth, setAccountId } = useApp();
-  const { signals: territorySignals } = useTerritoryData();
+  const { account, accounts, competitors, setAccountId } = useApp();
 
   const handleSectionChange = (section: SectionId) => {
     setActiveSection(section);
@@ -56,8 +54,6 @@ function MainContent() {
     setAccountId(accountId);
     setMobileNavOpen(false);
   };
-
-  const oversightStatus = pendingDecisionCount > 0 ? "active" as const : "idle" as const;
 
   const overviewNode = (
     <Overview
@@ -172,10 +168,6 @@ function MainContent() {
           account={account}
           accounts={accounts}
           onAccountChange={handleAccountChange}
-          signalCount={territorySignals.length}
-          pendingDecisions={pendingDecisionCount}
-          oversightStatus={oversightStatus}
-          dealHealth={dealHealth}
           onOpenChat={handleOpenChat}
           onOpenMobileNav={() => setMobileNavOpen(true)}
           sidebarCollapsed={sidebarCollapsed}
