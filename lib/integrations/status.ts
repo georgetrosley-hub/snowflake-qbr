@@ -26,16 +26,6 @@ export function getIntegrationStatus() {
       mode: "read_write",
       required: ["GOOGLE_OAUTH_CLIENT_ID", "GOOGLE_OAUTH_CLIENT_SECRET"],
     },
-    salesforce: {
-      configured: Boolean(process.env.SF_INSTANCE_URL && process.env.SF_ACCESS_TOKEN),
-      mode: "read_write",
-      required: ["SF_INSTANCE_URL", "SF_ACCESS_TOKEN"],
-    },
-    slack: {
-      configured: Boolean(process.env.SLACK_WEBHOOK_URL),
-      mode: "write",
-      required: ["SLACK_WEBHOOK_URL"],
-    },
   };
   return status;
 }
