@@ -8,6 +8,7 @@ import remarkGfm from "remark-gfm";
 import { useApiKey } from "@/app/context/api-key-context";
 import { cn } from "@/lib/utils";
 import { readApiErrorMessage } from "@/lib/client/api";
+import { streamSseText } from "@/lib/client/sse";
 import { SnowflakeLogoIcon } from "@/components/ui/snowflake-logo";
 import type { Account, Competitor } from "@/types";
 
@@ -91,33 +92,11 @@ export function ChatPanel({
         const reader = response.body?.getReader();
         if (!reader) throw new Error("No reader");
 
-        const decoder = new TextDecoder();
+        fullText = await streamSseText(reader, {
+          onText: (nextFullText) => setStreamingContent(nextFullText),
+        });
 
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-
-          const chunk = decoder.decode(value, { stream: true });
-          const lines = chunk.split("\n");
-
-          for (const line of lines) {
-            if (line.startsWith("data: ")) {
-              const data = line.slice(6);
-              if (data === "[DONE]") continue;
-              try {
-                const parsed = JSON.parse(data);
-                if (parsed.text) {
-                  fullText += parsed.text;
-                  setStreamingContent(fullText);
-                }
-              } catch {
-                // skip
-              }
-            }
-          }
-        }
-
-        setMessages((prev) => [...prev, { role: "assistant", content: fullText }]);
+        setMessages((prev) => [...prev, { role: "assistant", content: fullText.trim() }]);
         setStreamingContent("");
       } catch (error) {
         if ((error as Error).name !== "AbortError") {

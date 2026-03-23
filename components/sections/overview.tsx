@@ -1,10 +1,15 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useApp } from "@/app/context/app-context";
 import { SectionHeader } from "@/components/ui/section-header";
 import { useTerritoryData } from "@/app/context/territory-data-context";
 import type { PriorityAccount } from "@/data/territory-data";
 import { AccountExecutionPanel } from "@/components/sections/account-execution-panel";
+import { AccountIntelligence } from "@/components/sections/account-intelligence";
+import { DealProgression } from "@/components/sections/deal-progression";
+import { PipelineDashboard } from "@/components/sections/pipeline-dashboard";
+import { AccountLog } from "@/components/sections/account-log";
 import { PovPlanModule } from "@/components/sections/pov-plan-module";
 import { cn } from "@/lib/utils";
 
@@ -103,12 +108,20 @@ export function Overview({
 }) {
   const { priorityAccounts, next7Days, activities, signals, addActivity, addSignal } =
     useTerritoryData();
+  const { account: appAccount, competitors, stakeholders, workspaceDraft, accountUpdates, executionItems, updateWorkspaceField, addAccountUpdate } =
+    useApp();
 
   const [activityInput, setActivityInput] = useState("");
   const [signalInput, setSignalInput] = useState("");
   const [activityAccount, setActivityAccount] = useState(account.id);
   const [signalAccount, setSignalAccount] = useState(account.id);
   const [briefingWindow, setBriefingWindow] = useState<"24h" | "7d" | "30d">("7d");
+
+  // Keep the tracker selectors aligned when the rep switches accounts.
+  useEffect(() => {
+    setActivityAccount(account.id);
+    setSignalAccount(account.id);
+  }, [account.id]);
 
   const selectedAccount = useMemo(
     () => priorityAccounts.find((p) => p.id === account.id) ?? priorityAccounts[0],
@@ -189,6 +202,14 @@ export function Overview({
       </section>
 
       <AccountExecutionPanel />
+
+      <section id="account-intelligence" className="scroll-mt-24">
+        <AccountIntelligence
+          account={appAccount}
+          competitors={competitors}
+          stakeholders={stakeholders}
+        />
+      </section>
 
       <section id="priority-accounts" className="scroll-mt-24 space-y-4">
         <SectionHeader
@@ -333,6 +354,26 @@ export function Overview({
             </li>
           ))}
         </ul>
+      </section>
+
+      <section id="deal-progression" className="scroll-mt-24">
+        <DealProgression
+          account={appAccount}
+          competitors={competitors}
+          workspaceDraft={workspaceDraft}
+          accountUpdates={accountUpdates}
+          executionItems={executionItems}
+          onUpdateWorkspaceField={updateWorkspaceField}
+          onAddAccountUpdate={addAccountUpdate}
+        />
+      </section>
+
+      <section id="pipeline" className="scroll-mt-24">
+        <PipelineDashboard />
+      </section>
+
+      <section id="account-log" className="scroll-mt-24">
+        <AccountLog accountUpdates={accountUpdates} onAddAccountUpdate={addAccountUpdate} />
       </section>
 
       <section id="recent-signals" className="scroll-mt-24 space-y-4">

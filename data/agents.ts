@@ -76,5 +76,10 @@ export const agentDefinitions: Omit<Agent, "lastActionAt" | "activeRecommendatio
 ];
 
 export function createInitialAgents(): Agent[] {
-  return [];
+  const now = new Date();
+  return agentDefinitions.map((a) => ({
+    ...a,
+    lastActionAt: now,
+    activeRecommendation: undefined,
+  }));
 }

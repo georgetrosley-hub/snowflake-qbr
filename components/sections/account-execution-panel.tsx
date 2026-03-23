@@ -19,6 +19,7 @@ import { useToast } from "@/app/context/toast-context";
 import type { PriorityAccount } from "@/data/territory-data";
 import { cn } from "@/lib/utils";
 import { readApiErrorMessage } from "@/lib/client/api";
+import { streamSseText } from "@/lib/client/sse";
 
 type PhaseId = "brief" | "discovery" | "pov" | "expansion";
 
@@ -206,13 +207,35 @@ export function AccountExecutionPanel() {
   const [error, setError] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
 
+  const runbookOutputsKey = useMemo(() => {
+    return `runbook-outputs-${account.id}`;
+  }, [account.id]);
+
   useEffect(() => {
     abortRef.current?.abort();
     setOutputs({});
     setViewing(null);
     setLoading(null);
     setError(null);
+
+    // Restore any prior runbook outputs for this account.
+    try {
+      const stored = window.localStorage.getItem(runbookOutputsKey);
+      if (!stored) return;
+      const parsed = JSON.parse(stored) as Partial<Record<ActionId, string>>;
+      setOutputs(parsed ?? {});
+    } catch {
+      // Ignore invalid local state.
+    }
   }, [account.id]);
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(runbookOutputsKey, JSON.stringify(outputs));
+    } catch {
+      // ignore (restricted environments)
+    }
+  }, [runbookOutputsKey, outputs]);
 
   const readyCount = useMemo(
     () => ACTIONS.filter((a) => Boolean(outputs[a.id]?.trim())).length,
@@ -257,28 +280,12 @@ export function AccountExecutionPanel() {
 
         const reader = response.body?.getReader();
         if (!reader) throw new Error("No response stream");
-
-        const decoder = new TextDecoder();
-
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          const chunk = decoder.decode(value, { stream: true });
-          for (const line of chunk.split("\n")) {
-            if (!line.startsWith("data: ")) continue;
-            const data = line.slice(6);
-            if (data === "[DONE]") continue;
-            try {
-              const parsed = JSON.parse(data) as { text?: string };
-              if (parsed.text) {
-                assembled += parsed.text;
-                setOutputs((prev) => ({ ...prev, [actionId]: assembled }));
-              }
-            } catch {
-              // skip malformed frames
-            }
-          }
-        }
+        assembled = await streamSseText(reader, {
+          onText: (nextFullText) => {
+            assembled = nextFullText;
+            setOutputs((prev) => ({ ...prev, [actionId]: nextFullText }));
+          },
+        });
 
         setOutputs((prev) => ({ ...prev, [actionId]: assembled.trim() }));
       } catch (e) {

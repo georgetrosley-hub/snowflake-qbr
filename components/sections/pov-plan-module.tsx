@@ -9,8 +9,10 @@ import { cn } from "@/lib/utils";
 import {
   BookOpenCheck,
   Briefcase,
+  CheckCircle2,
   Cpu,
   Database,
+  AlertTriangle,
   Flag,
   GitBranch,
   Target,
@@ -146,6 +148,38 @@ export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanMod
             ))}
           </ul>
         </PovBlock>
+
+        <div className="grid gap-4 lg:grid-cols-2">
+          <PovBlock
+            icon={CheckCircle2}
+            title="Exit criteria"
+            summary="What makes this POV 'done' (stop/approve/pivot)"
+          >
+            <ul className="space-y-2">
+              {plan.exitCriteria.map((c, i) => (
+                <li key={i} className="flex gap-2 text-[12px] text-text-secondary">
+                  <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent/60" />
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </PovBlock>
+
+          <PovBlock
+            icon={AlertTriangle}
+            title="Competitive landmines"
+            summary="Where drift happens; how to preempt"
+          >
+            <ul className="space-y-2">
+              {plan.competitiveLandmines.map((c, i) => (
+                <li key={i} className="flex gap-2 text-[12px] text-text-secondary">
+                  <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-rose-400/70" />
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </PovBlock>
+        </div>
 
         <PovBlock
           icon={GitBranch}

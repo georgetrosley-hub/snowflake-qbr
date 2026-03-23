@@ -13,6 +13,10 @@ import {
   Newspaper,
   ClipboardCheck,
   BookOpenCheck,
+  Users,
+  ClipboardList,
+  BarChart3,
+  History,
 } from "lucide-react";
 
 const sectionGroups = [
@@ -20,9 +24,13 @@ const sectionGroups = [
     label: "Territory execution",
     items: [
       { id: "overview", label: "Overview", icon: LayoutDashboard },
-      { id: "thisWeeksPriorities", label: "Weekly Briefing", icon: Newspaper },
+      { id: "accountIntelligence", label: "Account Intelligence", icon: Users },
       { id: "priorityAccounts", label: "Priority Accounts", icon: Target },
       { id: "povPlan", label: "POV Plan", icon: BookOpenCheck },
+      { id: "thisWeeksPriorities", label: "Weekly Briefing", icon: Newspaper },
+      { id: "dealProgression", label: "Deal Progress", icon: ClipboardList },
+      { id: "pipeline", label: "Pipeline", icon: BarChart3 },
+      { id: "accountLog", label: "Account Log", icon: History },
       { id: "recentSignals", label: "Recent Signals", icon: ClipboardCheck },
     ],
   },

@@ -10,9 +10,13 @@ import { Overview } from "@/components/sections/overview";
 
 const ORDERED_SECTIONS: ReadonlyArray<{ sectionId: SectionId; anchorId: string }> = [
   { sectionId: "overview", anchorId: "overview" },
-  { sectionId: "thisWeeksPriorities", anchorId: "this-weeks-priorities" },
+  { sectionId: "accountIntelligence", anchorId: "account-intelligence" },
   { sectionId: "priorityAccounts", anchorId: "priority-accounts" },
   { sectionId: "povPlan", anchorId: "pov-plan" },
+  { sectionId: "thisWeeksPriorities", anchorId: "this-weeks-priorities" },
+  { sectionId: "dealProgression", anchorId: "deal-progression" },
+  { sectionId: "pipeline", anchorId: "pipeline" },
+  { sectionId: "accountLog", anchorId: "account-log" },
   { sectionId: "recentSignals", anchorId: "recent-signals" },
 ] as const;
 const ACTIVATION_OFFSET_PX = 120;

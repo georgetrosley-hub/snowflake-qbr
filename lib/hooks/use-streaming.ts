@@ -3,6 +3,7 @@
 import { useState, useCallback, useRef } from "react";
 import { useApiKey } from "@/app/context/api-key-context";
 import { readApiErrorMessage } from "@/lib/client/api";
+import { streamSseText } from "@/lib/client/sse";
 
 interface StreamOptions {
   url: string;
@@ -43,31 +44,9 @@ export function useStreaming() {
       const reader = response.body?.getReader();
       if (!reader) throw new Error("No reader");
 
-      const decoder = new TextDecoder();
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        const chunk = decoder.decode(value, { stream: true });
-        const lines = chunk.split("\n");
-
-        for (const line of lines) {
-          if (line.startsWith("data: ")) {
-            const data = line.slice(6);
-            if (data === "[DONE]") continue;
-            try {
-              const parsed = JSON.parse(data);
-              if (parsed.text) {
-                fullText += parsed.text;
-                setContent(fullText);
-              }
-            } catch {
-              // skip malformed chunks
-            }
-          }
-        }
-      }
+      fullText = await streamSseText(reader, {
+        onText: (nextFullText) => setContent(nextFullText),
+      });
 
       onComplete?.(fullText);
     } catch (error) {

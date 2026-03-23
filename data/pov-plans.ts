@@ -11,6 +11,10 @@ export interface PovPlan {
   /** Two-week plan with milestone steps */
   timeline: { period: string; milestone: string }[];
   successCriteria: [string, string, string];
+  /** Decision gates to stop, approve, or pivot (what "done" really means) */
+  exitCriteria: string[];
+  /** Likely competitive counter-moves and how to avoid drift */
+  competitiveLandmines: string[];
   followOnExpansion: string;
 }
 
@@ -45,6 +49,16 @@ export const povPlansByAccount: Record<string, PovPlan> = {
       "End-to-end lineage demonstrable for the scoped workflow in Horizon",
       "Named executive agrees to expansion scope (team + next workload)",
     ],
+    exitCriteria: [
+      "Governance owner signs off on the decision chain for expansion scope",
+      "Security/Compliance confirms the audit-ready evidence package for the pilot cohort",
+      "Executive readout secures approval for the next workload (team + timeline)",
+    ],
+    competitiveLandmines: [
+      "Competitor will offer latency wins without auditability; force a lineage + access-control proof before believing ROI",
+      "If we position as a platform swap, the deal drifts into tooling debate; tie every artifact to a single exec-visible outcome",
+      "Security rework risk if we don’t package the narrative early; schedule questionnaire alignment before pilot kickoff",
+    ],
     followOnExpansion:
       "Adjacent regulatory workloads on the same platform contract; Cortex / Intelligence for exec Q&A once governance is trusted.",
   },
@@ -78,6 +92,16 @@ export const povPlansByAccount: Record<string, PovPlan> = {
       "CS + Product sign-off on dashboard as system of record for pilot cohort",
       "Expansion backlog: 2+ workloads queued with owner + date",
     ],
+    exitCriteria: [
+      "CS + Product agree the exception path dashboard is the system of record for the pilot cohort",
+      "Pilot passes governance requirements for production scale-out approval",
+      "Expansion backlog is accepted with named owners and dates for adjacent workloads",
+    ],
+    competitiveLandmines: [
+      "Competitor will argue the ops workflow is too narrow; tie pilot success to cycle-time reduction and scale-out reliability",
+      "If data contracts are fuzzy, pilot metrics look non-defensible; align on telemetry definitions before ingest",
+      "Drift risk if reconciliation success is not measured the same way across teams; lock KPI definitions up front",
+    ],
     followOnExpansion:
       "Roll out to remaining Dara cohorts; add AI features on governed data once ops trust is established.",
   },
@@ -110,6 +134,16 @@ export const povPlansByAccount: Record<string, PovPlan> = {
       "Backlog risk visible for scoped deals within agreed SLA window",
       "CFO-aligned metrics: no manual spreadsheet for the readout",
       "Named expansion: next tranche of deals or org units on roadmap",
+    ],
+    exitCriteria: [
+      "CFO accepts the margin bridge as decision-grade without manual reconciliation",
+      "Agreed refresh SLA is approved by IT/data ownership and stakeholders",
+      "Executive readout authorizes next portfolio tranche with governance-approved data contracts",
+    ],
+    competitiveLandmines: [
+      "Competitor will claim faster reporting but batch-only; force refresh cadence proof and governance acceptance",
+      "If we don’t explicitly map order-to-fulfillment to margin impact, the readout becomes a dashboard, not a decision artifact",
+      "If ownership is unclear, procurement delays expansion; schedule decision-chain validation during pilot design",
     ],
     followOnExpansion:
       "Portfolio-wide AI supply chain; Snowflake Intelligence for exec Q&A on governed data.",
@@ -149,6 +183,15 @@ export function buildPovPlanFromPriorityAccount(pa: PriorityAccount): PovPlan {
       "Metric hit on agreed business outcome",
       "Technical validation with SE sign-off",
       "Named next step for expansion",
+    ],
+    exitCriteria: [
+      "Named governance owner approves expansion decision chain",
+      "Security/procurement confirms evidence narrative and access controls",
+      "Executive readout secures approval for the next workload (team + timeline)",
+    ],
+    competitiveLandmines: [
+      ...(pa.competitiveContext?.slice(0, 2) ?? []),
+      ...(pa.pivotIfNeeded ? [`If the wedge doesn’t land, pivot on: ${pa.pivotIfNeeded}`] : []),
     ],
     followOnExpansion: pa.pivotIfNeeded ? `Pivot path: ${pa.pivotIfNeeded}` : "Adjacent workloads and consumption expansion on platform.",
   };

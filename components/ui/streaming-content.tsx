@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { RefreshCw, Copy, Check } from "lucide-react";
-import { OpenAILogo } from "@/components/ui/openai-logo";
+import { ClaudeSparkle } from "@/components/ui/claude-logo";
 import { cn } from "@/lib/utils";
 import { useState, useCallback } from "react";
 
@@ -43,7 +43,7 @@ export function StreamingContent({
     >
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-surface-border/30 px-4 py-3 sm:px-5">
         <div className="flex min-w-0 items-center gap-2">
-          <OpenAILogo
+          <ClaudeSparkle
             size={12}
             className={cn(
               "text-accent/60",
@@ -51,7 +51,7 @@ export function StreamingContent({
             )}
           />
           <span className="truncate text-[11px] text-text-muted">
-            {label ?? "ChatGPT"}{isStreaming ? " · generating..." : ""}
+            {label ?? "Claude"}{isStreaming ? " · generating..." : ""}
           </span>
         </div>
         {content && !isStreaming && (

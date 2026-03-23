@@ -180,10 +180,111 @@ const flagshipDeals: Record<string, FlagshipDealContext> = {
     ],
     lastCallSummary: "Pierre wants to unify vaccines data. EU residency is non-negotiable. Legal and DPO need DPA and deployment details. Multi-cloud is a plus.",
   },
+  // Territory demo accounts (seeded for the internal AE war-room experience).
+  "us-financial-technology": {
+    championName: "Sarah Linton",
+    championTitle: "Chief Risk Officer",
+    pilotCriteria: {
+      scope:
+        "Regulatory reporting anomaly analytics — scoped source ingestion, Horizon-governed marts, and audit-ready lineage for production evaluation. No sensitive data in pilot.",
+      successMetrics: [
+        "Exception surfaced >= 1 business day faster than baseline",
+        "Lineage demonstrable end-to-end in Horizon for the scoped workflow",
+        "Security sign-off checklist completed without rework",
+      ],
+      timeline: "90-day pilot with executive readout; kickoff planned for next quarter.",
+      owner: "Sarah Linton + Risk Governance + Security",
+      securityPath: "Horizon-governed lineage, RAP-style access constraints, and audit logging.",
+    },
+    competitiveBattle: {
+      incumbent: "Internal reporting tooling and Databricks embedded evaluation",
+      displacementStrategy:
+        "Win by being the governed evidence layer: faster anomaly response with explicit lineage and audit trail rather than a tooling swap.",
+      keyRisk:
+        "If we focus on latency without governance, security/procurement stalls the pilot.",
+      winCondition:
+        "Risk & governance accept the audit narrative; expansion to adjacent regulatory workloads is approved.",
+    },
+    milestones: [
+      { label: "Executive alignment on POV scope", date: "Mar 12", status: "done", owner: "AE" },
+      { label: "Governance approval chain mapped", date: "Mar 18", status: "in_progress", owner: "Security" },
+      { label: "Security questionnaire narrative packaged", date: "Apr 5", status: "upcoming", owner: "SE" },
+      { label: "Pilot kickoff (scoped workflow)", date: "Apr 15", status: "upcoming", owner: "Sarah Linton" },
+      { label: "90-day executive readout gate", date: "Jul 15", status: "upcoming", owner: "Sarah Linton" },
+    ],
+    lastCallSummary:
+      "Sarah is aligned on a governed anomaly workflow. Next: finalize the decision chain for governance/security so pilot evidence can become expansion permission.",
+  },
+  "sagent-lending": {
+    championName: "Priya Nand",
+    championTitle: "VP, Data Platform",
+    pilotCriteria: {
+      scope:
+        "Ops-owned reconciliation workflow for at-risk Dara deployments — exception path built as a system of record with measurable cycle-time improvement.",
+      successMetrics: [
+        ">= 20% reduction in reconciliation cycle time on scoped exception path",
+        "CS + Product sign-off on dashboard as system of record for pilot cohort",
+        "Operational deployment health telemetry tied to outcomes",
+      ],
+      timeline: "60-day pilot with weekly operational readouts and an expansion backlog draft at day 45.",
+      owner: "Priya Nand + CS + Product Ops",
+      securityPath: "RAP-style access constraints, network restrictions, and audit trail for production pilot.",
+    },
+    competitiveBattle: {
+      incumbent: "Manual reconciliation and fragmented analytics across tools",
+      displacementStrategy:
+        "Land additive: focus on one ops workflow that reduces cycle time with governance; expand coverage after pilot trust is earned.",
+      keyRisk: "If we can't quantify cycle-time improvement, the pilot doesn't create expansion permission.",
+      winCondition:
+        "Ops leaders adopt the exception path dashboard; subsequent Dara cohorts are queued with owners and dates.",
+    },
+    milestones: [
+      { label: "Pilot scope defined with CS", date: "Mar 15", status: "done", owner: "AE" },
+      { label: "Telemetry ingestion aligned", date: "Mar 19", status: "in_progress", owner: "Data Eng" },
+      { label: "Exception dashboard v1 validated", date: "Mar 28", status: "upcoming", owner: "CS" },
+      { label: "Security + governance approval", date: "Apr 10", status: "upcoming", owner: "Security" },
+      { label: "60-day expansion backlog readout", date: "May 15", status: "upcoming", owner: "AE" },
+    ],
+    lastCallSummary:
+      "Priya wants one measurable ops workflow. Next: deliver exception dashboard + get named governance approval so expansion can start immediately after pilot proof.",
+  },
+  "ciena-corp": {
+    championName: "Michael Trent",
+    championTitle: "CFO, FP&A",
+    pilotCriteria: {
+      scope:
+        "Unified visibility from order → backlog → fulfillment → margin for 2–3 AI deals with secure sharing to FP&A and ops leadership.",
+      successMetrics: [
+        "Backlog risk visible within agreed SLA window for CFO action",
+        "Margin bridge readout requires no manual spreadsheets",
+        "Data contract and governance controls approved for production refresh cadence",
+      ],
+      timeline: "75-day pilot with weekly CFO readouts and a portfolio expansion decision gate.",
+      owner: "Michael Trent + FP&A Ops + IT/Data Architecture",
+      securityPath: "Secure sharing + governed access patterns with audit logging for production reporting.",
+    },
+    competitiveBattle: {
+      incumbent: "Fragmented forecasting reports across tools and manual reconciliation",
+      displacementStrategy:
+        "Win with end-to-end visibility and a CFO-trusted metric pipeline: governance that doesn't slow decision-making.",
+      keyRisk: "If refresh cadence is batch-only, forecast trust won't stick.",
+      winCondition:
+        "CFO accepts the metrics and approves next portfolio tranche with measurable SLA.",
+    },
+    milestones: [
+      { label: "CFO interest and metric definition", date: "Mar 18", status: "done", owner: "AE" },
+      { label: "Data contract for 2–3 scoped deals", date: "Mar 22", status: "in_progress", owner: "FP&A Ops" },
+      { label: "Backlog risk view landed", date: "Apr 5", status: "upcoming", owner: "IT/Data" },
+      { label: "Margin bridge demo + governance sign-off", date: "Apr 20", status: "upcoming", owner: "Security" },
+      { label: "75-day executive readout + expansion gate", date: "Jun 30", status: "upcoming", owner: "Michael Trent" },
+    ],
+    lastCallSummary:
+      "Michael cares about decision timing and trust. Next: prove refresh cadence + governance story for a margin bridge they can act on.",
+  },
 };
 
-export function getFlagshipDealContext(_accountId: string): FlagshipDealContext | null {
-  return null;
+export function getFlagshipDealContext(accountId: string): FlagshipDealContext | null {
+  return flagshipDeals[accountId] ?? null;
 }
 
 export function isFlagshipAccount(accountId: string): boolean {
