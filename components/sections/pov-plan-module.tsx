@@ -46,7 +46,7 @@ export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanMod
               {priorityAccount.name}
             </h2>
             <p className="mt-1 text-[11px] text-text-faint">
-              Hypothesis → focused motion → measurable outcome → expansion
+              Hypothesis → motion → proof → expansion
             </p>
           </div>
           <button
@@ -55,7 +55,7 @@ export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanMod
             className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-[12px] font-semibold text-white shadow-sm transition-colors hover:bg-accent/90"
           >
             <Zap className="h-3.5 w-3.5" strokeWidth={2} />
-            Generate POV Plan
+            Run POV plan
           </button>
         </div>
       </div>
@@ -63,8 +63,8 @@ export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanMod
       <div className="space-y-4 p-6">
         <PovBlock
           icon={Flag}
-          title="Objective"
-          summary="Business outcome this POV proves"
+          title="Outcomes"
+          summary="What this POV proves to the business"
         >
           <p className="text-[13px] font-medium leading-snug text-text-primary">{plan.objective}</p>
         </PovBlock>
@@ -72,21 +72,21 @@ export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanMod
         <div className="grid gap-4 lg:grid-cols-2">
           <PovBlock
             icon={Briefcase}
-            title="Business problem"
-            summary="Pain or constraint"
+            title="Problem"
+            summary="Pain or constraint to relieve"
           >
             <p className="text-[13px] leading-relaxed text-text-secondary">{plan.businessProblem}</p>
           </PovBlock>
           <PovBlock
             icon={Cpu}
-            title="Snowflake workload"
-            summary="What you’re proposing to run"
+            title="Snowflake scope"
+            summary="Workload or capability in scope"
           >
             <p className="text-[13px] leading-relaxed text-text-secondary">{plan.snowflakeWorkload}</p>
           </PovBlock>
         </div>
 
-        <PovBlock icon={Users} title="Stakeholders" summary="Business + technical coverage">
+        <PovBlock icon={Users} title="Map stakeholders" summary="Business and technical coverage">
           <div className="grid gap-2 sm:grid-cols-2">
             {plan.stakeholders.map((s, i) => (
               <div
@@ -109,7 +109,7 @@ export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanMod
           </div>
         </PovBlock>
 
-        <PovBlock icon={Database} title="Data required" summary="Minimum viable inputs">
+        <PovBlock icon={Database} title="Data inputs" summary="Minimum viable inputs">
           <ul className="space-y-1.5">
             {plan.dataRequired.map((d, i) => (
               <li key={i} className="flex gap-2 text-[12px] text-text-secondary">
@@ -120,7 +120,7 @@ export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanMod
           </ul>
         </PovBlock>
 
-        <PovBlock icon={Timer} title="Timeline" summary="2-week POV · milestone steps">
+        <PovBlock icon={Timer} title="POV timeline" summary="Milestones and checkpoints">
           <div className="space-y-2">
             {plan.timeline.map((row, i) => (
               <div
@@ -134,7 +134,7 @@ export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanMod
           </div>
         </PovBlock>
 
-        <PovBlock icon={Target} title="Success criteria" summary="Three measurable outcomes">
+        <PovBlock icon={Target} title="Success metrics" summary="Measurable pass/fail">
           <ul className="space-y-2">
             {plan.successCriteria.map((c, i) => (
               <li key={i} className="flex gap-2 text-[12px] text-text-secondary">
@@ -149,8 +149,8 @@ export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanMod
 
         <PovBlock
           icon={GitBranch}
-          title="Expected follow-on expansion"
-          summary="What this POV unlocks if it lands"
+          title="Expansion unlock"
+          summary="What this POV opens if it lands"
         >
           <p className="text-[13px] leading-relaxed text-text-secondary">{plan.followOnExpansion}</p>
         </PovBlock>

@@ -30,19 +30,19 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Territory OS | Snowflake Enterprise AE",
+  title: "Field Console | Snowflake Enterprise AE",
   description:
-    "Territory operating system. Priority accounts, expansion execution, discovery prep, POV plans. Internal.",
+    "Priority accounts, account briefs, discovery prep, POV plans, expansion path. Internal field console.",
   icons: {
     icon: [{ url: "/snowflake-logo.png", type: "image/png", sizes: "any" }],
     apple: [{ url: "/snowflake-logo.png", type: "image/png", sizes: "180x180" }],
   },
   openGraph: {
-    title: "Territory OS | Snowflake",
+    title: "Field Console | Snowflake",
     description:
-      "Territory operating system for Snowflake enterprise AEs. Priority accounts, expansion execution.",
+      "Internal field console for enterprise AEs. Priority accounts, briefs, POV, expansion.",
     url: "/",
-    siteName: "Territory OS",
+    siteName: "Field Console",
     type: "website",
     images: [
       {
@@ -55,8 +55,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Territory OS | Snowflake",
-    description: "Territory operating system. Priority accounts, expansion execution.",
+    title: "Field Console | Snowflake",
+    description: "Internal field console. Priority accounts, briefs, POV, expansion.",
     images: ["/snowflake-logo.png"],
   },
 };

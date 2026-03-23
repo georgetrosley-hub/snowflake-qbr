@@ -59,7 +59,7 @@ export function getDealHealth(
   if (blockedCount >= 1 || !hasRecentUpdate || championCount < 2) {
     return {
       status: "attention",
-      label: "Needs attention",
+      label: "Needs focus",
       reason:
         blockedCount >= 1
           ? "Blocker to resolve"

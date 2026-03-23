@@ -88,7 +88,7 @@ export function StatusBar({
             <div className="flex items-center gap-3">
               <SnowflakeLogoIcon size={22} className="shrink-0 opacity-90" />
               <div className="hidden sm:block">
-                <span className="font-semibold text-[13px] text-text-primary tracking-tight">Territory OS</span>
+                <span className="font-semibold text-[13px] text-text-primary tracking-tight">Field Console</span>
                 <span className="ml-2 text-[11px] text-text-faint">Enterprise AE</span>
               </div>
             </div>
@@ -115,7 +115,7 @@ export function StatusBar({
             {oversightStatus === "active" && (
               <span className="hidden items-center gap-1.5 rounded bg-accent/10 px-2 py-1 text-[11px] font-medium text-accent sm:inline-flex">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                {pendingDecisions} pending
+                {pendingDecisions} open decisions
               </span>
             )}
             {dealHealth && (
@@ -159,7 +159,7 @@ export function StatusBar({
                 className="flex items-center gap-1.5 rounded bg-accent/15 px-3 py-1.5 text-[11px] font-medium text-accent transition-colors hover:bg-accent/25"
               >
                 <MessageCircle className="h-3 w-3" strokeWidth={2} />
-                Strategy
+                Deal Desk
               </button>
             )}
           </div>
@@ -175,7 +175,7 @@ export function StatusBar({
                 <div>
                   <p className="text-[13px] font-medium text-text-primary">API Key</p>
                   <p className="mt-1 text-[11px] text-text-muted">
-                    Required for Strategy panel.
+                    Required for Deal Desk and runbook.
                   </p>
                 </div>
               </div>
@@ -205,7 +205,7 @@ export function StatusBar({
               </div>
 
               <div className="rounded-lg bg-surface/60 px-3 py-2 text-[11px] text-text-secondary">
-                {hasApiKey ? "Saved. Strategy ready." : "Add key to enable Strategy."}
+                {hasApiKey ? "Saved. Ready for Deal Desk." : "Add key to enable Deal Desk."}
               </div>
 
               <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">

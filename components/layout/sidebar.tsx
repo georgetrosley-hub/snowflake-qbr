@@ -19,10 +19,10 @@ const SNOWFLAKE_SUMMIT_URL = "https://www.snowflake.com/en/summit/";
 
 const sectionGroups = [
   {
-    label: "Territory OS",
+    label: "Field console",
     items: [
       { id: "overview", label: "Overview", icon: LayoutDashboard },
-      { id: "thisWeeksPriorities", label: "This Week's Priorities", icon: Newspaper },
+      { id: "thisWeeksPriorities", label: "Weekly Briefing", icon: Newspaper },
       { id: "priorityAccounts", label: "Priority Accounts", icon: Target },
       { id: "povPlan", label: "POV Plan", icon: BookOpenCheck },
       { id: "recentSignals", label: "Recent Signals", icon: ClipboardCheck },
@@ -80,7 +80,7 @@ function SidebarBody({
               <div>
                 <SnowflakeWordmark />
                 <p className="text-[11px] text-text-muted">
-                  Territory OS
+                  Field Console
                 </p>
               </div>
             )}
@@ -124,11 +124,11 @@ function SidebarBody({
             "flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg border border-accent/20 bg-accent/[0.06] px-3 py-3 text-[12px] font-medium text-accent transition-colors active:bg-accent/10 hover:bg-accent/10",
             compact && "justify-center px-0 py-2 min-h-[40px]"
           )}
-          aria-label="Strategy"
-          title="Strategy"
+          aria-label="Deal Desk"
+          title="Deal Desk"
         >
           <MessageCircle className="h-3.5 w-3.5" strokeWidth={1.8} />
-          {!compact && "Strategy"}
+          {!compact && "Deal Desk"}
         </button>
       </div>
 
@@ -194,7 +194,7 @@ function SidebarBody({
           {!compact && (
             <div className="min-w-0">
               <p className="truncate text-[12px] font-medium text-text-secondary">Enterprise AE</p>
-              <p className="text-[10px] text-text-faint">Strategic accounts · Expansion execution</p>
+              <p className="text-[10px] text-text-faint">Land & expand · Strategic accounts</p>
             </div>
           )}
         </div>

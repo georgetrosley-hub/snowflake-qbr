@@ -47,29 +47,29 @@ type ActionDef = {
 };
 
 const ACTIONS: ActionDef[] = [
-  { id: "account_brief", label: "Generate Account Brief", tab: "Brief", phase: "brief" },
+  { id: "account_brief", label: "Account brief", tab: "Brief", phase: "brief" },
   {
     id: "discovery_questions",
-    label: "Generate Discovery Questions",
+    label: "Discovery questions",
     tab: "Discovery",
     phase: "discovery",
   },
-  { id: "pov_plan", label: "Generate POV Plan", tab: "POV", phase: "pov" },
+  { id: "pov_plan", label: "POV plan", tab: "POV", phase: "pov" },
   {
     id: "signals_summary",
-    label: "Summarize Recent Signals",
+    label: "Signal summary",
     tab: "Signals",
     phase: "expansion",
   },
   {
     id: "exec_followup",
-    label: "Draft Executive Follow Up",
+    label: "Exec follow-up",
     tab: "Follow-up",
     phase: "expansion",
   },
   {
     id: "stakeholder_map",
-    label: "Map Likely Stakeholders",
+    label: "Map stakeholders",
     tab: "Stakeholders",
     phase: "expansion",
   },
@@ -106,7 +106,7 @@ function buildTerritoryContext(
       `- Why it matters: ${priority.whyMatters}`,
       `- Expansion wedge: ${priority.expansionWedge}`,
       `- Confirm first: ${priority.confirmFirst}`,
-      `- POV hypothesis: ${priority.povHypothesis}`,
+      `- Working hypothesis: ${priority.povHypothesis}`,
       `- Next action (baseline): ${priority.nextAction}`,
       `- Competitive context: ${priority.competitiveContext.join(" · ")}`,
       `- Current motion: ${priority.currentMotion}`
@@ -327,7 +327,7 @@ export function AccountExecutionPanel() {
   return (
     <section
       className="scroll-mt-24 rounded-2xl border border-surface-border/50 bg-surface-elevated/35 shadow-[0_1px_0_rgba(255,255,255,0.04)_inset]"
-      aria-label="Account execution workspace"
+      aria-label="Execution runbook"
     >
       <div className="border-b border-surface-border/40 px-4 py-3 sm:px-5">
         <div className="flex flex-wrap items-start justify-between gap-3">
@@ -337,11 +337,10 @@ export function AccountExecutionPanel() {
             </div>
             <div className="min-w-0">
               <h2 className="text-[14px] font-semibold tracking-tight text-text-primary">
-                Execution workspace
+                Runbook
               </h2>
               <p className="mt-0.5 max-w-xl text-[11px] leading-snug text-text-muted">
-                Structured artifacts for live reviews—brief, discovery, POV, then expansion motions. Select a
-                step, run when ready, switch tabs to compare outputs.
+                Brief → discovery → POV → expansion. Pick a step, run, copy into CRM or email.
               </p>
             </div>
           </div>
@@ -357,8 +356,8 @@ export function AccountExecutionPanel() {
 
         {!hasApiKey && (
           <p className="mt-3 rounded-lg border border-accent/20 bg-accent/[0.06] px-3 py-2 text-[11px] text-accent/95">
-            Add your API key in the header to generate artifacts. Results stay in this session until you
-            refresh or change accounts.
+            Add your API key in the header to run steps. Outputs stay in this session until refresh or account
+            change.
           </p>
         )}
 
@@ -395,7 +394,7 @@ export function AccountExecutionPanel() {
 
       <div className="grid gap-0 lg:grid-cols-[minmax(200px,248px)_1fr] lg:divide-x lg:divide-surface-border/40">
         <div className="max-h-[min(52vh,420px)] overflow-y-auto p-3 sm:p-4 lg:max-h-none lg:overflow-visible">
-          <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-text-faint">Workflow</p>
+          <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-text-faint">Run steps</p>
           <div className="mt-2 space-y-4">
             {PHASE_ORDER.map((phase) => {
               const phaseActions = ACTIONS.filter((a) => a.phase === phase.id);
@@ -445,10 +444,10 @@ export function AccountExecutionPanel() {
           {!viewing && (
             <div className="flex flex-1 flex-col justify-center px-4 py-10 sm:px-6">
               <div className="mx-auto w-full max-w-md rounded-xl border border-dashed border-surface-border/55 bg-surface-muted/[0.12] px-5 py-8 text-center">
-                <p className="text-[13px] font-medium text-text-primary">No artifact selected</p>
+                <p className="text-[13px] font-medium text-text-primary">No step selected</p>
                 <p className="mx-auto mt-2 max-w-sm text-[12px] leading-relaxed text-text-muted">
-                  Pick a workflow step on the left to preview or generate territory-specific briefs, discovery
-                  prompts, POV plans, and expansion follow-through. Built for fast scanning and CRM paste.
+                  Choose a run step on the left: brief, discovery, POV, or expansion outputs. Copy-ready for
+                  reviews and follow-ups.
                 </p>
               </div>
             </div>
@@ -484,7 +483,7 @@ export function AccountExecutionPanel() {
 
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="min-w-0">
-                    <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-text-faint">Artifact</p>
+                    <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-text-faint">Output</p>
                     <p className="truncate text-[12px] font-semibold text-text-primary">{activeDef.label}</p>
                   </div>
                   <div className="flex flex-wrap items-center gap-1.5">
@@ -516,7 +515,7 @@ export function AccountExecutionPanel() {
                       {activeOutput ? (
                         <>
                           <RefreshCw className="h-3.5 w-3.5" strokeWidth={2} />
-                          Regenerate
+                          Rerun
                         </>
                       ) : (
                         <>
@@ -561,7 +560,7 @@ export function AccountExecutionPanel() {
                       <div className="h-2 w-3/5 rounded bg-surface-muted/32" />
                     </div>
                     <p className="text-[11px] text-text-faint">
-                      Generating structured output…
+                      Generating output…
                     </p>
                   </div>
                 )}
@@ -577,8 +576,8 @@ export function AccountExecutionPanel() {
                 {!loadingThis && !activeOutput && !error && (
                   <div className="rounded-lg border border-surface-border/40 bg-surface-muted/10 px-3 py-4 text-center sm:px-4">
                     <p className="text-[12px] text-text-secondary">
-                      Ready to generate. Use <span className="font-medium text-text-primary">Run</span> to
-                      produce operator-ready markdown for this account.
+                      Select <span className="font-medium text-text-primary">Run</span> to generate markdown
+                      for this account.
                     </p>
                     {!hasApiKey && (
                       <p className="mt-2 text-[11px] text-text-faint">API key required in the header.</p>

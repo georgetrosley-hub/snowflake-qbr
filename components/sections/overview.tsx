@@ -50,10 +50,10 @@ function AccountCard({
 
 function AccountDetailCard({ account }: { account: PriorityAccount }) {
   const sections = [
-    { label: "Why this account matters", value: account.whyMatters },
-    { label: "Best expansion wedge", value: account.expansionWedge },
+    { label: "Why it matters", value: account.whyMatters },
+    { label: "Expansion wedge", value: account.expansionWedge },
     { label: "What to confirm first", value: account.confirmFirst },
-    { label: "POV hypothesis", value: account.povHypothesis },
+    { label: "Working hypothesis", value: account.povHypothesis },
     { label: "Recommended next action", value: account.nextAction },
   ] as const;
 
@@ -72,10 +72,10 @@ function AccountDetailCard({ account }: { account: PriorityAccount }) {
       ))}
       <div className="flex gap-2 pt-2">
         <span className="rounded bg-surface-muted/50 px-2 py-1 text-[10px] text-text-faint">
-          Proof: {account.proofPoint}
+          Proof point: {account.proofPoint}
         </span>
         <span className="rounded bg-surface-muted/50 px-2 py-1 text-[10px] text-text-faint">
-          Pivot: {account.pivotIfNeeded}
+          Pivot if blocked: {account.pivotIfNeeded}
         </span>
       </div>
     </div>
@@ -161,13 +161,13 @@ export function Overview({
     <div className="space-y-8 sm:space-y-10">
       <section id="overview" className="scroll-mt-24 rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-5">
         <h1 className="text-[20px] font-semibold tracking-tight text-text-primary sm:text-[22px]">
-          Territory Operating System
+          Overview
         </h1>
         <p className="mt-2 text-[13px] text-text-muted">
-          Internal account execution system for Snowflake enterprise AEs. Three priority accounts, expansion-first execution, operator-ready workflows.
+          One screen for priority accounts, briefs, POV, and expansion. Built for live reviews and fast CRM paste.
         </p>
         <p className="mt-2 text-[11px] text-text-faint">
-          Built with public information. Validate consumption, opportunities, and competitive footprint post-onboarding.
+          Public-source prototype — validate consumption, pipeline, and footprint after onboarding.
         </p>
         {onOpenStrategy && (
           <button
@@ -175,7 +175,7 @@ export function Overview({
             onClick={onOpenStrategy}
             className="mt-4 rounded-lg border border-accent/30 bg-accent/10 px-4 py-2 text-[12px] font-medium text-accent transition-colors hover:bg-accent/20"
           >
-            Open Strategy
+            Open Deal Desk
           </button>
         )}
       </section>
@@ -185,7 +185,7 @@ export function Overview({
       <section id="priority-accounts" className="scroll-mt-24 space-y-4">
         <SectionHeader
           title="Priority Accounts"
-          subtitle="Three accounts. Same core problem: data complexity outpacing decision-making."
+          subtitle="Three named accounts — same job: prove value, then expand consumption."
         />
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
           {priorityAccounts.map((pa) => (
@@ -203,7 +203,7 @@ export function Overview({
       <section id="account-brief" className="scroll-mt-24 rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6">
         <SectionHeader
           title="Account Brief"
-          subtitle={`${selectedAccount.name} — signal-driven next actions`}
+          subtitle={`${selectedAccount.name} — what shifted, Snowflake angle, next move`}
         />
         <div className="mt-3 flex gap-2">
           {(["24h", "7d", "30d"] as const).map((w) => (
@@ -224,25 +224,25 @@ export function Overview({
         </div>
         <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
           <div className="rounded-lg border border-surface-border/50 bg-surface-muted/30 p-3">
-            <p className="text-[10px] uppercase text-text-faint">What changed</p>
+            <p className="text-[10px] uppercase text-text-faint">Signal shift</p>
             <p className="mt-1 text-[12px] text-text-secondary">{briefingContent.whatChanged}</p>
           </div>
           <div className="rounded-lg border border-accent/25 bg-accent/[0.06] p-3">
-            <p className="text-[10px] uppercase text-accent/90">Next action</p>
+            <p className="text-[10px] uppercase text-accent/90">Recommended next action</p>
             <p className="mt-1 text-[12px] text-text-secondary">{briefingContent.nextAction}</p>
           </div>
           <div className="rounded-lg border border-surface-border/50 p-3 sm:col-span-2">
-            <p className="text-[10px] uppercase text-text-faint">Snowflake implication</p>
+            <p className="text-[10px] uppercase text-text-faint">Snowflake angle</p>
             <p className="mt-1 text-[12px] text-text-secondary">{briefingContent.snowflakeImplication}</p>
           </div>
         </div>
       </section>
 
       <section id="discovery-prep" className="scroll-mt-24 rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6">
-        <SectionHeader title="Discovery Prep" subtitle="Angles and talk tracks for qualification calls" />
+        <SectionHeader title="Discovery Prep" subtitle="Qualification angles and talk tracks" />
         <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <p className="text-[11px] font-medium uppercase text-text-faint">Discovery angles</p>
+            <p className="text-[11px] font-medium uppercase text-text-faint">Qualification angles</p>
             <ul className="mt-2 space-y-1.5 text-[12px] text-text-secondary">
               {discoveryPrep.angles.map((a) => (
                 <li key={a}>• {a}</li>
@@ -267,13 +267,14 @@ export function Overview({
         />
       ) : (
         <section id="pov-plan" className="scroll-mt-24 rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6">
-          <SectionHeader title="POV Plan" subtitle="Hypothesis-led positioning vs Databricks" />
+          <SectionHeader title="POV Plan" subtitle="Prove value — Snowflake vs Databricks framing" />
           <div className="mt-4 space-y-3">
             <div className="rounded-xl border border-accent/25 bg-accent/[0.06] p-3">
-              <p className="text-[11px] font-medium uppercase text-accent/90">POV hypothesis</p>
+              <p className="text-[11px] font-medium uppercase text-accent/90">Working hypothesis</p>
               <p className="mt-1 text-[12px] text-text-secondary">{selectedAccount.povHypothesis}</p>
             </div>
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+            <p className="text-[10px] font-medium uppercase tracking-wider text-text-faint">Competitive context</p>
+            <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
               <div className="rounded-lg border border-surface-border/50 bg-surface-muted/30 p-3">
                 <p className="text-[10px] uppercase text-text-faint">Snowflake</p>
                 <p className="mt-1 text-[12px] text-text-secondary">
@@ -292,7 +293,7 @@ export function Overview({
       )}
 
       <section id="expansion-path" className="scroll-mt-24 rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6">
-        <SectionHeader title="Expansion Path" subtitle="Land → prove → expand sequence" />
+        <SectionHeader title="Expansion Path" subtitle="Land → prove → expand" />
         <div className="mt-4 flex flex-wrap gap-2">
           {expansionSequence.map((step) => (
             <span
@@ -309,7 +310,7 @@ export function Overview({
       </section>
 
       <section id="this-weeks-priorities" className="scroll-mt-24 rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-4 sm:p-6">
-        <SectionHeader title="Weekly Briefing" subtitle="This week's operating priorities" />
+        <SectionHeader title="Weekly Briefing" subtitle="Next 7 days — by account" />
         <ul className="mt-4 space-y-2">
           {next7Days.map((item) => (
             <li
@@ -328,18 +329,18 @@ export function Overview({
 
       <section id="recent-signals" className="scroll-mt-24 space-y-4">
         <SectionHeader
-          title="Signals & Activity"
-          subtitle="Curated news, outreach log—connect to CRM post-onboarding"
+          title="Field log"
+          subtitle="Recent activity and signals — sync to CRM when live"
         />
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           <div className="rounded-xl border border-surface-border/50 bg-surface-elevated/30 p-4">
-            <h4 className="text-[12px] font-semibold text-text-primary">Activity Feed</h4>
+            <h4 className="text-[12px] font-semibold text-text-primary">Recent Activity</h4>
             <form onSubmit={handleAddActivity} className="mt-3 flex gap-2">
               <input
                 type="text"
                 value={activityInput}
                 onChange={(e) => setActivityInput(e.target.value)}
-                placeholder="Log activity..."
+                placeholder="Log touch, note, or meeting…"
                 className="min-w-0 flex-1 rounded-lg border border-surface-border/50 bg-surface px-2.5 py-2 text-[12px] text-text-primary placeholder:text-text-faint"
               />
               <select
@@ -357,7 +358,7 @@ export function Overview({
                 type="submit"
                 className="rounded-lg bg-accent/90 px-3 py-2 text-[11px] font-medium text-white hover:bg-accent"
               >
-                Add
+                Log
               </button>
             </form>
             <div className="mt-3 max-h-48 space-y-2 overflow-y-auto">
@@ -373,13 +374,13 @@ export function Overview({
             </div>
           </div>
           <div className="rounded-xl border border-surface-border/50 bg-surface-elevated/30 p-4">
-            <h4 className="text-[12px] font-semibold text-text-primary">Signal Tracker</h4>
+            <h4 className="text-[12px] font-semibold text-text-primary">Recent Signals</h4>
             <form onSubmit={handleAddSignal} className="mt-3 flex gap-2">
               <input
                 type="text"
                 value={signalInput}
                 onChange={(e) => setSignalInput(e.target.value)}
-                placeholder="Add signal..."
+                placeholder="Add signal…"
                 className="min-w-0 flex-1 rounded-lg border border-surface-border/50 bg-surface px-2.5 py-2 text-[12px] text-text-primary placeholder:text-text-faint"
               />
               <select
@@ -397,7 +398,7 @@ export function Overview({
                 type="submit"
                 className="rounded-lg bg-accent/90 px-3 py-2 text-[11px] font-medium text-white hover:bg-accent"
               >
-                Add
+                Log
               </button>
             </form>
             <div className="mt-3 max-h-48 space-y-2 overflow-y-auto">

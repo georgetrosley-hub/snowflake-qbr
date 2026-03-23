@@ -2,7 +2,7 @@ import type { PriorityAccount } from "@/data/territory-data";
 import type { PovPlan } from "@/data/pov-plans";
 
 /**
- * Prompt for Strategy panel: refined POV plan output aligned to account progression.
+ * Prompt for Deal Desk: refined POV plan output aligned to account progression.
  */
 export function buildPovPlanGenerationPrompt(priorityAccount: PriorityAccount, plan: PovPlan): string {
   const stakeholdersLine = plan.stakeholders.map((s) => s.kind + "=" + s.title).join("; ");
