@@ -68,9 +68,27 @@ export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanMod
 
   const buildNotebookPrompt = () =>
     [
-      `Create a 6-minute executive briefing script for ${priorityAccount.name}.`,
+      "Create a 10-minute executive briefing podcast based on this POV plan.",
       "",
-      "Use this POV content exactly:",
+      "Audience:",
+      "Senior business and technical stakeholders (Risk, Compliance, Data Engineering).",
+      "",
+      "Structure:",
+      "1. Context: What problem exists today",
+      "2. Why it matters now",
+      "3. What this POV will prove",
+      "4. How the POV will run (simple, non-technical)",
+      "5. What success looks like",
+      "6. What happens if successful (expansion path)",
+      "",
+      "Tone:",
+      "Clear, concise, executive-level. Avoid jargon. Focus on business impact, speed, and risk reduction.",
+      "",
+      "Goal:",
+      "Make this feel like a confident, well-structured plan that leadership would approve.",
+      "",
+      "POV plan details to use:",
+      `Account: ${priorityAccount.name}`,
       `Objective: ${objectiveText}`,
       `Recommended workload: ${recommendedWorkload.join(" | ")}`,
       `Business stakeholders: ${groupedStakeholders.business.join(", ") || "N/A"}`,
@@ -78,11 +96,6 @@ export function PovPlanModule({ priorityAccount, onGeneratePovPlan }: PovPlanMod
       `Timeline: ${compactTimeline.map((t) => `${t.phase}: ${t.milestone}`).join(" | ")}`,
       `Success metrics: ${successMetrics.join(" | ")}`,
       `Recommended next step: ${recommendedNextStep}`,
-      "",
-      "Output format:",
-      "- 5 section outline",
-      "- 8 talk-track bullets",
-      "- 3 likely executive questions with concise answers",
     ].join("\n");
 
   const handleExportPdf = () => {
