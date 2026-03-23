@@ -15,11 +15,9 @@ import {
   BookOpenCheck,
 } from "lucide-react";
 
-const SNOWFLAKE_SUMMIT_URL = "https://www.snowflake.com/en/summit/";
-
 const sectionGroups = [
   {
-    label: "Field console",
+    label: "Territory execution",
     items: [
       { id: "overview", label: "Overview", icon: LayoutDashboard },
       { id: "thisWeeksPriorities", label: "Weekly Briefing", icon: Newspaper },
@@ -80,7 +78,7 @@ function SidebarBody({
               <div>
                 <SnowflakeWordmark />
                 <p className="text-[11px] text-text-muted">
-                  Field Console
+                  Enterprise Territory Execution
                 </p>
               </div>
             )}
@@ -124,11 +122,11 @@ function SidebarBody({
             "flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg border border-accent/20 bg-accent/[0.06] px-3 py-3 text-[12px] font-medium text-accent transition-colors active:bg-accent/10 hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent/25",
             compact && "justify-center px-0 py-2 min-h-[40px]"
           )}
-          aria-label="Deal Desk"
-          title="Deal Desk"
+          aria-label="Execution Desk"
+          title="Execution Desk"
         >
           <MessageCircle className="h-3.5 w-3.5" strokeWidth={1.8} />
-          {!compact && "Deal Desk"}
+          {!compact && "Execution Desk"}
         </button>
       </div>
 
@@ -193,7 +191,9 @@ function SidebarBody({
           <SnowflakeLogoIcon size={20} className="shrink-0 opacity-80" />
           {!compact && (
             <div className="min-w-0">
-              <p className="truncate text-[12px] font-medium text-text-secondary">Enterprise AE</p>
+              <p className="truncate text-[12px] font-medium text-text-secondary">
+                Snowflake Enterprise AE
+              </p>
               <p className="text-[10px] text-text-faint">Land & expand · Strategic accounts</p>
             </div>
           )}
@@ -201,18 +201,11 @@ function SidebarBody({
       </div>
 
       {!compact && (
-        <div className="space-y-2 px-5 pb-4">
-          <a
-            href={SNOWFLAKE_SUMMIT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-[10px] text-accent/80 hover:text-accent underline underline-offset-2"
-          >
-            Snowflake Summit →
-          </a>
-              <p className="text-[10px] text-text-faint/60">
-            Internal · snowflake.com
+        <div className="space-y-1 px-5 pb-4">
+          <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-text-faint/70">
+            Internal field ops
           </p>
+          <p className="text-[10px] text-text-faint/60">Workflow guidance for enterprise execution.</p>
         </div>
       )}
     </>

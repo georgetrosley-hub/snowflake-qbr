@@ -22,7 +22,7 @@ interface ChatPanelProps {
   account: Account;
   competitors: Competitor[];
   activeSection: string;
-  /** When set, opens Deal Desk with this user message and streams the reply (POV Plan, etc.) */
+  /** When set, opens Execution Desk with this user message and streams the reply (POV Plan, etc.) */
   pendingUserMessage?: string | null;
   onPendingUserMessageConsumed?: () => void;
 }
@@ -128,7 +128,7 @@ export function ChatPanel({
               content:
                 error instanceof Error
                   ? error.message
-                  : "Add API key to enable Deal Desk.",
+                  : "Add API key to enable Execution Desk.",
             },
           ]);
         }
@@ -244,7 +244,7 @@ export function ChatPanel({
               <div className="flex min-w-0 items-center gap-2">
                 <SnowflakeLogoIcon size={20} />
                 <span className="truncate text-[13px] font-medium text-text-primary">
-                  Deal Desk
+                  Execution Desk
                 </span>
                 <span className="hidden rounded-full bg-surface-muted/60 px-2 py-0.5 text-[10px] text-text-muted sm:inline-flex">
                   {account.name}
@@ -284,7 +284,7 @@ export function ChatPanel({
                     className="mb-4 opacity-90"
                   />
                   <p className="text-[15px] font-semibold text-text-primary mb-1">
-                    Deal Desk
+                    Execution Desk
                   </p>
                   <p className="text-[13px] text-text-muted leading-relaxed mb-6">
                     {account.id === "na"
@@ -293,7 +293,7 @@ export function ChatPanel({
                   </p>
                   {!hasApiKey && (
                     <div className="mb-6 rounded-lg border border-accent/20 bg-accent/[0.06] px-3 py-2 text-[11px] text-accent/90">
-                      Add API key to enable Deal Desk.
+                      Add API key to enable Execution Desk.
                     </div>
                   )}
                   <p className="text-[10px] font-medium uppercase tracking-wider text-text-faint mb-2">

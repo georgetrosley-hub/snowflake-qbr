@@ -163,7 +163,7 @@ export function AccountPlaybook({ account, onOpenStrategy }: AccountPlaybookProp
       {/* 8. AI-Assisted Execution Actions */}
       <SectionCard
         title="Execution Actions"
-        summary="Generate artifacts via Deal Desk"
+        summary="Generate artifacts via Execution Desk"
       >
         <div className="flex flex-wrap gap-2">
           {AI_ACTIONS.map(({ id, label, icon: Icon }) => (

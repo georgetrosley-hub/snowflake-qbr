@@ -30,19 +30,19 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Field Console | Snowflake Enterprise AE",
+  title: "Enterprise Territory Execution | Snowflake Enterprise AE",
   description:
-    "Priority accounts, account briefs, discovery prep, POV plans, expansion path. Internal field console.",
+    "Priority accounts, account briefs, discovery prep, POV plans, expansion path. Internal territory execution workspace.",
   icons: {
     icon: [{ url: "/snowflake-logo.png", type: "image/png", sizes: "any" }],
     apple: [{ url: "/snowflake-logo.png", type: "image/png", sizes: "180x180" }],
   },
   openGraph: {
-    title: "Field Console | Snowflake",
+    title: "Enterprise Territory Execution | Snowflake",
     description:
-      "Internal field console for enterprise AEs. Priority accounts, briefs, POV, expansion.",
+      "Internal territory execution workspace for enterprise AEs. Priority accounts, briefs, POV, expansion.",
     url: "/",
-    siteName: "Field Console",
+    siteName: "Enterprise Territory Execution",
     type: "website",
     images: [
       {
@@ -55,8 +55,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Field Console | Snowflake",
-    description: "Internal field console. Priority accounts, briefs, POV, expansion.",
+    title: "Enterprise Territory Execution | Snowflake",
+    description: "Internal territory execution workspace. Priority accounts, briefs, POV, expansion.",
     images: ["/snowflake-logo.png"],
   },
 };

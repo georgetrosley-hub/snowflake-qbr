@@ -169,13 +169,13 @@ export function Overview({
     <div className="space-y-8 sm:space-y-10">
       <section id="overview" className="scroll-mt-24 rounded-2xl border border-surface-border/50 bg-surface-elevated/30 p-5 sm:p-6">
         <h1 className="text-[20px] font-semibold tracking-tight text-text-primary sm:text-[22px]">
-          Overview
+          Territory Execution
         </h1>
         <p className="mt-2 text-[13px] text-text-muted">
           One screen for priority accounts, briefs, POV, and expansion. Built for live reviews and fast CRM paste.
         </p>
         <p className="mt-2 text-[11px] text-text-faint">
-          Public-source prototype — validate consumption, pipeline, and footprint after onboarding.
+          Internal execution workspace — validate account motion, pipeline hygiene, and execution readiness after onboarding.
         </p>
         {onOpenStrategy && (
           <button
@@ -183,7 +183,7 @@ export function Overview({
             onClick={onOpenStrategy}
             className="mt-4 rounded-lg border border-accent/30 bg-accent/10 px-4 py-2.5 text-[12px] font-medium text-accent transition-colors hover:bg-accent/20 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent/25"
           >
-            Open Deal Desk
+            Open Execution Desk
           </button>
         )}
       </section>

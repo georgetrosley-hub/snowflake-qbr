@@ -16,7 +16,7 @@ import {
 import { useApiKey } from "@/app/context/api-key-context";
 import { useTheme } from "@/app/context/theme-context";
 import { cn } from "@/lib/utils";
-import { SnowflakeLogoIcon } from "@/components/ui/snowflake-logo";
+import { SnowflakeLogoIcon, SnowflakeWordmark } from "@/components/ui/snowflake-logo";
 import type { Account } from "@/types";
 import type { DealHealthSummary } from "@/lib/deal-health";
 
@@ -86,10 +86,12 @@ export function StatusBar({
             </button>
 
             <div className="flex items-center gap-3">
-              <SnowflakeLogoIcon size={22} className="shrink-0 opacity-90" />
+              <SnowflakeWordmark className="shrink-0 text-[13px] font-semibold tracking-tight text-text-primary" />
               <div className="hidden sm:block">
-                <span className="font-semibold text-[13px] text-text-primary tracking-tight">Field Console</span>
-                <span className="ml-2 text-[11px] text-text-faint">Enterprise AE</span>
+                <span className="font-semibold text-[13px] text-text-primary tracking-tight">
+                  Enterprise Territory Execution
+                </span>
+                <span className="ml-2 text-[11px] text-text-faint">Snowflake Enterprise AE</span>
               </div>
             </div>
 
@@ -159,7 +161,7 @@ export function StatusBar({
                 className="flex items-center gap-1.5 rounded bg-accent/15 px-3 py-1.5 text-[11px] font-medium text-accent transition-colors hover:bg-accent/25 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent/25"
               >
                 <MessageCircle className="h-3 w-3" strokeWidth={2} />
-                Deal Desk
+                Execution Desk
               </button>
             )}
           </div>
@@ -175,7 +177,7 @@ export function StatusBar({
                 <div>
                   <p className="text-[13px] font-medium text-text-primary">API Key</p>
                   <p className="mt-1 text-[11px] text-text-muted">
-                    Required for Deal Desk and runbook.
+                    Required for Execution Desk and runbook.
                   </p>
                 </div>
               </div>
@@ -205,7 +207,7 @@ export function StatusBar({
               </div>
 
               <div className="rounded-lg bg-surface/60 px-3 py-2 text-[11px] text-text-secondary">
-                {hasApiKey ? "Saved. Ready for Deal Desk." : "Add key to enable Deal Desk."}
+                {hasApiKey ? "Saved. Ready for Execution Desk." : "Add key to enable Execution Desk."}
               </div>
 
               <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
