@@ -21,7 +21,6 @@ import {
 } from "@/lib/value-model-format";
 import {
   computeCienaSnowflakeEnabled,
-  computeFintechSnowflakeEnabled,
   computeSagentSnowflakeEnabled,
 } from "@/lib/snowflake-enabled-value";
 import { SnowflakeEnabledValueBlock } from "@/components/value-model/snowflake-enabled-value-block";
@@ -449,72 +448,50 @@ function SagentImpactModel({ accountName, proofPoint }: { accountName: string; p
 /* ——— U.S. FinTech ——— */
 
 function UsFintechImpactModel({ accountName, proofPoint }: { accountName: string; proofPoint: string }) {
-  const [annualVolume, setAnnualVolume] = useState(2_800_000_000);
-  const [anomalyPct, setAnomalyPct] = useState(4);
-  const [lossRatePct, setLossRatePct] = useState(0.35);
-  /** Default ~65% along the detection lever — strong, believable first view. */
-  const [avoidablePct, setAvoidablePct] = useState(64);
+  const portfolioUnderManagement = 6_500_000_000_000;
+  const [workflowsInScope, setWorkflowsInScope] = useState(1);
+  const [detectionLagImprovementBps, setDetectionLagImprovementBps] = useState(0.5);
+  const [portfolioExposureFactorPct, setPortfolioExposureFactorPct] = useState(0.005);
   const [explainOpen, setExplainOpen] = useState(false);
 
-  const volumeImpacted = annualVolume * (anomalyPct / 100);
-  const riskExposure = volumeImpacted * (lossRatePct / 100);
-  const avoidableRisk = riskExposure * (avoidablePct / 100);
+  const totalAddressableRiskExposure = 6_500_000 * workflowsInScope * (portfolioExposureFactorPct / 0.005);
+  const detectableRiskYear1 =
+    1_630_000 *
+    workflowsInScope *
+    (detectionLagImprovementBps / 0.5) *
+    (portfolioExposureFactorPct / 0.005);
+  const progressPct = 85;
 
-  const snowflakeEnabled = useMemo(
-    () => computeFintechSnowflakeEnabled(avoidableRisk, avoidablePct, anomalyPct, lossRatePct),
-    [avoidableRisk, avoidablePct, anomalyPct, lossRatePct]
-  );
-
-  const interpretation = useMemo(() => {
-    if (avoidablePct < 28) {
-      return "When detection stays slow, only a small share of downstream loss is realistically avoidable — even when anomalies exist.";
-    }
-    if (avoidablePct < 48) {
-      return "Faster anomaly detection on governed data increases the portion of exposure that becomes avoidable before loss compounds.";
-    }
-    if (avoidablePct < 72) {
-      return "Strong detection improvement materially raises avoidable risk — the story shifts from reporting lag to measurable risk reduction.";
-    }
-    return "At high detection leverage, most modeled avoidable risk is within reach in a governed first motion — the right executive conversation.";
-  }, [avoidablePct]);
-
-  const execInsight = useMemo(() => {
-    const exp = formatCurrencyCompact(riskExposure);
-    const av = formatCurrencyCompact(avoidableRisk);
-    const snow = formatCurrencyCompact(snowflakeEnabled.value);
-    return `Risk reduction enabled by Snowflake is directionally ${snow} on ${av} avoidable risk (${exp} total exposure). Faster signal on governed data — audit-friendly, not a shadow-copy story.`;
-  }, [avoidableRisk, riskExposure, snowflakeEnabled.value]);
+  const execInsight =
+    "Snowflake-enabled detectable risk exposure is directionally $1.63M on one securitization workflow against a $6.5T portfolio. The POV proves governed anomaly detection lands fast enough to catch exceptions before close, not after.";
 
   const sections: ImpactExplanationSection[] = useMemo(
     () => [
       {
         title: "Snowflake-enabled value",
-        body: `Risk reduction enabled by Snowflake is ${formatCurrencyCompact(snowflakeEnabled.value)} — ${formatPercent(snowflakeEnabled.unlockRatio * 100, 0)} of ${formatCurrencyCompact(avoidableRisk)} avoidable risk when ${formatPercent(avoidablePct)} of downstream loss is avoidable with faster detection. That is the governed, near-term reduction leadership can underwrite.`,
+        body: `Snowflake-enabled detectable risk exposure is ${formatCurrencyCompact(detectableRiskYear1)} across ${formatCount(workflowsInScope)} securitization workflow(s), derived from ${formatPercent(detectionLagImprovementBps / 100)} detection lag improvement and a ${formatPercent(portfolioExposureFactorPct)} portfolio exposure factor. This is the near-term, governed signal leadership can underwrite.`,
       },
       {
         title: "Total exposure",
-        body: `Total exposure is ${formatCurrencyCompact(riskExposure)} on ${formatCurrencyCompact(volumeImpacted)} impacted volume (${formatCurrencyCompact(annualVolume)} annual flow, ${formatPercent(anomalyPct, 1)} anomaly share, ${formatPercent(lossRatePct, 2)} loss on affected flow). Avoidable risk before Snowflake attribution is ${formatCurrencyCompact(avoidableRisk)}. ${proofPoint}`,
+        body: `Total addressable risk exposure is ${formatCurrencyCompact(totalAddressableRiskExposure)} across a ${formatCurrencyCompact(portfolioUnderManagement)} portfolio. Directional, one-workflow detectable risk in Year 1 is ${formatCurrencyCompact(detectableRiskYear1)}. ${proofPoint}`,
       },
       {
         title: "Why Snowflake makes this achievable",
-        body: `At this scale, reducing detection lag even modestly materially reduces exposure. Snowflake matters because it accelerates signal on governed data you already control — no shadow copies, evidence that holds up in audit and risk conversations.`,
+        body: "Snowflake works on existing governed securitization data without introducing new movement or compliance exposure. Signal surfaces in real time on regulated infrastructure, which lets teams catch exceptions while remediation is still possible.",
       },
       {
         title: "Why this is a strong first workload",
-        body: `One reporting domain: side-by-side timing vs. delayed reporting with lineage and access controls in the readout. Prove speed with evidence, then widen the governed footprint.`,
+        body: "One securitization workflow provides a bounded POV: prove governed anomaly detection before close, then expand across adjacent workflows with the same controls.",
       },
     ],
     [
-      annualVolume,
-      anomalyPct,
-      avoidablePct,
-      avoidableRisk,
-      lossRatePct,
+      detectableRiskYear1,
+      detectionLagImprovementBps,
+      portfolioExposureFactorPct,
+      portfolioUnderManagement,
       proofPoint,
-      riskExposure,
-      snowflakeEnabled.unlockRatio,
-      snowflakeEnabled.value,
-      volumeImpacted,
+      totalAddressableRiskExposure,
+      workflowsInScope,
     ]
   );
 
@@ -527,53 +504,34 @@ function UsFintechImpactModel({ accountName, proofPoint }: { accountName: string
       >
         <div className="space-y-4">
           <ModelIntro>
-            One lever: how much downstream loss becomes avoidable as anomaly detection accelerates on governed
-            securitization data.
+            One lever: how much risk exposure becomes detectable as anomaly detection shifts from after the fact to
+            real time on governed securitization data.
           </ModelIntro>
 
           <SnowflakeEnabledValueBlock
             variant="hero"
-            title="Risk reduction enabled by Snowflake"
-            heroEyebrow="Near-term impact"
-            heroSubline="At this scale, reducing detection lag even modestly can materially reduce exposure."
-            valueDisplay={formatCurrencyCompact(snowflakeEnabled.value)}
-            portionLine={
-              avoidableRisk > 0
-                ? `≈ ${formatPercent(snowflakeEnabled.unlockRatio * 100, 0)} of avoidable risk in an initial motion`
-                : "Raise detection leverage to see directional unlock."
-            }
-            barPercent={avoidableRisk > 0 ? snowflakeEnabled.unlockRatio * 100 : 0}
-            supportingText="Derived from the detection lever and workflow economics — not a penetration slider. Snowflake makes this number real because signal lands on governed data without new sprawl."
-            timeToValueBadge="Initial value in days"
-            timeToValueHint="Faster detection without ungoverned copies or unnecessary movement."
-          />
-
-          <PrimaryValueSlider
-            id="ft-detection"
-            label="Faster anomaly detection with Snowflake"
-            hint="Move right for stronger detection leverage — more modeled risk becomes realistically avoidable."
-            min={15}
-            max={90}
-            step={1}
-            value={avoidablePct}
-            onChange={(n) => setAvoidablePct(clamp(Math.round(n), 15, 90))}
-            suffix="%"
-            formatDisplay={(n) => String(n)}
-            anchors={["Minimal avoidability", "Moderate", "Strong", "Near-max"]}
-            interpretation={interpretation}
+            title="Snowflake-enabled detectable risk exposure"
+            heroEyebrow="Protectable risk exposure"
+            heroSubline="On a $6.5T securitization portfolio, even a 0.5 basis point improvement in detection speed on one workflow makes this exposure visible in real time instead of after the fact."
+            valueDisplay={formatCurrencyCompact(detectableRiskYear1)}
+            portionLine="Scoped to one securitization workflow. Expansion across additional workflows scales this 3 to 5x."
+            barPercent={progressPct}
+            supportingText="Derived from detection lag economics on governed securitization data. Snowflake surfaces signal without new data movement or compliance exposure."
+            timeToValueBadge="Recoverable in first 90 day engagement"
+            timeToValueHint="Real-time governed anomaly signal on one workflow first, then expand."
           />
 
           <div className="grid gap-3 sm:grid-cols-3">
-            <OutputMetricRow label="Total risk exposure" value={formatCurrencyCompact(riskExposure)} />
-            <OutputMetricRow label="Avoidable risk" value={formatCurrencyCompact(avoidableRisk)} />
-            <OutputMetricRow label="Impacted volume" value={formatCurrencyCompact(volumeImpacted)} />
+            <OutputMetricRow label="Total addressable risk exposure" value={formatCurrencyCompact(totalAddressableRiskExposure)} />
+            <OutputMetricRow label="Detectable risk (Year 1)" value={formatCurrencyCompact(detectableRiskYear1)} />
+            <OutputMetricRow label="Portfolio under management" value={formatCurrencyCompact(portfolioUnderManagement)} />
           </div>
 
           <SnowflakeAttributionBlock
             lines={[
-              "Extends secure sharing on data already governed — fewer new seams in a regulated environment.",
-              "Surfaces anomalies faster with lineage and access controls execs can defend in audit conversations.",
-              "Avoids duplicate stores and shadow paths people take when speed is urgent and governance is non-negotiable.",
+              "Works on existing governed securitization data without introducing new data movement or compliance exposure.",
+              "Shifts anomaly detection from batch reporting to real time signal on SOC2/FHFA regulated infrastructure.",
+              "Fast enough to catch exceptions before securitization close, when remediation is still possible.",
             ]}
           />
 
@@ -582,36 +540,36 @@ function UsFintechImpactModel({ accountName, proofPoint }: { accountName: string
           <AdvancedAssumptionsPanel>
             <SliderField
               id="ft-vol"
-              label="Annual workflow volume"
-              min={400_000_000}
-              max={8_000_000_000}
-              step={50_000_000}
-              value={annualVolume}
-              onChange={(n) => setAnnualVolume(clamp(n, 400_000_000, 8_000_000_000))}
-              suffix="$"
-              formatDisplay={(n) => `$${formatCurrencyInput(n)}`}
+              label="Securitization workflows in scope"
+              min={1}
+              max={20}
+              step={1}
+              value={workflowsInScope}
+              onChange={(n) => setWorkflowsInScope(clamp(Math.round(n), 1, 20))}
+              suffix="none"
+              formatDisplay={(n) => formatCount(n)}
             />
             <SliderField
               id="ft-anom"
-              label="Share of volume with anomalies"
-              min={0.5}
-              max={14}
-              step={0.5}
-              value={anomalyPct}
-              onChange={(n) => setAnomalyPct(clamp(n, 0.5, 14))}
+              label="Detection lag improvement (bps)"
+              min={0.1}
+              max={2}
+              step={0.1}
+              value={detectionLagImprovementBps}
+              onChange={(n) => setDetectionLagImprovementBps(clamp(n, 0.1, 2))}
               suffix="%"
               formatDisplay={(n) => n.toFixed(1)}
             />
             <SliderField
               id="ft-loss"
-              label="Estimated loss rate on affected volume"
-              min={0.05}
-              max={2}
-              step={0.05}
-              value={lossRatePct}
-              onChange={(n) => setLossRatePct(clamp(n, 0.05, 2))}
+              label="Portfolio exposure factor (%)"
+              min={0.001}
+              max={0.02}
+              step={0.001}
+              value={portfolioExposureFactorPct}
+              onChange={(n) => setPortfolioExposureFactorPct(clamp(n, 0.001, 0.02))}
               suffix="%"
-              formatDisplay={(n) => n.toFixed(2)}
+              formatDisplay={(n) => n.toFixed(3)}
             />
           </AdvancedAssumptionsPanel>
         </div>
